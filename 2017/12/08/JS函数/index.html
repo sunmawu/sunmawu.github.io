@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>Hello World | Hexo</title>
+<title>JS常用函数 | Hexo</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -96,7 +96,7 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
                         
-                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>Home</a>
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
                             </li>
                         
                             <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
@@ -124,9 +124,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="JS常用函数">
             
-            Hello World
+            JS常用函数
             
         </h1>
         <div class="post-meta">
@@ -134,7 +134,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>无</span>
+        <span>前端</span>
     </span>
     
     
@@ -142,7 +142,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            null
+            javascript
             
         </span>
     </span>
@@ -150,7 +150,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2017/12/05</span>
+        <span class="date-meta">2017/12/08</span>
     </span>
 </div>
 
@@ -159,16 +159,85 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><pre><code>不常用：
+        str.length         返回字符串长度（中文只占一个位置）
+        str.anchor        锚点
+        str.bold        加粗
+常用：
+        str.charAt(下标)    
+        获取指定下标的字符，从0开始；
 
+        str.indexOf(&apos;字串&apos;)    
+        返回首个给定字串的索引位置，没有则返回-1；
+
+        str.lastIndexOf(&apos;字串&apos;)
+        返回最后一个给定字串的索引位置，没有则返回-1；
+
+        str.concat(&apos;字串&apos;)
+        向字串末尾追加字串，生成新字串；
+
+        str.substr(下标)             截取从指定下标开始至结束的字串;
+        str.substr(下标,步长)        截取从指定下标开始至步长的字串;
+
+        str.substring(下标,下标)        根据给定下标范围截取字串,不含最大范围;
+        str.slice(下标,下标)            同substring(支持负数,负数为倒叙)
+
+        str.toUpperCase()            大写转换    
+        str.toLowerCase()            小写转换
+
+        str.replace(&apos;初始值&apos;,&apos;新值&apos;)        替换    也支持正则 /正则/g
+
+        str.match(/正则/)
+        正则匹配首个符合条件的字串,成功返回字串,失败返回null;
+
+        str.search(/正则/)
+        正则匹配首个符合条件的字串,成功返回该字串下标,失败返回-1;
+
+        str.split()
+        根据给定元素将字串切割成数组,默认(空)不分割,空字符代表全部元素;
+</code></pre><h3 id="正则函数"><a href="#正则函数" class="headerlink" title="正则函数"></a>正则函数</h3><pre><code>原始字串:
+        var str = &apos;123456789&apos;;             
+正则声明:
+        var reg = /^\d{3}$/;            
+        var reg = new RegExp(/\w{6}/);
+
+reg.test(str);
+用正则匹配字串,成功返回true,不成功放回false;
+
+reg.exec(str);
+用正则匹配字串,成功返回关联形数组,失败返回NULL;
+</code></pre><h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><pre><code>var data = new Date();
+创建一个时间;
+
+setFullYear();        设置公元时间
+getyear();            获取当前年数 (1990-至今)
+getFullYear();        获取当前公元年
+getMonth();            获取当前月
+getDate();            获取当前日期 几号
+getDay();            获取当前日  周几
+getHours();            获取当前小时
+getMinutes();        获取当前分钟
+getSeconds();        获取当前秒
+getMillseconds();    获取当前毫秒
+getTime();            获取时间戳
+getUTCHours();        获取UTC时间
+
+toString()            同date输出
+toUTCString()        UTC时间字串
+toLocaleString()    本地时间字串
+</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><pre><code>Math.PI            圆周率
+Math.E            自然常数
+Math.abs        绝对值
+Math.sqrt        开根号
+Math.max        最大数
+Math.min        最小数
+Math.floor        舍小取整
+Math.ceil        进一取整
+Math.round        四舍五入
+Math.random        随机数
+
+银行家四舍六入
+</code></pre>
     </div>
 
     <div class="post-footer">   
@@ -185,23 +254,13 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
+        <a href="/2017/12/08/test/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/jQuery/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
-
-    <div id="comments">
-        
-    <div id="uyan_frame"></div>
-    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1966422"></script>
-
-
-
-
-
-
-
-
-    </div>
 
 
 
@@ -212,100 +271,55 @@
     <aside class="col-md-4 sidebar">
         
         
-    <div class="widget">    
-        <h3 class="title">Search</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
-                    <button type="button" class="search-form-submit" id="search-local">localSearch</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
         
         
-    <div class="widget notification">
-        <h3 class="title">网站公告</h3>
-        <div>
-            <p>主题Snippet v1.2.0版本已经上线！欢迎更新~ <br/>
-主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
-<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
-</p>
-        </div>
-    </div>
-
         
         
     <div class="widget">
-      <h3 class="title">Social</h3> 
+      <h3 class="title">社交</h3> 
         <div class="content social">
             
-	            <a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank">
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
 			    	<i class="git fa fa-git"></i>
 			    </a>
             
-	            <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
-			    	<i class="qq fa fa-qq"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="微博" target="_blank">
-			    	<i class="weibo fa fa-weibo"></i>
-			    </a>
-            
-	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
-			    	<i class="users fa fa-users"></i>
-			    </a>
-            
-	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
-			    	<i class="feed fa fa-feed"></i>
-			    </a>
-            
         </div>
     </div>
 
 
         
         
-
-        
-        
     <div class="widget">
-      <h3 class="title">Archives</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">1</span></li></ul>
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
     </div>
 
 
         
         
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
 
         
         
     <div class="widget">
-        <h3 class="title">Friends</h3>
+        <h3 class="title">友链</h3>
         <div class="content friends-link">
         
-            <a href="http://www.shenliyang.com" class="fa" target="_blank">个人博客</a>
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
         
         </div>
     </div>
@@ -349,14 +363,7 @@
 </div>
 
 
-  <script src="/assets/highlight.pack.js?rev=@@hash"></script>
-  <script>
-     hljs.initHighlightingOnLoad(); //初始化代码高亮 
-  </script>
 
-
-
-	<script src="/js/search.js?rev=@@hash"></script>
 
 
 <script src="/js/app.js?rev=@@hash"></script>

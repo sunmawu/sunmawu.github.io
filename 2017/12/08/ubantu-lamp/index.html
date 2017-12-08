@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>归档：2017/12 | Hexo</title>
+<title>ubantu-lamp环境搭建 | Hexo</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -36,6 +36,8 @@
 
 
 
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
@@ -118,81 +120,182 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2017年 12月</h1>
-        
-          <li class="post-items" _href="/2017/12/08/ubantu-lamp/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/ubantu-lamp/"> ubantu-lamp环境搭建 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/test/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/test/"> test </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/JS函数/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/JS函数/"> JS常用函数 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/jQuery/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/jQuery/"> jQuery </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/php-redis操作/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/php-redis操作/"> PHP-redis操作 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/memcached/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/memcached/"> Memcache分布式缓存系统 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/JAVASCRIPT/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/JAVASCRIPT/"> Javascript课程 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/mysql(1)/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/mysql(1)/"> Mysql入门 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/linux/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/linux/"> linux 入门 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/PHP/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/PHP/"> PHP </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="ubantu-lamp环境搭建">
+            
+            ubantu-lamp环境搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>工具</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            linux
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/archives/2017/12/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/12/page/2/"><i class='fa fa-angle-right'></i></a>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="ubantu-lamp环境搭建"><a href="#ubantu-lamp环境搭建" class="headerlink" title="ubantu lamp环境搭建"></a>ubantu lamp环境搭建</h2><pre><code>1.更新apt-get源
+    sudo apt-get update
+
+2.安装apache
+    sudo apt-get install apache2
+
+3.安装Mysql (有提示输入mysql的初始密码 默认用户为root)
+    sudo apt-get install mysql-server mysql-client
+
+4.安装php
+    sudo apt-get install php7.0
+
+5.安装php apache模块
+    sudo apt-get install libapache2-mod-php
+
+6. 安装php常用插件
+    sudo apt-get install php7.0-mysql php7.0-mysql php7.0-curl php7.0-gd php7.0-mbstring php7.0-mcrypt php7.0-xml php7.0-zip
+
+7.设置服务器域名解析和端口访问等
+略...
+
+8.#配置虚拟主机(可选)
+修改文件
+    vi /etc/apache2/sites-avilabe/000-default.conf
+代码如下：
+    &lt;VirtualHost *:80&gt;
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/laravel/public (tp5框架文件目录)
+    ServerName www.shxdledu.cn    (域名)
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    &lt;/VirtualHost&gt;
+
+9.配置成功后重启apahce 
+    sudo service apache2 restart
+</code></pre><h2 id="ubuntu-PHP安装redis扩展"><a href="#ubuntu-PHP安装redis扩展" class="headerlink" title="ubuntu-PHP安装redis扩展"></a>ubuntu-PHP安装redis扩展</h2><pre><code>cd /root    切换到root目录下
+
+1.安装git(如果有git则跳过)
+    sudo apt-get install git
+
+2.下载phpredis
+    git clone https://github.com/phpredis/phpredis.git
+
+3.剪切到etc
+    mv phpredis/ /etc/
+
+4.切换目录
+    cd /etc/phpredis
+
+5.安装php7.0-dev (如果有则跳过)
+    sudo apt-get install php7.0-dev
+
+6.执行解析
+    phpize
+
+7.执行configure
+    ./configure
+
+8.编译和编译安装
+    make &amp;&amp; make install
+
+9.修改php配置文件(需要在conf.d下创建redis.ini文件)
+    vi /etc/php/7.0/fpm/conf.d/redis.ini
+    写入（extension=/etc/phpredis/modules/redis.so）
+
+10.修改apache配置文件
+    vi /etc/php/7.0/apache2/php.ini
+    写入 （extension=/etc/phpredis/modules/redis.so）
+    插入位置可以找 extension=mysql.dll
+
+11.重启apache
+    sudo service apache2 restart
+</code></pre><h3 id="注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装"><a href="#注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装" class="headerlink" title="*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装."></a>*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装.</h3><h2 id="ubuntu-安装redis"><a href="#ubuntu-安装redis" class="headerlink" title="ubuntu-安装redis"></a>ubuntu-安装redis</h2><pre><code>1.安装redis
+    sudo apt-get install redis-server
+
+2.启动redis(出现欢迎界面)
+    redis-server
+
+3.进入控制台
+    redis-cli
+
+4.修改redis访问密码
+    vi /etc/redis/redis.conf
+    搜索 requirepass foobared
+    取消注释并修改成 requirepass 密码
+</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code>安装 下载工具 wget
+    sudo apt-get install -y wget
+
+查看 wget版本        
+    wget -version
+
+
+安装composer        
+    去composer 找命令
+
+    建议切换到 /usr/local/bin
+
+    使用wget安装composer wget 加上composer的官网下载地址
+
+    wget https://getcomposer.org/download/1.4.1/composer.phar
+
+    重命名文件composer.phar 为 composer 
+    $ mv composer.phar composer
+
+    $ chmod +x composer     
+
+    然后如果需要git 他自带有的
+
+    其实linux 和Windows 差别不大的，都是系统，我们用的也就是装软件而已。
+
+    常用的目录结构
+    WWW var/html
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2017/12/08/test/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
 
 
 

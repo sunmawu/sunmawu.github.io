@@ -1,0 +1,1247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>PHP | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="PHP">
+            
+            PHP
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>后端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            PHP
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法;"></a>基础语法;</h3><pre><code>1.PHP 定界符
+所有的PHP代码必须放在定界符中才能起作用
+
+&lt;?php 代码内容 ?&gt;       长风格
+&lt;? 代码内容 ?&gt;          短风格
+需要开启 short_open_tag = on
+
+在wamp配置文件bin下的apache下bin下的php.ini
+注意点:修改任意配置文件,只有重启服务器之后才会生效
+
+2.设置字符集
+header(&apos;content-type: text/html; charset=utf-8&apos;);
+
+3.注释
+//      单行注释
+#       单行注释
+/**/    多行注释
+</code></pre><h3 id="变量"><a href="#变量" class="headerlink" title="变量;"></a>变量;</h3><pre><code>variable
+定义变量 $变量名 = 值
+未定义变量 $变量名 (不给值)
+
+变量的命名规范 区分大小写
+有数字,字母和下划线组成,不能以数字开头
+
+可变变量: 将一个变量的值 作为另一个变量的名字去使用
+引用变量:
+        传值 只传变量的值
+        传址 把值和内存地址都传了,在重新赋值后,被传址的变量也会跟着改变
+三大类型,八大变量
+标量类型:
+        整形      int
+      浮点型       float
+      布尔型       bool  true/false
+      字符串       string
+
+复合类型:
+        数组      array
+        对象      object
+
+特殊类型:
+        资源      resource
+        空           null
+
+7种与false等价的情况,其余都认为true
+    1. false
+    2. 0
+    3. 0.0
+    4. &apos;&apos;或 &apos;0&apos;
+    5. array()
+    6. null
+    7. 未定义变量
+自动类型转换;
+    1. 布尔型的true = 1 false = 0 (整形)
+    2. null = 0  (整形)
+    3. 字符串转数值型（integer、float)时，需注意以下几点：
+         3.1 非数字的都等于0
+         3.2 支持科学计数法  1e3 = 1000 或 .1E3 = 100
+         3.3 遇到重复出现.或科学计数法的时候，以第一个为准，后面都无效。
+         3.4 转换运算时，变量类型的转换优先级为float &gt; integer
+强制类型转换:
+        (变量类型)$变量名
+
+        intval(变量名)
+        floatval(变量名)
+        strval(变量名)
+常量;
+用来表示程序中经常不变的值
+
+格式1: const 常量名 = 常量值
+格式2: define(常量名,常量值, [true/false])常用
+        true : 不区分大小写
+        false: 区分大小写(默认) 推荐
+注意:
+    常量值 一旦定义就不能再重复赋值/定义
+    常量名推荐用大写
+</code></pre><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符;"></a>运算符;</h3><pre><code>算术运算符
+    + -
+    *
+    /
+    % 取模 取余数 第二个数永远取绝对值,结果只会0~第二个数(不包括第二个数)
+
+    ++ 递增 在前先+1在运算.++在后先运算,再+1
+    -- 递减
+    .  拼接符
+
+赋值运算符
+    =
+    +=
+    -=
+    *=
+    /=
+    %=
+    .=
+    a += b 等于 a = a + b
+
+比较运算符
+    结果只有 true或false
+    &gt;
+    &gt;=
+    &lt;
+    &lt;=
+    ==
+    ===
+    !=  或 &lt;&gt; 不等于
+    !== 不全等 只有数值和类型都相等的情况下为false,其余都是true.
+
+逻辑运算符
+    &amp;&amp;      逻辑与  同and
+    两边为真即为真,一边为假即为假
+
+    ||      逻辑或  同or
+    两边为假即为假,一边为真即为真
+
+    !       逻辑非 反义
+
+三元运算符
+    格式:条件表达式 ? true : false
+</code></pre><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制;"></a>流程控制;</h3><pre><code>顺序结构: 代码从上往下一次执行
+
+分支结构: 通过if/switch来进行分支选择
+
+if 适合定值判断 和 范围判断
+
+    分支1:
+        if(条件表达式)
+        只能影响紧跟在if后面的一句话
+
+    分支2:
+        if(条件表达式){
+        影响括号内的所有代码
+        }
+
+    分支3:
+        if(条件表达式){
+            true
+        }else{
+            false
+        }
+
+    分支4:
+        if(条件表达式){
+            true
+        }elseif(条件表达式){
+            true
+        }else{
+            false
+        }
+
+    分支5:
+        switch(定值){
+            case &apos;定值1&apos;: break;
+            case &apos;定值2&apos;: break;
+            case &apos;定值3&apos;: break;
+            case &apos;定值4&apos;: break;
+            ...
+            [ default ]
+        }
+循环结构: 通过循环不断重复某些事情
+    循环三要素:
+        * 初始值
+        * 循环条件
+        * 循环增量
+
+    1. while
+        格式:
+
+            a.初始值
+            while( b.循环条件 ){
+                c.循环体
+                [循环增量]
+            }
+            d.其他内容
+
+    2. do while
+        格式:
+
+            a.初始值
+            do{
+                b.循环体[循环增量]
+            }while(c.循环条件);
+
+            d.其余内容
+
+    3. for
+        格式:
+            for(a.初始值; b.循环条件; c.循环增量){
+                    d.循环体
+            }
+            e.其余内容
+</code></pre><h3 id="函数"><a href="#函数" class="headerlink" title="函数;"></a>函数;</h3><pre><code>定义: 用来执行特定的任务,简称 功能
+
+函数的分类:
+    1. 系统函数: 数字,字符串,数组,时间,正则,文件...
+    2. 自定义函数: 根据用户具体需求封装函数
+
+自定义函数
+    function 函数名(参数1,参数2,....){
+        函数体
+        [return 返回值]
+    }
+
+1. 关键字: function
+2. 函数名: 不区分大小写
+3. () : 定义/声明函数时的参数叫做形式参数,简称形参
+4. {} : 函数体,函数功能的具体代码
+5. return : 函数的返回结果
+
+特性: 函数不调用,不会执行
+
+函数的命名形式
+
+    注意点:命名不能重复,不能与已有的函数名冲突,不区分大小写
+
+1.驼峰命名法
+    从第二个单词开始首字母大写
+    addUserName()
+
+2.帕斯卡命名法(大驼峰命名法)
+    每个单词首字母都大写
+    AddUserName()
+
+3.下划线命名法
+    每个单词之间用下划线隔开
+    var_dump()
+
+形参和实参:
+    声明函数时的参数, 形参 =&gt; 形式参数
+    调用函数时的参数, 实参 =&gt; 实际参数
+
+    实参个数 = 形参个数
+    完美
+
+    实参个数 &gt; 形参个数
+    后来的实参,没人要.
+
+    实参个数 &lt; 形参个数
+    多余的形参, 有默认值 =&gt; 采用默认值
+                无默认值 =&gt; 采用未定义变量
+
+函数返回值 return
+    没有return, 默认返回null
+    有return, 返回任意类型的值
+
+注意:
+    1.当函数碰到return,立马返回到调用函数的地方,函数不在执行了.
+    2.当函数没有return时,等函数体执行完毕,自然回到调用函数的地方.
+
+可变长度的参数函数:
+    当实参个数不确定时,可以使用以下三个函数.
+    1.func_get_args()       获取所有的实参(索引数组)
+    2.func_get_arg(num)     获取下标为num的实参
+    3.func_num_args()       获取实参的总个数
+
+变量的作用域
+    1.局部变量:在函数内部声明的变量,即为局部变量.
+    2.全局变量:在函数外部声明的变量,即为全局变量.
+    默认情况下,局部变量和全局变量互不影响.
+
+    在局部使用全局的变量:
+        函数外 $a = 100;
+        函数内 $GLOBALS[&apos;a&apos;];
+
+    在全局使用局部变量:
+        函数内 $c= 100;
+               GLOBAL $c;
+        函数外 调用函数
+
+    3.静态变量:特殊的局部变量,在函数结束的一瞬间,不会被删除.静态变量依旧不能再全局使用,普通局部变量:在函数结束的一瞬间被删除了.
+
+可变函数
+    将一个函数名当成变量来使用
+
+回调函数
+
+        求和函数
+        function sum($num1, $num2)
+        {
+            return $num1 + $num2;
+        }
+        求积函数
+        function mul($num1, $num2)
+        {
+            return $num1 * $num2;
+        }
+
+        PHP 回调函数
+        function result($num1, $num2, $calllback)
+        {
+            return $calllback($num1, $num2);
+        }
+
+        echo result(10, 20, &apos;sum&apos;);
+
+        echo result(10, 20, &apos;mul&apos;);
+
+        系统回调函数
+        把第一个参数作为回调函数调用
+        echo call_user_func(&apos;sum&apos;, 50, 90);
+
+        echo call_user_func(&apos;mul&apos;, 50, 90);
+
+        调用回调函数，并把一个数组参数作为回调函数的参数
+        echo call_user_func_array(&apos;sum&apos;, [10, 90]);
+
+        echo call_user_func_array(&apos;mul&apos;, [10, 90]);
+
+匿名函数和闭包
+        $hehe = function($a)
+        {
+            echo $a;
+        };
+
+        $hehe(&apos;呵呵哒&apos;);
+
+        var_dump($hehe);
+
+
+        要在匿名函数内部 使用外部的变量时
+        必须通过关键use,来连接闭包函数和外部的变量(全局变量)
+
+        $func = function() use(&amp;$x,&amp;$y)
+        {
+            $x *= 2;
+            $y *= 3;
+            $z = $x + $y;
+            return $z;
+        };
+
+        $x = 3;
+        $y = 3;
+
+        echo $func();
+
+
+        局部变量的应用
+        function demo()
+        {
+            $m = 3;
+            $n = 3;
+
+            闭包函数
+            $func = function() use($m,$n)
+            {
+                $m *= 2;
+                $n *= 3;
+                $p = $m +$n;
+                return $p;
+            };
+            return $func();
+        }
+
+        echo demo();
+</code></pre><h3 id="数组"><a href="#数组" class="headerlink" title="数组;"></a>数组;</h3><pre><code>1.索引数组: 下标为纯数字
+2.关联数组: 下标为非纯数字
+
+查询数组中的某个值       $数组名[&apos;下标&apos;]
+修改数组中的某个值       $数组名[&apos;下标&apos;] = 值
+删除数组中的某个值       unset($数组名[&apos;下标&apos;])
+
+遍历数组
+    foreach(数组名 as 键 =&gt; 值){
+        循环体
+    }
+
+超全局数组
+    $GLOBALS    获取全局所有可以用的变量
+    $_GET       获取以get方式传输的值
+    $_POST      获取post方式传输的值
+    $_FILES     专门接受上传文件
+    $_COOKIE    存储cookie的值,浏览器
+    $_SESSION   存储session的值,服务器
+    $_REQUEST   存储get,post,cookie的值
+    $_SERVER    获取文件地址,协议,IP,参数,网址,服务器...
+
+        HTTP_HOST           主机名
+        HTTP_USER_AGENT     设备来源,浏览器版本
+        HTTP_REFERER        上一级的来源地址
+
+        SERVER_SOFTWARE     服务器环境
+        SERVER_NAME         服务器名 = 主机名
+        SERVER_ADDR         服务器IP地址
+
+        REMOTE_ADDR         客户端IP地址
+
+        SCRIPT_FILENAME     脚本文件地址(盘符)
+        SCRIPT_NAME         脚本文件地址(网址)
+
+        REQUEST_METHOD      传输方式
+        QUERY_STRING        传输参数
+        REQUEST_URI         传输地址(带参数)
+</code></pre><h3 id="正则"><a href="#正则" class="headerlink" title="正则;"></a>正则;</h3><pre><code>匹配一次正则
+preg_match(正则,字符串,[结果])
+返回值:成功匹配的个数 0:没有匹配到. &gt;0:匹配到的个数
+
+全部匹配
+preg_match_all(正则,字符串,[结果])
+
+过滤数组
+preg_grep(正则,数组)
+
+替换字符
+preg_replace(正则,替换后的值,替换前的值)
+</code></pre><h3 id="时间-函数"><a href="#时间-函数" class="headerlink" title="时间(函数);"></a>时间(函数);</h3><pre><code>设置时区
+    date_default_timezone_get()     获取当前时区
+    date_default_timezone_set()     设置当前时区
+    UTC  世界标准时间
+    PRC  中华人民共和国
+
+time() 获取当前时间的时间戳,从1970.1.1到当前的秒数 格林威治时间.
+
+date : 格式化时间
+date( 日期格式 ,[时间戳] ); 默认当前时间
+echo date (&apos;Y-m-d H:i:s&apos;);
+这个时间会受到时区的影响
+
+创建时间点
+mktime(时,分,秒,月,日,年)     返回值:时间戳
+
+字符串转成时间
+strtotime(&apos;文本&apos;)         返回值:时间戳
+
+微秒数
+microtime()
+</code></pre><h3 id="错误"><a href="#错误" class="headerlink" title="错误;"></a>错误;</h3><pre><code>PHP程序的错误发生一般属于以下三种情况:
+    1. 语法错误
+        最常见,容易修复.
+        会阻止脚本程序的执行
+
+    2. 运行时错误
+        比较常见,不会阻止脚本程序的执行
+
+    3. 逻辑错误
+        最麻烦的错误,既不会阻止脚本程序的执行,也不报错
+
+错误级别
+    1. error        致命错误,结束整个程序
+    2.warning       警告错误,不会结束程序,但可能对结果造成一定的影响
+    3. notice       提示错误,基本不会对程序造成影响
+
+动态屏蔽错误
+    方法1:
+     在错误变量前面添加一个符号: @ 错误抑制符
+
+    方法2:
+     error_reporting() 对当前文件设置错误级别
+
+     error_reporting(0);
+     error_reporting(E_NOTICE);
+     只报notice
+
+     error_reporting(E_WARNING);
+     只报warning
+
+     error_reporting(E_ALL);
+     全报错
+
+     error_reporting(E_ALL &amp; ~ E_NOTICE);
+     error_reporting(E_ALL ^E_NOTICE);
+     除了notice不报,其余都报.
+
+静态屏蔽错误
+    方法1:
+        修改配置文件
+            display_errors = On / Off
+
+    方法2:
+        修改配置文件
+            error_reporting = E_ALL
+                              E_NOTICE
+                              E_WARNING
+                              E_ALL $ ~ E_NOTICE
+                              ...
+
+    方法3:
+        模拟修改配置文件
+        ini_get()       获取配置文件的值
+        ini_set()       设置配置文件的值(临时)
+
+自定义报错
+    trigger_error(报错信息,报错级别)
+
+设置错误日志
+    error_log(p1, p2, p3)
+    p1: 报错信息
+    p2: 消息类型  类型3:将错误信息存储到指定文件
+    p3: 指定文件
+</code></pre><h3 id="文件"><a href="#文件" class="headerlink" title="文件;"></a>文件;</h3><pre><code>删除目录
+rmdir()     只能删除空目录
+
+剪切重命名
+rename()    适合文件和目录
+rename(剪谁,剪哪儿去)
+
+rename(重命名谁,改成什么新名字)
+
+文件加载
+include &apos;文件路径&apos;;
+include_once &apos;文件路径&apos;;    之家在一次相同文件
+
+文件依赖
+require &apos;文件地址&apos;;
+require_onec &apos;文件地址&apos;;
+
+include 和 require 有什么区别?
+1. include 加载出错, 不会终止程序的执行
+      require 加载出错, 终止程序的执行
+
+2. 文件地址: 都支持相对路径, 盘符路径, 不支持网址路径
+
+向文件赋予内容(先将文件大小截为0,然后再写内容)
+file_put_contents(&apos;文件地址&apos;,&apos;内容&apos;);
+
+获取文件内容
+file_get_contents(&apos;文件地址&apos;)
+
+打开文件,返回资源
+fopen(&apos;文件地址&apos;,&apos;读写方式&apos;)
+
+读取文件资源
+fread(资源,长度)
+
+写入文件
+fwrite(资源,内容)
+
+关闭资源
+fclose(资源)
+
+复制并移动
+copy(&apos;数组名[值]&apos;,&apos;文件路径&apos;)
+
+文件上传
+
+上传文件,会有三个地方限制文件大小:
+1.前端表单限制
+    在前端表单中添加隐藏域
+    name=&apos;MAX_FILE_SIZE&apos; value=&quot;字节&quot;
+
+2.前端post协议
+    配置文件 post_max_size = 8M
+    如果违反这条,$_FILES将接受不到任何值
+
+3.服务器端的配置文件限制
+    配置文件 upload_max_filesize = 2M
+
+文件下载
+1. 接收 下载的文件名
+    $name = $_GET[&apos;name&apos;];
+
+    $suffix = strrchr($name, &apos;.&apos;);
+
+2. 准备下载的路径
+    $path = &apos;./download/&apos;.$name;
+
+3. 实现下载
+    header(&apos;content-Disposition:attachment; filename=&quot;&apos;.md5(uniqid()).$suffix.&apos;&quot;&apos;);
+
+    readfile($path);
+</code></pre><h2 id="OOP"><a href="#OOP" class="headerlink" title="OOP;"></a>OOP;</h2><pre><code>类的定义
+    class 类名
+    {
+        属性(我有什么)
+        方法(我会什么)
+    }
+
+    实例化类 = 对象
+    $对象名 = new 类名
+    $对象名 = new 类名()
+
+    使用对象的属性
+    $对象名-&gt;属性名
+
+    使用对象的方法
+    $对象名-&gt;方法名();
+
+伪对象
+    $this : 表示当前对象
+    $this-&gt; 属性名
+    $this-&gt; 方法名()
+
+构造方法
+    public function __construct(参数)
+    {
+        方法体
+    }
+
+    说明:
+        1.在实例化瞬间,自动执行
+        2.无返回值
+        3.不允许重复
+
+    作用:
+        1.常用于给属性赋初始值,通常卸载成员属性的最后面,方法的最前面
+
+析构方法
+    public function __destruct()
+    {
+        方法体
+    }
+
+    说明:
+        1.当对象销毁后,自动执行.
+        2.当程序全部结束
+        3.当对象变量被重新赋值/销毁后
+
+当构造 与 析构同时出现时,先做构造,在做析构.
+数据抽象层PDO
+
+    $dsn = &apos;mysql:dbname=表名; host=localhos; charset=utf8&apos;;
+    $user = &apos;root&apos;;
+    $pwd = &apos;&apos;;
+
+    exec()          更适合增删改,返回受影响的行数.
+    query()         查询,返回PDOStatement类
+    errorInfo()     返回错误信息
+    lastInserId()   返回上一次插入的ID
+
+    PDOStatement类
+        fetch()     返回一条数据,一位数组.
+        fetchALL()  全部返回二位数组
+                PDO::FETCH_ASSOC    关联数组
+                PDO::FETCH_NUM      索引数组
+                PDO::FETCH_BOTH     混合数组
+</code></pre><h3 id="面向对象的三大特性"><a href="#面向对象的三大特性" class="headerlink" title="面向对象的三大特性:"></a>面向对象的三大特性:</h3><pre><code>封装性
+    1.将对象的属性和方法结合在一起,形成一个不可分割的独立单位(对象)
+    2.信息隐蔽,尽可能的隐藏对象内部的属性和方法,只留下部分几口与外部联系.
+
+如何控制与外部的联系?
+    修饰符:
+        public      公共的
+        private     私有的
+        protected   受保护的
+
+                    类外    类内     继承
+        public       √       √       √
+        private      x       √       x
+        protected    x       √       √
+
+继承性
+    定义:子类继承父类的属性和方法
+    父类:基础类,基类
+    子类:派生类,继承类,扩展类
+
+    格式:
+        class 子类名 extends 父类名
+        {
+
+        }
+
+    特性:
+        1.可继承属性,方法
+        2.可重写属性,方法
+        3.支持单继承,不支持多继承,可以有多个子类继承同一个父类.
+
+    在子类调用父类的方法
+    parent::方法名();
+    子类中不能调用父类的属性
+
+    访问级别:在继承时,方法和属性的重写,子类的访问级别不能大于父级的访问级别.
+    private &gt; protected &gt; public
+    private 不能被继承
+
+多态性
+    静态static
+
+        格式:
+            static 修饰符 属性名
+            修饰符 static 属性名
+
+            static 修饰符 属性名 = 值
+            修饰符 static 属性名 = 值
+
+        特性:
+            1.静态不属于对象,只属于类
+            2.静态可以定义属性和方法
+            3.在静态方法内,只能访问静态属性/方法,$this不能在静态方法内使用
+            4.静态属性/方法 可以被继承
+
+        外部访问格式
+            类名::属性名
+            类名::方法名()
+
+        内部访问格式
+            self::属性名
+            self::方法名()
+
+            类名::属性名
+            类名::方法名()
+常量const
+    面向对象中,定义常量只有通过const关键字
+
+    1.定义格式:推荐大写
+    const 常量名 = 值
+
+    2.常量不属于对象,属于类
+    类名::常量名
+
+    3.常量区分大小写
+
+    4.常量在同类中不能重复定义
+
+    5.常量可以被继承,在继承类中可以重写一次
+
+最终final
+    1.只能修饰类和方法,不能修饰属性
+    2.类不能被继承
+    3.方法可以被继承,但不能重写
+
+    总结:final类,并没有给类增加额外的功能,反而限制了原来的一些功能,主要用于保护类的结构.
+</code></pre><h4 id="运算符关键字-滴血认清"><a href="#运算符关键字-滴血认清" class="headerlink" title="运算符关键字(滴血认清)"></a>运算符关键字(滴血认清)</h4><pre><code>instanceof
+1.对象是否是类的实例
+2.对象是否是类的子类
+
+格式:
+    (对象名 instanceof 类名)
+    返回值:true/false
+</code></pre><h4 id="克隆-clone"><a href="#克隆-clone" class="headerlink" title="克隆 clone"></a>克隆 clone</h4><pre><code>如果想给对象做个副本(备份)
+1.clone 之后不需要实例化,直接当对象使用
+2.clone之后,与原来的对象,互不影响,完全独立.
+
+注意:直接赋值后的对象,会随着原来的对象变化而变化
+删除,标识
+直接赋值,删除对象.只是删除的对象与标识的连接,而不是内存的连接
+</code></pre><h4 id="对象串行化"><a href="#对象串行化" class="headerlink" title="对象串行化"></a>对象串行化</h4><pre><code>作用:将对象串行化为字符串,存入文件,数据库,传递...
+1.serialize()       串行化
+2.unserialize()     还原对象
+
+注意:只串属性,不串方法,但是方法依旧存在.
+</code></pre><h4 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h4><pre><code>__autoload
+作用:当实例化不存在的类时,自动触发.直接在外部使用,不需要在类内使用.
+</code></pre><h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><pre><code>abstract
+作用:可以修饰类 和 方法
+
+格式:
+    abstract class 类名
+    abstract 修饰符 function 方法名
+    修饰符 abstract function 方法名
+
+没有方法体的方法,都称为抽象方法.
+    1.一个包含抽象方法的类,必须是抽象类.
+    2.抽象类中不一定就要有抽象方法.
+    3.抽象类不能实例化
+    4.抽象类通常是由子类继承,并完善抽象方法.
+    5.当类中全部为抽象方法时,称之为接口.
+</code></pre><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><pre><code>interface 接口名
+{
+
+}
+
+继承接口用implements
+格式:
+    class 子类名 implements 接口名
+    {
+
+    }
+
+案例:
+    interface USB
+    {
+        public function run();
+    }
+
+    class Mouse implements USB
+    {
+        public function run()
+        {
+          echo &apos;鼠标&apos;;
+        }
+    }
+
+    class KeyBoard implements USB
+    {
+        public function run()
+        {
+          echo &apos;键盘&apos;;
+        }
+    }
+
+    class Computer
+    {
+        public function start(USB $obj)
+        {
+            obj-&gt;run();
+        }
+    }
+
+    $a = new Computer;
+    $b = new Mouse;
+    $c = new KeyBoard;
+
+    $a-&gt;start($b);      鼠标
+    $a-&gt;start($c);      键盘
+
+1.使用接口来实现多态性,对于同一个接口,传入不同的参数,得到不同的结果.
+2.PHP不支持多继承,但一个子类可以继承多个接口.
+</code></pre><h4 id="类型约束"><a href="#类型约束" class="headerlink" title="类型约束"></a>类型约束</h4><pre><code>1.数组
+2.对象
+
+在函数或方法设定形参时,可以通过类型约束,限定形参的类型.
+格式:
+    function A (类型名 形参)
+</code></pre><h4 id="对象的迭代"><a href="#对象的迭代" class="headerlink" title="对象的迭代"></a>对象的迭代</h4><pre><code>foreach
+    遍历对象,只能遍历public的内容.
+</code></pre><h4 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h4><pre><code>1. __get()          在访问非公有属性时,自动调用.
+2. __set()          在设置非公有属性时,自动调用
+3. __isset()        在判断非公有属性是否设置为空时,自动调用.
+4. __unset()        在判断非公有属性是否删除时,自动调用.
+5. __call()         在访问不存在的方法时,自动调用.
+6. __toString()     在直接输出对象时,自动调用.必须返回字符串,不能是其他类型.
+7.__callStatic()    当访问不存在的静态方法时,自动调用.
+8.__clone()         在克隆对象时,自动触发.(可以对副本重写一些属性)
+9.__sleep()         在串行化时,决定显示的串行内容(返回数组).
+10.__wakeup()       在还原对象时,可以修改内容.
+</code></pre><h4 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h4><pre><code>__FILE__            当前盘符路径
+__LINE__            当前的行数
+__CLASS__           当前的类名
+__METHOD__          当前的类下的方法名
+__FUNCTION__        当前的方法名
+</code></pre><h4 id="对象函数"><a href="#对象函数" class="headerlink" title="对象函数"></a>对象函数</h4><pre><code>class_exists(类名)                 判断类是否存在
+property_exists(类名,属性名)     判断属性是否存在
+get_class_vars()                 获取类中所有的公有属性
+get_object_vars()                 获取对象中所有的公有属性
+get_class_methods()             获取类中的所有的公有方法
+get_class(对象)                     获取对象的类名
+</code></pre><h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理;"></a>异常处理;</h4><pre><code>异常类:
+    Exception 类名(任意选个变量名)
+    主动抛出异常:
+        throw new Exception(&apos;报错内容&apos;);
+格式:
+    try
+    {
+        正常代码:
+        $dsn = &apos;mysql:dbname=s0;charset=utf8;host=localhost&apos;;
+        $user = &apos;root&apos;;
+        $pwd = &apos;&apos;;
+
+        主动抛出异常:
+        throw new Exception();
+
+        自动抛出异常:
+        $pdo = new PDO($dsn, $user, $pwd);
+        var_dump($pdo);
+
+    }catch(Exception $e){
+        处理异常:
+        1. 获取发生异常的文件路径 (盘符)
+        echo $e-&gt;getFile();
+
+        2.获取发生异常的行号
+        echo $e-&gt;getLine();
+
+        3. 获取发生异常的信息
+        echo $e-&gt;getMessage();
+
+        4. 获取发生异常的编号
+        echo $e-&gt;getCode();
+
+    }
+
+    当try下的正常代码出现错误的时候,catch会自动捕捉.
+
+继承用法:
+    class myException extends Exception
+    {
+        public function show()
+        {
+            $file = $this-&gt;getFile();
+            $code = $this-&gt;getCode();
+            $line = $this-&gt;getLine();
+            $msg = $this-&gt;getMessage();
+            include &apos;报错模板文件&apos;;
+        }
+    }
+
+    指定一个函数进行异常处理,相当于catch操作:
+    set_exception_handler(&apos;xx&apos;);
+
+    function xx($e)
+    {
+        $e-&gt;show();
+    }
+
+    主动抛出异常:(相当于notice)
+    throw new myException(对应该类下的方法);
+</code></pre><h4 id="会话控制"><a href="#会话控制" class="headerlink" title="会话控制;"></a>会话控制;</h4><pre><code>允许服务器跟踪同一个客户端做出的连续请求;
+
+客户端存cookie
+    设置cookie
+        setcookie(&apos;cookie名&apos;,&apos;cookie值&apos;);
+
+    设置cookie生命周期
+        setcookie(&apos;age&apos;, 18, time()+7*24*60*60 );
+
+    设置cookie作用范围
+        setcookie(&apos;sex&apos;, &apos;1&apos;, time()+7*24*60*60, &apos;/&apos; );
+
+    设置cookie有效域名
+        setcookie(&apos;hobby&apos;, &apos;preg&apos;, time()+7*24*3600, &apos;/&apos;, &apos;localhost&apos;);
+
+    读取cookie
+        var_dump($_COOKIE[&apos;sex&apos;]);
+
+    修改cookie值
+        setcookie(&apos;sex&apos; ,&apos;2&apos;, time()+7*24*3600, &apos;/&apos;);
+
+    删除cookie值
+        unset($_COOKIE[&apos;sex&apos;]);
+        setcookie(&apos;sex&apos;, &apos;&apos;, time()-1, &apos;/&apos;);
+
+服务器 session
+    开启session
+        session_start();
+
+    设置 session
+        $_SESSION[&apos;name&apos;] = &apos;wwb&apos;;
+
+    修改 session
+        $_SESSION[&apos;name&apos;] = &apos;jianglei&apos;;
+
+    删除 session
+        unset($_SESSION[&apos;name&apos;]);
+
+    读取 session
+        var_dump($_SESSION);
+</code></pre><h4 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式;"></a>设计模式;</h4><pre><code>单例模式:最终只能实例化一次对象,多次还是同一个对象.
+
+1.不能让用户在外面new
+2.一个对象都拿不到
+3.通过普通方法去调用 构造方法
+4.通过静态方法时调用 普通方法
+5.通过连接标志,决定是否new self
+案例:
+    class MySQL
+    {
+        // $link 为空, 证明没有连接数据库
+        // $link 非空, 证明你已经连接了数据库
+        static protected $link;
+
+        protected function __construct()
+        {
+            echo &apos;数据库连接成功了...&apos;;
+        }
+
+        static public function getConnect()
+        {
+            if(empty(self::$link)){
+                self::$link = new self;
+            }
+            return self::$link;
+        }
+    }
+
+MySQL::getConnect();
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/linux/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/HTML/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

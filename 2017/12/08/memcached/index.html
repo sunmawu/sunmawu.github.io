@@ -1,0 +1,546 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Memcache分布式缓存系统 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Memcache分布式缓存系统">
+            
+            Memcache分布式缓存系统
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>工具</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Memcache
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <hr>
+<h2 id="Memcache简介"><a href="#Memcache简介" class="headerlink" title="Memcache简介"></a>Memcache简介</h2><p><strong>1.  缘起</strong></p>
+<blockquote>
+<p>在数据驱动的web开发中，经常要重复从数据库中取出相同的数据，<br>这种重复极大的增加了数据库负载。缓存是解决这个问题的好办法。<br>但是Web中的虽然已经可以实现对页面局部进行缓存，但还是不够灵活。<br>此时Memcached或许是你想要的。最新版本:1.4.36</p>
+</blockquote>
+<p>官网：<a href="http://memcached.org/" target="_blank" rel="noopener">http://memcached.org/</a></p>
+<p><strong>2. Memcached是什么?</strong></p>
+<blockquote>
+<p>Memcached是由Danga Interactive开发的，高性能的，分布式的内存对象缓存系统，用于在动态应用中减少数据库负载，提升访问速度。</p>
+</blockquote>
+<p><strong>3. Memcached能缓存什么？</strong></p>
+<blockquote>
+<p>通过在内存里维护一个统一的巨大的hash表，Memcached能够用来存储各种格式的数据，包括图像、视频、文件以及数据库检索的结果等。各种数据都是以字符串的方式存放的。</p>
+</blockquote>
+<p><strong>4. Memcached快么？</strong></p>
+<blockquote>
+<p>非常快。Memcached使用了libevent（如果可以的话，在linux下使用epoll）来均衡任何数量的打开链接，<br>使用非阻塞的网络I/O，对内部对象实现引用计数(因此，针对多样的客户端，对象可以处在多样的状态)，<br>使用自己的页块分配器和哈希表，因此虚拟内存不会产生碎片并且虚拟内存分配的时间复杂度可以保证为O(1)。<br>Danga Interactive为提升Danga Interactive的速度研发了Memcached。</p>
+</blockquote>
+<p><strong>5. Memcached的特点</strong></p>
+<blockquote>
+<p>Memcached的缓存是一种分布式的，可以让不同主机上的多个用户同时访问，<br>因此解决了共享内存只能单机应用的局限，更不会出现使用数据库做类似事情的时候，<br>磁盘开销和阻塞的发生。</p>
+</blockquote>
+<p>缓存数据:</p>
+<ol>
+<li>在内存中缓存数据</li>
+<li>数据形态以key-&gt;value结构</li>
+<li>安全性不佳，但有应对方法</li>
+</ol>
+<h2 id="Memcache安装"><a href="#Memcache安装" class="headerlink" title="Memcache安装"></a>Memcache安装</h2><p><strong>1. Windows安装操作</strong></p>
+<p>1.1 在网上下载memcached-1.2.1-win32.zip。解压放某个盘下面，比如在D:\memcached</p>
+<p>1.2 在终端（cmd）下：（管理员权限打开CMD!!!!!）</p>
+<pre><code>D:\&gt;memcached.exe -d install     安装
+D:\&gt;memcached.exe -d uninstall 卸载
+D:\&gt;memcached.exe -d start     启动
+D:\&gt;memcached.exe -d stop     停止
+    memcached.exe -h  获取所有帮助
+</code></pre><p>1.3 在启动之后连接：<br>    <code>D:\&gt;telnet 127.0.0.1 11211</code>   –连接memcache端口11211<br>    使用quit退出。</p>
+<p>如果没有telnet工具请在“windows功能”中选择开启“telnet客户端”</p>
+<p>1.4 其他命令参数：</p>
+<pre><code>启动Memcache 常用参数
+-p &lt;num&gt;   设置端口号(默认不设置为: 11211)
+-U &lt;num&gt;   UDP监听端口(默认: 11211, 0 时关闭) 
+-l &lt;ip_addr&gt; 绑定地址(默认:所有都允许,无论内外网或者本机更换IP，
+    有安全隐患，若设置为127.0.0.1就只能本机访问)
+-d   独立进程运行
+... -d start 启动memcached服务 
+... -d restart 重起memcached服务 
+... -d stop|shutdown 关闭正在运行的memcached服务 
+... -d install 安装memcached服务 
+... -d uninstall 卸载memcached服务 
+-u &lt;username&gt; 绑定使用指定用于运行进程&lt;username&gt;
+-m &lt;num&gt;  允许最大内存用量，单位M (默认: 64 MB)
+-P &lt;file&gt; 将PID写入文件&lt;file&gt;，可以使得后边进行快速进程终止, 需要与-d 一起使用
+-M 内存耗尽时返回错误，而不是删除项 
+-c 最大同时连接数，默认是1024 
+-f 块大小增长因子，默认是1.25 
+-n 最小分配空间，key+value+flags默认是48 
+-h 显示帮助
+</code></pre><p>1.5 windows的php扩展</p>
+<pre><code>php扩展目录 extension_dir
+php_memcache.dll放置到php扩展目录ext下
+
+php配置文件修改
+extension=php_memcache.dll,
+重启服务
+</code></pre><p><strong>2. Linux安装操作（根据当前环境等匹配安装各个包！）</strong></p>
+<p>2.1 安装memcached的底层功能依赖包libevent</p>
+<pre><code>tar -xf libevent-release-1.4.15-stable.tar.gz 
+cd libevent-release-1.4.15-stable
+./autogen.sh 
+./configure  --prefix=/usr
+make &amp;&amp; make install
+</code></pre><p>2.2 安装memcached服务</p>
+<pre><code>tar -xf memcached-1.4.36.tar.gz          解压memcached
+cd memcached-1.4.36                    进入 memcached目录
+./configure --prefix=/usr/local/memcached      配置
+make &amp;&amp; make install                        编译与安装
+useradd  memcache                            添加运行用户
+修改该伪用户的登录权限为不能登录
+vim /etc/passwd                        
+memcache:x:501:501::/home/memcache:/sbin/nologin
+</code></pre><p>2.3 运行memcached服务</p>
+<pre><code>/usr/local/memcached/bin/memcached -u memcache &amp;
+</code></pre><p>2.4 客户端访问（注意格式，错了重打）</p>
+<pre><code>telnet 127.0.0.1 11211
+
+stats
+set
+get
+……
+</code></pre><p>2.5 写入自启动和关闭进程</p>
+<pre><code>vim /etc/rc.local
+/usr/local/memcached/bin/memcached -u memcache &amp;
+pkill memcached        
+</code></pre><p>2.6 安装php_memcache扩展</p>
+<pre><code>unzip pecl-memcache-php7.zip
+cd  pecl-memcache-php7
+/usr/local/php/bin/phpize
+./configure  --with-php-config=/usr/local/php/bin/php-config
+make  &amp;&amp;  make  install
+
+修改 php.ini 后重启apache即可生效
+vim /usr/local/php/etc/php.ini
+查找extension=&quot;openssl.so&quot;;
+下一行添加extension=&quot;memcache.so&quot;;
+重启apache
+/usr/local/apache2/bin/apachectl stop
+/usr/local/apache2/bin/apachectl start
+</code></pre><p>2.7 安装libmemcached（版本匹配不能超过php_memcached）</p>
+<pre><code>tar -xf libmemcached-1.0.18.tar.gz
+cd  libmemcached-1.0.18                    
+./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>2.8 安装php_memcached扩展</p>
+<pre><code>tar -xf memcached-3.0.3.tgz
+cd memcached-3.0.3
+
+修改文件
+vim  php_libmemcached_compat.h 
+
+/* this is the version(s) we support */
+ 21 #include &lt;/usr/local/include/libmemcached/memcached.h&gt;
+
+修改结束
+
+/usr/local/php/bin/phpize
+./configure  --disable-memcached-sasl  --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+
+修改 php.ini 后重启apache即可生效
+vim /usr/local/php/etc/php.ini
+查找extension=&quot;openssl.so&quot;;
+下一行添加extension=&quot;memcached.so&quot;;
+重启apache
+/usr/local/apache2/bin/apachectl stop
+/usr/local/apache2/bin/apachectl start
+</code></pre><h2 id="Memcache客户端（Telnet）相关操作"><a href="#Memcache客户端（Telnet）相关操作" class="headerlink" title="Memcache客户端（Telnet）相关操作"></a>Memcache客户端（Telnet）相关操作</h2><p><strong>stats 查看状态</strong></p>
+<pre><code>STAT pid 1552                      服务进程的进程ID
+STAT uptime 3792                服务从启动到当前所经过的时间，单位是秒。
+STAT time 1262517674              服务器所在主机当前系统的时间，单位是秒。
+STAT version 1.2.6                   组件的版本。这里是我当前使用的1.2.6。
+STAT pointer_size 32             服务器所在主机操作系统的指针大小，一般为32或64.
+STAT curr_items 1                   表示存放当前的所有缓存对象的数量。不包括已经从缓存中删除的对象。
+STAT total_items 2                   表示从启动到当前，系统存储过的所有对象数量，包括已经删除的对象。
+STAT bytes 593                      表示系统存储缓存对象所使用的存储空间，单位为字节。
+STAT curr_connections 2           表示当前系统打开的连接数。
+STAT total_connections 28        表示从memcached服务启动到当前时间，系统打开过的连接的总数。
+</code></pre><p><strong>set  写入缓存</strong></p>
+<pre><code>set  键名  标记  有效时间  数据的长度
+
+set  love  10     0           10
+i love you
+    键名
+        最大不能超过250个字符
+    标记
+        是一个16位的无符号的整数，在客户端get数据时返回
+    有效时间
+        单位为秒
+    数据长度
+        单位是字节
+    数据的值
+        最大不能超过1024kb
+</code></pre><p><strong>get  获取缓存</strong></p>
+<pre><code>get  键名
+get  love
+</code></pre><p><strong>delete  删除缓存</strong></p>
+<pre><code>delete   键名
+delete   love
+flush_all清空所有缓存
+</code></pre><p><strong>其它常用命令</strong></p>
+<pre><code>存储:
+    set  add  replace    格式同set
+获取:
+    get     可一次获取多个
+其它:
+stats items 命令用于显示各个 slab 中 item 的数目和存储时长,配合使用可以查看所有 key
+&gt; stats items // 这条是命令
+     STAT items:7:number 1 
+     STAT items:7:age 188
+     END
+&gt; stats cachedump 7 0 // 这条是命令
+    ITEM Sess_sidsvpc1473t1np08qnkvhf6j2 [183 b; 1394527347 s]
+    END
+&gt; version 查看版本
+</code></pre><h2 id="PHP操作Memcached服务"><a href="#PHP操作Memcached服务" class="headerlink" title="PHP操作Memcached服务"></a>PHP操作Memcached服务</h2><p><strong>PHP开启Memcache模块</strong></p>
+<pre><code>phpinfo检测是否开启
+</code></pre><p><strong>PHP Memcahe类</strong></p>
+<pre><code>详见手册
+</code></pre><p><strong>PHP Memcahed类</strong></p>
+<pre><code>详见手册
+添加后支持laravel
+</code></pre><p><strong>Memcache存放Session</strong></p>
+<blockquote>
+<p>修改session配置，有几种方法</p>
+</blockquote>
+<pre><code>1、如果你能修改到服务器配置文件，那就打开打开php.ini
+修改下面两项：
+    session.save_handler = memcache
+    session.save_path = &quot;tcp://127.0.0.1:11211&quot;
+2、修改网站根目录下的.htaccess文件
+    php_value session.save_handler &quot;memcache&quot;
+    php_value session.save_path  &quot;tcp://127.0.0.1:11211&quot;
+3、最常用的方法  在程序代码中修改（推荐）
+       ini_set(&quot;session.save_handler&quot;, &quot;memcache&quot;);
+       ini_set(&quot;session.save_path&quot;, &quot;tcp://127.0.0.1:11211&quot;);
+</code></pre><blockquote>
+<p>注：使用多个 memcached server 时用逗号”,”隔开，并且和 Memcache::addServer() 文档中说明的一样，可以带额外的参数”persistent”、”weight”、”timeout”、”retry_interval” 等等，类似这样的：</p>
+</blockquote>
+<p>“tcp://host:port?persistent=1&amp;weight=2,tcp://host2:port2”</p>
+<blockquote>
+<p>Memcache和MySQL配合存储Session</p>
+</blockquote>
+<pre><code>1、当用户登录时，将Session “set”到memcached，并写入数据库；
+2、在Session中增加一个字段，标识Session最后写入数据库的时间；
+3、每个页面加载的时候，优先从memcached读取Session，没有则从数据库读取；
+4、每加载N页或者Y分钟后，再次将Session写入数据库；
+</code></pre><h2 id="Memcache缓存机制"><a href="#Memcache缓存机制" class="headerlink" title="Memcache缓存机制"></a>Memcache缓存机制</h2><p><strong>Memcache在网站架构中的位置</strong></p>
+<p><img src="http://i.imgur.com/WxREKm1.png" alt=""></p>
+<p><strong>Memcache与MySQL的配合</strong></p>
+<p><img src="http://i.imgur.com/V5thmMG.jpg" alt=""></p>
+<p><strong>Memcache在脚本中的查询流程</strong></p>
+<blockquote>
+<p>1、先根据数据需求（SQL）取缓存，如果有返回数据，没有则根据需求查数据库</p>
+<p>2、在数据库中查出的数据，并存入缓存。</p>
+</blockquote>
+<p><img src="http://i.imgur.com/TM8Vn47.jpg" alt=""></p>
+<h2 id="Memcache的安全"><a href="#Memcache的安全" class="headerlink" title="Memcache的安全"></a>Memcache的安全</h2><blockquote>
+<p>我们上面的Memcache服务器端都是直接通过客户端连接后直接操作，没有任何的验证过程，<br>这样如果服务器是直接暴露在互联网上的话是比较危险，轻则数据泄露被其他无关人员查看，<br>重则服务器被入侵，因为Mecache是以root权限运行的，<br>况且里面可能存在一些我们未知的bug或者是缓冲区溢出的情况，这些都是我们未知的，<br>所以危险性是可以预见的。</p>
+<p>为了安全起见，我做两点建议，能够稍微的防止黑客的入侵或者数据的泄露。</p>
+</blockquote>
+<p><strong>内网访问</strong></p>
+<blockquote>
+<p>最好把两台服务器之间的访问是内网形态的，一般是Web服务器跟Memcache服务器之间。<br>普遍的服务器都是有两块网卡，一块指向互联网，一块指向内网，<br>那么就让Web服务器通过内网的网卡来访问Memcache服务器，<br>我们Memcache的服务器上启动的时候就监听内网的IP地址和端口，<br>内网间的访问能够有效阻止其他非法的访问。</p>
+</blockquote>
+<p><strong>设置防火墙</strong></p>
+<blockquote>
+<p>防火墙是简单有效的方式，如果却是两台服务器都是挂在网的，<br>并且需要通过外网IP来访问Memcache的话，<br>那么可以考虑使用防火墙或者代理程序来过滤非法访问。<br>一般我们在Linux下可以使用iptables或者FreeBSD下的ipfw来指定一些规则防止一些非法的访问，<br>比如我们可以设置只允许我们的Web服务器来访问我们Memcache服务器，同时阻止其他的访问。</p>
+</blockquote>
+<pre><code>iptables -A INPUT -p tcp -s 192.168.0.2 –dport 11211 -j ACCEPT
+iptables -A INPUT -p udp -s 192.168.0.2 –dport 11211 -j ACCEPT
+</code></pre><h2 id="《缓存二三事》"><a href="#《缓存二三事》" class="headerlink" title="《缓存二三事》"></a>《缓存二三事》</h2><blockquote>
+<p>缓存和数据库，更新缓存和淘汰缓存</p>
+</blockquote>
+<pre><code>set/replace                        delete set/add
+在数据较少修改时可用                数据量大且需要逻辑运算
+</code></pre><p><img src="http://i.imgur.com/ap8Fsva.jpg" alt="">    <img src="http://i.imgur.com/jGPkild.jpg" alt=""></p>
+<p><strong>先操作谁？</strong></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404087915&amp;idx=1&amp;sn=075664193f334874a3fc87fd4f712ebc" target="_blank" rel="noopener">原文传送门</a></p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>《Memcache 内存分配策略和性能(使用)状态检查》</p>
+<p><a href="http://www.kuqin.com/shuoit/20160615/352392.html" target="_blank" rel="noopener">http://www.kuqin.com/shuoit/20160615/352392.html</a></p>
+<p>《如果Memcache集群中的服务器失效如何踢出》</p>
+<p><a href="http://www.tuicool.com/articles/qaAnUz" target="_blank" rel="noopener">http://www.tuicool.com/articles/qaAnUz</a></p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/php-redis操作/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/JAVASCRIPT/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

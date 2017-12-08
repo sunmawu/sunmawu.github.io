@@ -1,0 +1,977 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Javascript课程 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Javascript课程">
+            
+            Javascript课程
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            javascript
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><pre><code>1.写在header中的script标签内.
+2.外部文件导入,script标签导入&lt;script src=&quot;script.Js&quot;&gt;&lt;/script&gt;
+3.通过事件写在标签内&lt;tag onclick=&quot;code....&quot;&gt;&lt;/tag&gt;
+</code></pre><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><pre><code>1.JS中一切都区分大小写
+2.不能以数字开头,可以由数字/字母/下划线/$组成.
+3.注释:
+        单行://
+        多行:/**/
+4.结束语句:
+        ; 或换行 (推荐全部用分号结尾)
+5.关键字和保留字
+    break       else        new     var
+    case        finally     return  void
+    catch       for         switch  while
+    abstract    enum        int     short
+    ······    
+6.单引号 双引号 反引号 功能一样,都可以解析转移字符,但不解析变量;
+</code></pre><h2 id="变量的声明方式"><a href="#变量的声明方式" class="headerlink" title="变量的声明方式:"></a>变量的声明方式:</h2><pre><code>1.var 变量名 = &apos;值&apos;;
+2.var 变量名 = &apos;值&apos;,    变量名 = &apos;值&apos;,变量名 = &apos;值&apos;;        
+3.var 变量名1 = 变量名2 = 值;
+</code></pre><h2 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型:"></a>变量的类型:</h2><pre><code>typeof();     返回一个值或变量的数据类型;
+
+一.基本类型
+    string         字符串
+    boolean        布尔值
+    Number         数值
+二.复合类型
+    Obejct         对象
+    Array         数组
+三.特殊类型
+    Null         空
+    undefined     未定义
+    function     函数
+</code></pre><h3 id="数值类型扩展"><a href="#数值类型扩展" class="headerlink" title="数值类型扩展"></a>数值类型扩展</h3><pre><code>一.整数型        (十进制 十六进制 八进制 二进制)
+
+二.浮点型        1) 科学计数法(浮点数精度问题:系统无法准确给出0.3的数值)
+               2) 数值范围 5e324 ~ 1.7976931348623157e+308 超过范围回自动转换成 infinity(正无穷) -infinity(负无穷)
+               3) 小数点和对象调用符都是. 小数点优先级大于调用符;
+
+
+三.NaN类型 (Not a Number)
+    1 NaN与任何数字操作,结果都是NaN.
+    2 NaN与任何值都不相等,包括NaN本身.
+    3 函数isNaN()判断是否是NaN?
+
+四.Number()类型转换
+    1.布尔值 true = 1; false = 0;
+    2.数字不变
+    3.null = 0;
+    4.undefined = NaN
+    5.字符串:
+            1) &quot;011&quot; = 11;
+            2) &quot;1.1&quot; = 1.1;
+            3) &quot;0xff&quot; = 255;  解析进制数
+            4) &quot; &quot; = 0;
+            5) &quot;12e2&quot; = 1200; 科学计数法
+            6) 其他都为NaN
+
+五.ParseInt()类型转换
+    1. 数字开头的字符串,忽略后面的字母.
+    2. 0x开头会转换成十六进制,0不可以.
+    3. 解析科学计数法,字母为0.
+    4. 空字符串NaN
+    5. null true false = NaN
+    6. 
+六.ParseFloat()类型转换
+    1.第一个小数点有效,后面都无效
+    2.数字开头的字符串,忽略后面的字母
+    3.科学计数法有效
+    4.解析进制数,不解析字符串进制数
+</code></pre><h2 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h2><pre><code>1.数字类型:在字符串环境下隐式转换成字符串.
+2.字符串类型:在数字环境下,可以隐式转换为字符串中的数字或NaN;
+            在布尔环境下,可以转换为true或false;
+3.空字符串:数字环境为0,布尔为false;
+          &quot;true&quot; 数字为1,布尔为true;
+          &quot;false&quot; 数字为0,布尔为false;
+4.null: 字符串为null,数字为0,布尔为false;
+5.NaN: 字符串为NaN,布尔为false;
+6.undefined:字符串为undefined,数字为NaN,布尔为false;
+</code></pre><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><pre><code>一.声明及使用方式:
+        1) 关键字方式;
+           function 函数名(){
+
+           }
+
+        2)表达式方式;
+          var 函数名 = function(){
+
+          }
+
+        3)构造函数方式
+          var 函数名 = new Function(&quot;参数&quot;, &quot;函数体&quot;);
+
+    使用函数:
+            函数名();    调用函数:返回的是函数运算的结果,也就是return的结果.
+            函数名;        引用函数:相当于把整个函数复制过来.
+
+    特点:可以重复定义,像变量一样;
+
+二.函数中的参数
+    实参个数 &gt; 形参个数;         多余实参无效;
+     形参个数 &gt; 实参个数;        多余形参返回undefined
+
+    *注意事项:
+        1.如果没有实参,那就用形参默认值.形参没有默认值,则返回undefined;
+        2.JS形参的默认值,只能在函数内部通过声明变量的方式实现;
+        例子:
+            function text(m){
+                var m = 123;
+            }
+
+    可变参数个数的函数: arguments     获取到一个数组,内含有传递的参数;
+</code></pre><h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><pre><code>1.在函数内使用var 定义的是 局部变量
+2.在函数外使用var 定义的是 全局变量
+3.在函数内不使用var 定义的是 全局变量
+
+*JS函数运算时,如果在当前作用域里未找到某一个变量.则会向上一级作用域去找,一直到全局环境,如果全局中也没有该变量,则函数执行时会报错.
+
+自执行函数:
+1. (function(){})();
+2. (function(){}());
+简单理解:将一个匿名函数当成函数名,直接引用.
+</code></pre><h2 id="对象-Ps-JS中一切皆为对象"><a href="#对象-Ps-JS中一切皆为对象" class="headerlink" title="对象 (Ps:JS中一切皆为对象)"></a>对象 (Ps:JS中一切皆为对象)</h2><pre><code>一.创建对象
+1) Object构造函数方式:
+    var 对象名 = new Object();
+    对象名.属性名 = &quot;值&quot;;
+    对象名.方法名 = function(){
+        方法体
+    }
+
+2) JSON方式:
+    var 对象名 ={
+        &quot;属性名&quot; = &quot;值&quot;;
+        方法名:function(){
+            方法体
+        }
+    }
+
+3) 自定义构造函数:
+    function 函数名(){
+        this.属性名 = &quot;值&quot;;
+        this.方法名 = function(){
+            方法体
+        }    
+    }
+    var 对象名 = new 函数名();
+
+4) 匿名构造函数
+    var 对象名 = new function(){
+        this.属性名 = &quot;值&quot;;
+        this.方法名 = function(){
+            方法体
+        }
+    }
+
+二.使用对象成员:
+    对象名.属性名;        (只能打印查看或删除)
+    对象名.方法名();
+
+三.删除对象成员:
+    delete 对象名.属性名;
+    delete 对象名.方法名;    (注意:只能是引用)
+</code></pre><h3 id="测试类型"><a href="#测试类型" class="headerlink" title="测试类型"></a>测试类型</h3><pre><code>constructor
+查找对象的归属,用Object和JSON方式的都是来自于系统内置对象.其他方式都能得到对应的对象名.
+</code></pre><h3 id="原型-prototype"><a href="#原型-prototype" class="headerlink" title="原型 prototype"></a>原型 prototype</h3><pre><code>用于给一个构造函数(类)添加新方法.
+1. 模拟对象的继承性
+2. 给系统内置对象 添加新方法
+例如:
+    function User(){
+        this.name = &apos;沙沙&apos;;
+        this.age = &apos;16&apos;;
+        this.getInfo = function(){
+            document.write(&apos;HI&lt;br&gt;&apos;);
+        }
+    }
+
+    User.prototype.getMsg = function (){
+        document.write(&apos;Hi~ o(*￣▽￣*)ブ&lt;br&gt;&apos;);
+    }
+
+    var o1 = new User();
+    var o2 = new User();
+
+    o1.getMsg();
+    o2.getMsg();
+</code></pre><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre><code>一.声明方式:
+    1) var 数组名 = new Array();     带一个参数表明键的步长,多个参数则视为初始赋值.
+    2) JSON方式 (推荐)
+        var 数组名 = [];         带参数等于初始值.
+多维数组的创建方法:
+    数组名[0] = new Array();
+
+二.特点:
+    1. JS里只有索引数组,飞数字下标的视为该对象的属性.
+    2. 下标值为空,返回undefined.
+    3. 不能不使用[],追加可以用push()
+
+三.数组遍历:
+    数组形式(索引)    用for 遍历
+    对象形式(关联)    用for in 遍历
+原因:
+    for 遍历对象形式时,没有长度可以参照.
+    for in 遍历数组时,会把length当成属性遍历出来.
+</code></pre><h2 id="this的简单介绍"><a href="#this的简单介绍" class="headerlink" title="this的简单介绍"></a>this的简单介绍</h2><pre><code>1.循环绑定事件时,获取触发事件的元素,需要使用this
+2.元素内部绑定事件时,传入this来表示该元素对象自己
+
+this一般代表最终调用对象.
+</code></pre><h2 id="闭包简单介绍"><a href="#闭包简单介绍" class="headerlink" title="闭包简单介绍"></a>闭包简单介绍</h2><pre><code>1. 函数内部的函数.作用是在全局想要获取函数内部的属性或变量时,可以用闭包函数来实现过.
+2. 常用在循环绑定事件时,将循环变量保留下下来,就必须使用闭包.
+    闭包的结构:
+            for (var i = 0; ....) {
+                (funciton(i){
+                    element.event = function (){
+                        // 使用 i,x,y....
+                    }
+                })(i);
+            }
+</code></pre><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><pre><code>一.事件的绑定
+    1) &lt;button 事件=&quot;Jscode&quot;&gt;&lt;/button&gt;
+
+    2) 元素名.事件 = function(){
+            方法体
+       }
+
+    3) function 函数名(){
+               函数体
+       }
+       元素名.事件 = 函数名;     (注意:是引用方式)
+
+    4) 事件监听:
+        非IE) 元素名.addEventListener(&apos;事件的名字&apos;, 函数或引用, false);
+        IE) 元素名.attachEvent(&apos;事件的名字&apos;, 函数或引用);
+
+        function 函数名(){
+               函数体
+       }
+
+二.解除绑定
+    对应绑定方法1-3:
+            1. 元素名.事件 = function (){}
+            2. 元素名.事件 = null;
+    监听方式:
+            非IE: removeEventListener(&apos;事件名字&apos;, 函数或引用, false);
+            IE  : detachEvent(&apos;事件名字&apos;,函数或引用);
+</code></pre><h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><pre><code>onclick        单击
+ondblclick     双击
+oncontextmenu  右击
+onmouseover    鼠标移入
+onmouseout     鼠标移出
+onmousedown    鼠标按住
+onmouseup      鼠标松开
+onmousemove    鼠标移动
+</code></pre><h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><pre><code>onkeydown    按下按键触发
+onkeyup      松开按键触发
+onkeypress   按下并松开时触发(高级事件) (非输出按键不能触发)
+</code></pre><h3 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h3><pre><code>onsubmit   表单被提交时触发  (需要return false;)
+onreset    表单被重置时触发
+onfocus    获取焦点时触发
+onblur     失去焦点时触发
+onselect   选中时表单控件就触发
+oninput    非IE: 输入时触发
+onpropertychange    IE: 输入时触发 (IE 9.0-)
+onchange   改变表单控件的内容或状态时 就触发 (用于input元素时,value值变化且失焦才会触发)
+</code></pre><h3 id="框架-对象事件"><a href="#框架-对象事件" class="headerlink" title="框架/对象事件"></a>框架/对象事件</h3><pre><code>onload        文档或图片加载完触发; 文档需要用window调用
+onunload     文档关闭时触发(IE)
+onbeforeunload    文档关闭时触发(非IE)(浏览器阻止了关闭前的弹框 需要return &quot;string...&quot;)
+onabort     图片加载过程中中断触发
+onerror     图片加载错误触发
+onresize     窗口/框架大小变化时触发
+onscroll    元素滚动条在滚动式触发
+</code></pre><h3 id="其他事件"><a href="#其他事件" class="headerlink" title="其他事件"></a>其他事件</h3><pre><code>oncopy         拷贝内容时触发
+oncut         剪切内容时触发
+onpaste        粘贴内容时触发
+onplay        音/视频开始播放时触发
+onpause     音/视频暂停时触发
+onended        音/视频播放结束时触发
+</code></pre><h2 id="Event事件对象"><a href="#Event事件对象" class="headerlink" title="Event事件对象"></a>Event事件对象</h2><pre><code>Event对象:
+    代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。
+1.获取
+元素.事件 = function(e){
+    var e = en || window.event;
+}
+2.属性
+    e.clientX  鼠标x坐标
+    e.clientY  鼠标y坐标
+    e.keyCode  按键码
+</code></pre><h2 id="常用HTML元素属性"><a href="#常用HTML元素属性" class="headerlink" title="常用HTML元素属性"></a>常用HTML元素属性</h2><pre><code>1) innerHTML   元素内部的内容(不含标签本身)
+   innerText   元素内部的文本
+   outerHTML   元素内部的内容(含标签本身)
+
+2) className   当前元素的class属性值
+   tagName       当前元素的标签名
+
+3) scrollLeft  scrollTop 滚动条至左/上边距的像素
+4) offsetLeft  offsetTop 距离已定位的父元素的 左/上偏移量
+
+5) offsetWidth / offsetHeight
+        盒子模型的宽高:   内容 + 内边距 + 边框
+6) clientWidth / clientHeight
+        内容 + 内边距
+7) scrollWidth / scrollHeight
+        宽高 + 内边距+ 计算内部元素的大小
+8) document.documentElement.clientHeight  视口高度
+
+9) document.documentElement.scrollHeight  文档高度
+
+待补充....
+</code></pre><h2 id="BOM-浏览器模型对象"><a href="#BOM-浏览器模型对象" class="headerlink" title="BOM 浏览器模型对象"></a>BOM 浏览器模型对象</h2><pre><code>对象种类:
+        自定义对象
+        内置对象 A S N B R M D G
+        BOM
+        DOM
+
+对象树:(倒树状结构)
+                    window
+                      |
+history   location document  screen   navigator
+                        |
+                &lt;!---&gt;    html
+                            |
+                    body   head
+                      |
+                div p span h1 video
+BOM 对象:
+    一. window 
+        1) 概念:
+                描述整个浏览器窗口
+                它是JS中 所有对象的根对象
+                使用window的属性或方法时,可以省略window去调用
+                自定义对象/变量/ 函数  都属于window
+        2) 属性: 见手册
+        3) 方法:
+                setInterval() 按照指定的周期（以毫秒计）来调用函数或计算表达式。
+                setTimeout() 在指定的毫秒数后调用函数或计算表达式。
+                clearInterval() 取消由 setInterval() 设置的 timeout。
+                clearTimeout() 取消由 setTimeout() 方法设置的 timeout。
+
+                alert()    警告框
+                confirm()  确认框
+                prompt()   输入框
+
+                open()    打开新窗口
+                close()   关闭自己打开过的窗口
+                print()   打印
+
+                scrollTo()   滚到哪去
+                scrollBy()   滚多少
+    二. history
+        1) 方法:
+                history.back()        上一步
+                history.forward()    下一步
+                history.go()        上/下 N步 负数为上 正数为下
+    三. location
+                 window.location    查看返回的对象
+            属性:
+               location.href        URL 地址
+                        host        主机名和端口号
+                        hostname    主机名
+                        protocol    协议
+                        pathname    路径
+                        search        get参数部分
+                        hash        锚点参数
+            方法:
+                location.reload()  重载页面
+                         assign(&apos;网址&apos;)  加载新的页面
+                         replace(&apos;网址&apos;) 替换当前页面
+                location.href =    &apos;网址&apos;    跳转
+</code></pre><h2 id="DOM-文档对象模型"><a href="#DOM-文档对象模型" class="headerlink" title="DOM 文档对象模型"></a>DOM 文档对象模型</h2><pre><code>1. DOM基本介绍
+    DOM 是 Document Object Model 文档对象模型
+    1. HTML DOM
+    2. XML DOM
+2. HTML DOM 对象参考
+    2.1 document 对象
+         1) 属性
+                document.domain        域名
+                         lastModified  文档最后一次修改时间
+                         referrer      上一个页面地址
+                         URL           URL
+                         title        文档标题
+                         cookie       cookie
+        COOKIE的操作方法:
+            读取
+            document.write(document.cookie);
+            设置
+            document.cookie = &quot;sex=&apos;女&apos;&quot;;
+            修改
+            document.cookie = &quot;username=&apos;yanyan&apos;; path=/&quot;;
+            var d = new Date();
+            d.setTime(d.getTime() +3600*1000);
+            document.cookie = &quot;username=&apos;yanyan&apos;; path=/; expires=&quot;+d.toUTCString();
+
+         2) 方法
+                document.write()
+                document.getElement.....等各种获取元素对象
+    2.2 form 对象
+    2.3 image 对象
+    2.4 anchor 对象
+    2.5 base 对象
+    2.6 canvas 对象
+    2.7 Event 对象
+    2.8 input 系列对象
+        blur()        
+        focus()
+        select()
+    2.9 select 对象
+    2.10 option 对象
+    2.11 style 对象
+    2.11 table 对象
+            方法:
+                insertRow()     添加行 参数为 添加到第几行
+                deleteRow()        删除行 参数为 删除第几行
+    2.12 tableRow 对象
+            方法:
+                deleteCell() 删除行中的指定的单元格。 
+                insertCell() 在一行中的指定位置插入一个空的 &lt;td&gt; 元素。 
+    2.13 tableCell 对象
+            属性:见手册;
+</code></pre><h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><h3 id="1-节点介绍"><a href="#1-节点介绍" class="headerlink" title="1.节点介绍"></a>1.节点介绍</h3><pre><code>1.1 什么是节点 node
+    HTML中所有的组成部分
+
+    document  文档
+    element   元素  HTMLdom
+    attr      属性  Attribute
+    text      文本
+    comment   注释
+
+1.2 节点树
+    子节点
+    父节点
+    同辈节点
+    后代节点
+    先辈节点
+
+1.3 节点的访问(对象选择器)
+    获取节点
+        document: 直接使用document
+        element(元素标签): getElementById...
+        attr(属性): element.getAttributeNode()
+        text: 子节点
+        comment: 子节点
+
+    获取子节点
+        childNodes
+    获取子元素节点
+        children
+    获取第一个子节点
+        firstChild
+    获取最后一个子节点
+        lastChild
+    获取父节点
+        parentNode
+    获取父元素节点
+        parentElement
+    获取前一个节点
+        previousSibling
+    获取后一个节点
+        nextSibling
+
+1.4 节点属性
+    nodeName
+        document  #document
+        element   标签名
+        attr      属性名
+        text      #text
+        comment   #comment
+    nodeValue
+        document  null
+        element   null
+        attr      属性值
+        text      文本内容
+        comment   注释内容
+    nodeType
+        document  9
+        element   1
+        attr      2
+        text      3
+        comment   8
+</code></pre><h3 id="2-节点操作"><a href="#2-节点操作" class="headerlink" title="2.节点操作"></a>2.节点操作</h3><pre><code>2.1 获取节点
+    element: getE.../子节点/父节点/同辈节点..
+    text     innerHTML  / 子节点/  同辈
+    attr:    获取到元素节点.通过对应的属性名
+             element.attr
+             element.getAttributeNode(attrname) 获取属性节点
+             element.getAttribute(attrname)  获取属性值
+
+2.2 改变节点(改变节点的值) nodeValue
+    element 无意义
+    attr: 
+        element.setAttribute(attrname,value)
+        element.attr = value;
+
+2.3 删除节点
+    元素节点: removeChild(node) 需要找到父节点
+    属性节点: 把属性值赋值为空 / removeAttribute()
+
+2.4 替换节点
+    属性节点: setAttribute(&quot;属性名&quot;,&quot;值&quot;)
+    元素节点: replaceChild(新节点, 老节点) 
+
+2.5 插入节点
+    属性节点: 
+        setAttribute(attrname,value)
+        setAttributeNode(attrname).nodeValue
+    插入元素节点:
+        appendChild(node)   追加插入
+        insertBefore(new_node, old_node) 指定位置插入
+
+    元素节点: replaceChild(new_node, old_node) 
+
+2.6 创建节点
+    创建属性节点: document.createAttribute(attrname)
+    创建元素节点: document.createElement(&apos;标签名&apos;)
+
+2.7 克隆节点
+     cloneNode()  默认false / true
+</code></pre><h3 id="3-XML-对象"><a href="#3-XML-对象" class="headerlink" title="3. XML 对象"></a>3. XML 对象</h3><pre><code>node
+nodeList
+document
+element
+attr
+text
+comment
+</code></pre><h3 id="4-HTMLElement对象"><a href="#4-HTMLElement对象" class="headerlink" title="4. HTMLElement对象"></a>4. HTMLElement对象</h3><pre><code>视口高度
+    document.documentElement.clientHeight
+文档高度
+    document.documentElement.scrollHeight
+</code></pre><h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><pre><code>async javascript and xml  异步的js和xml
+请求: 客户端向服务端请求一个文件
+响应: 服务端 把文件内容 输出给客户端, 文件有输出才算真真的响应
+传统的请求 通过地址栏 刷新去请求页面
+AJAX 通过技术 偷偷的请求  F12 NETWROK xhr
+</code></pre><h3 id="XMLHttpRequest对象-XHR"><a href="#XMLHttpRequest对象-XHR" class="headerlink" title="XMLHttpRequest对象 XHR"></a>XMLHttpRequest对象 XHR</h3><pre><code>2.1 概念
+    XMLHttpRequest 对象提供了对 HTTP 协议的完全的访问，包括做出 POST 和 HEAD 请求以及普通的 GET 请求的能力。XMLHttpRequest 可以同步或异步地返回 Web 服务器的响应，并且能够以文本或者一个 DOM 文档的形式返回内容。
+
+2.2 常用属性
+    readyState 请求响应的状态
+        0 Uninitialized 初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置。
+        1 Open open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。
+        2 Sent Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。
+        3 Receiving 所有响应头部都已经接收到。响应体开始接收但未完成。
+        4 Loaded HTTP 响应已经完全接收。
+    status HTTP的响应状态码
+        200  成功响应
+        304  文件来自于缓存
+        404  文件不存在
+        500  服务器未知错误
+        503  服务器宕机,服务不可用
+    responseText  获取服务端的响应文本
+
+2.3 常用方法
+    open()  初始化
+        参1 method  GET/POST/HEAD
+        参2 url 请求主体
+        参3 是否同/异步  true(异步) false(同步)
+        参4,5 认证用户名和密码
+    send()  正式发送
+        GET  无参
+        POST 有可选参数
+    setRequestHeader()  设置请求头信息
+    setRequestHeader(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;);
+
+2.4 事件句柄    onreadystatechange
+    readyState的值一变化就触发
+</code></pre><h4 id="AJAX-GET方式"><a href="#AJAX-GET方式" class="headerlink" title="AJAX-GET方式:"></a>AJAX-GET方式:</h4><pre><code>JS代码:
+    function add(){
+        var num1 = document.getElementById(&apos;num1&apos;).value;
+        var num2 = document.getElementById(&apos;num2&apos;).value;
+
+        // 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        // 事件回调
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+                box.innerHTML = xhr.responseText;
+            }
+        }
+
+        // 请求初始化
+        xhr.open(&apos;get&apos;,&apos;./php/2.php?a=&apos;+num1+&apos;&amp;b=&apos;+num2,true);
+        // 正式发送请求
+        xhr.send();
+    }
+
+PHP代码:
+     echo $_GET[&apos;a&apos;] + $_GET[&apos;b&apos;];
+</code></pre><h4 id="AJAX-POST方式"><a href="#AJAX-POST方式" class="headerlink" title="AJAX-POST方式:"></a>AJAX-POST方式:</h4><pre><code>JS代码:
+     function add(){
+        var num1 = document.getElementById(&apos;num1&apos;).value;
+        var num2 = document.getElementById(&apos;num2&apos;).value;
+
+        // 创建请求对象
+        var xhr = new XMLHttpRequest();
+
+        // 事件回调
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+                box.innerHTML = xhr.responseText;
+            }
+        }
+        // 请求初始化
+        xhr.open(&apos;post&apos;,&apos;./php/3.php&apos;,true);
+
+        // 设置POST请求头信息
+        xhr.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+
+        // 正式发送请求
+        xhr.send(&apos;a=&apos;+num1+&apos;&amp;b=&apos;+num2);
+    }
+
+php代码:
+    echo $_POST[&apos;a&apos;] + $_POST[&apos;b&apos;];
+</code></pre><h3 id="处理json数据"><a href="#处理json数据" class="headerlink" title="处理json数据"></a>处理json数据</h3><pre><code>PHP   json_encode();     // 将数据转成JSON格式
+      json_decode();    // 将JSON格式的数据转换成PHP识别数据
+
+JS    eval()               // 将JSON数据转换成对象
+      JSON.parse()
+实例:
+    js代码:
+        function loadHtml(){
+            // 创建对象
+            var xhr = new XMLHttpRequest();
+
+            // 事件回调
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+                    box.innerHTML = &apos;&apos;;
+                    // 获取JSON数据,转换成对象.
+                    var jsonStr = xhr.responseText;
+                    // eval(&quot;var obj = &quot;+ jsonStr);
+                    // var obj = eval(&apos;(&apos;+jsonStr+&apos;)&apos;);
+                    var obj = JSON.parse(jsonStr);
+                }
+            }
+            // 请求初始化
+            xhr.open(&quot;get&quot;,&quot;./php/4.php&quot;,true);
+
+            // 正式发送请求
+            xhr.send();
+        }
+
+PHP代码:
+        $db = DB::table(&apos;user&apos;);
+        $data = $db-&gt;select();
+
+        echo json_encode($data); // 将data 装换成JSON格式;
+</code></pre><h3 id="同步-和-异步"><a href="#同步-和-异步" class="headerlink" title="同步 和 异步"></a>同步 和 异步</h3><pre><code>open()的参3,用于控制是否同/异步
+默认参数为true,表示请求是异步的,不会影响到程序其它部分的执行
+参数为false.表示请求是同步的,将会阻塞程序的运行,直到响应完成之后才继续执行其他部分.
+</code></pre><h3 id="Ajax与JSONP"><a href="#Ajax与JSONP" class="headerlink" title="Ajax与JSONP"></a>Ajax与JSONP</h3><pre><code>1.Ajax 无法跨域
+2.JSONP:
+    其实就是动态的创建一个script标签,给该标签的src地址,赋值一个指定域下的PHP文件.
+    在PHP的文件之中,返回一个JS的函数调用代码,只要在JS页面中 定义这个PHP端的同名函数即可.
+
+JSONP实例:
+        &lt;script&gt;
+           function makedata(obj){
+                for(var i in obj){
+                    box.innerHTML += i +&apos;:&apos;+ obj[i] + &apos;&lt;br&gt;&apos;;
+                }
+            }
+
+            // JSON 的关键步骤
+            function loadHtml(){
+                // 创建一个script元素标签
+                var script = document.createElement(&apos;script&apos;);
+                // 给该标签设置SRC值
+                script.src = &apos;http://127.0.0.1/code/php/jsonp.php/&apos;;
+                // 将该标签放入页面中
+                document.body.appendChild(script);
+            }
+        &lt;/script&gt;
+
+        &lt;?php
+            require &apos;./config.php&apos;;
+            require &apos;./DB.class.php&apos;;
+
+            $db = DB::table(&apos;user&apos;);
+
+            $data = $db-&gt;find(6);
+            echo &quot;makedata(&quot;.json_encode($data).&quot;)&quot;;
+        ?&gt;
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/memcached/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/mysql(1)/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

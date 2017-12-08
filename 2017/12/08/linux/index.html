@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>linux 入门 | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="linux 入门">
+            
+            linux 入门
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>工具</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            linux
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><pre><code>    1        2    3    4          5             6            7
+-rw-r--r--. 1 root root     27034 12月 15 18:40 install.log
+    第一项：        权限位
+    第二项：  1     引用计数
+    第三项：  root  属主
+    第四项：  root  属组
+    第五项：        大小
+    第六项:         最后一次修改时间
+    第七项:         文件名
+</code></pre><h4 id="提示符：（特殊字符）"><a href="#提示符：（特殊字符）" class="headerlink" title="提示符：（特殊字符）"></a>提示符：（特殊字符）</h4><pre><code>[root@localhost ~]#
+当前登录用户@主机名:当前所在目录$
+
+    #       超级用户
+    $       普通用户
+
+    当前所在目录：~  用户家目录
+    管理员          /root
+    普通用户        /home/用户名
+</code></pre><h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><pre><code>权限位:
+    1 234 567 8910
+    - rwx rwx ---
+    第一位：代表文件类型
+            -   普通文件
+            d   目录文件
+            l   链接文件
+    后九位：
+            属主权限    u=user
+            属组权限    g=group
+          其他人权限    o=other
+
+对文件的意义:
+    r    读取文件内容 more
+    w    编辑 新增 修改文件内容,但是不包含删除文件  vim
+    x     可执行
+
+对目录的意义:
+    r    可以查询目录下文件名    ls
+    w    对目录具有增删改查的权限
+    x    可以进入目录
+
+权重:
+     r     4    可读
+     w     2    可写
+     x     1    可执行
+</code></pre><h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h5 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令:"></a>查看命令:</h5><pre><code>ls             显示目录文件
+ls -l         长格式显示
+ls -a        显示所有文件
+ls -all        显示所有文件(长格式)
+ls -hl        文件大小显示为常见大小单位 K M G
+ls -d        显示目录本身,而不是里面的子文件
+ls (路径)
+
+du -sh 文件/目录     查看文件/目录的实际大小
+
+netstat -ntlp    查看所有端口
+lsof -i tcp:80     查看80端口占用情况
+
+ps -A            查看全部进程
+ps -C 进程名        查看某一条进程
+</code></pre><h5 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令:"></a>目录操作命令:</h5><pre><code>切换:
+    cd            切换到登录用户家目录
+    cd -        切换到上次操作的目录
+    cd..        切换到上一级目录
+    cd /usr/local/src     (路径)
+    相对路径:参照当前所在的目录,进行查找.先确定当前所在目录.
+    绝对路径:从根目录开始指定,一级一级递归查找.
+
+linux常见目录:
+    /            根目录
+    /bin        命令保存目录(普通用户就可以读取的命令)
+    /boot        启动目录,启动相关文件
+    /dev        设备文件保存目录
+    /etc        配置文件保存目录
+    /home        普通用户的家目录
+    /mnt        系统挂载目录
+    /media        挂载目录
+    /root        超级用户的家目录
+    /tmp        临时目录
+    /sbin        命令保存目录(超级用户才能使用的目录)
+    /proc        直接写入内存
+    /usr        系统软件资源目录
+    /var        系统相关文档内容
+
+创建目录:
+    mkdir 目录名
+    mkdir /root/include/upload/     递归创建目录
+
+删除目录:
+    rm -rf 目录名        文件/目录
+    rm -r  目录名        删除目录
+    rm -f  目录名        强制
+</code></pre><h5 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h5><pre><code>创建空文件:
+    touch 文件名
+
+查看文件内容:
+    cat 文件名
+
+分屏显示文件内容
+    more 文件名
+</code></pre><h5 id="复制与剪切"><a href="#复制与剪切" class="headerlink" title="复制与剪切"></a>复制与剪切</h5><pre><code>复制粘贴:
+    cp     源文件 目标位置
+    cp -r     复制目录
+    cp -a     所有(包括文件属性一起复制)
+
+    cp 源文件 目标位置 新名字         (改名复制)
+剪切:
+    mv 源文件 目标位置
+改名:
+    mv 源文件名 新文件名
+</code></pre><h5 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h5><pre><code>chmod  u+x  index.php          属主加上执行权限
+chmod  u-x  index.php          属主去除执行权限
+chmod  u=rwx index.php        属主添加读写执行权限
+
+chmod  755  index.php        权重表示法
+chmod  644  index.php
+</code></pre><h5 id="属主和属组命令"><a href="#属主和属组命令" class="headerlink" title="属主和属组命令"></a>属主和属组命令</h5><pre><code>useradd jack    添加用户
+passwd    jack    设定用户密码
+
+改变文件属主:
+        chown 用户名    文件名    
+        chown jack     index.php
+同时改变属主和属组:
+        chown 用户名:组名     文件名    
+        chown jack:jack index.php
+</code></pre><h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><pre><code>man 命令名
+man cat
+</code></pre><h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h5><pre><code>1) 查找命令的命令,同时看到帮助文档的位置
+    whereis 命令名
+
+2) 查找文件
+    find 查找位置 -name 文件名
+    find / -name index.php        按照文件名查找
+    find / -iname index.php        不区分大小写
+
+3) 查找字符串
+    grep &quot;字符串&quot; 文件名
+    grep -v &quot;字符串&quot; 文件名     (反向选择)
+    grep -i    &quot;字符串&quot; 文件名    (不区分大小写)
+</code></pre><h5 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h5><pre><code>压缩包后缀名:
+        .tar.gz        z
+        .tar.bz2    j
+压缩:
+    tar -zcvf 压缩文件/目录 源文件
+    tar -zcvf bbs.tar.gz bbs
+
+解压缩:
+    tar -zxvf bbs.tar.gz
+简写:
+    tar -zxf bbs.tar.gz
+解压到指定位置:
+    tar -zxf bbs.tar.gz -C /tmp/
+语义:
+    -z: 识别.gz格式
+    -c: 压缩
+    -v: 显示压缩过程
+    -f: 指定压缩包名
+    -x: 解压
+    -t: 查看不解压
+
+... -C: 指定解压位置
+</code></pre><h5 id="关闭和重启"><a href="#关闭和重启" class="headerlink" title="关闭和重启"></a>关闭和重启</h5><pre><code>关机:
+    shutdown -h now
+重启:
+    reboot
+</code></pre><h5 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h5><pre><code>linux所有存储设备都必须挂载使用
+光盘挂载
+    mount    设备描述文件     挂载点(已经存在的空目录)
+    mount    /dev/sro    /mnt/cdrom
+光盘卸载
+    umount    /dev/sro
+    umount    /mnt/cdrom    
+</code></pre><h5 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h5><pre><code>ifconfig     查看本机网络信息
+ifconfig eth0 IP地址     设置临时IP
+
+快捷键:
+        CTRL+C 终止命令
+        CTRL+A 光标到行首
+        CTRL+E 光标到行尾
+        CTRL+U 剪切光标前内容
+        CTRL+K 剪切光标后内容
+        CTRL+Y 粘贴剪切的内容
+        CTRL+L 清理屏幕
+        CTRL+D 注销登陆相当于exit和logout或者保存
+        CTRL+Z 将进程在后台挂起
+
+        |            管道符
+        tab            补全功能
+        ``          命令替换符  将一个命令的输出作为另一个命令的参数
+          ls -l `which touch`     找到touch命令的路径，然后用ls查看属性
+</code></pre><h2 id="VIM编辑器-文件操作"><a href="#VIM编辑器-文件操作" class="headerlink" title="VIM编辑器(文件操作)"></a>VIM编辑器(文件操作)</h2><pre><code>文件写入:
+    echo &apos;内容&apos; &gt;&gt; 文件名
+文件编辑:    
+    vi 文件名     编辑该文件
+
+    a    输入
+    i    插入
+    o    新增下一行
+
+    A    到行的尾部
+    I    到行的头部
+    O    上一行
+
+    :w    写入
+    :wq = :x = ZZ    保存退出
+    :q!    不保存退出
+
+命令模式操作:
+    hjkl        光标移动
+    :n(数字)        移动到第n行
+    gg            移动到文件头
+    G            移动到文件尾
+
+    x            删除单个字母
+    n(数字)+x    删除n个字母
+    dd            删除单行 剪切
+    ndd            删除多行    剪切
+    p            粘贴
+    dG            从光标所在行删除到文件尾
+
+    yy            复制单行
+    nyy            多行复制
+
+    u            撤销
+    Ctrl + r    反撤销
+
+    :set nu        显示行号
+    :set nonu    不显示行号
+
+    r+(n)        替换一个字符
+
+    /字串        查找        n下一个 N上一个
+
+    替换:
+        :范围/原字串/新字串/g
+        ：1,10s/old/new/g         替换1到10行的所有old为new
+        ：%s/old/new/g            替换整个文件的old为new
+                     g           范围内所有old换为new
+
+        :1,10s/^/#/g            注释
+        :6,10s/^#//g            取消注释
+
+        :11,20s/^/\/\//g        注释
+        :16,20s/^\/\///g        取消注释
+</code></pre><h2 id="软件包安装"><a href="#软件包安装" class="headerlink" title="软件包安装"></a>软件包安装</h2><pre><code>软件包分类:
+    1) 源码包    .tar.gz     .tar.bz2
+    2) 二进制包    .rpm
+</code></pre><h4 id="二进制宝安装"><a href="#二进制宝安装" class="headerlink" title="二进制宝安装"></a>二进制宝安装</h4><pre><code>A) rpm手动安装
+    1) 光盘挂载
+    2) 解决文件依赖关系
+    3) 安装tree
+    4) 基本命令
+        rpm ivh 软件包
+        -i 安装     -v 显示详细信息 -h 显示进度
+
+        升级
+        rpm -Uvh 软件包
+
+        卸载
+        rpm -e 软件包
+
+B) yum命令 二进制包自动化管理
+        yum  -y  install  软件包       安装          
+        yum  -y  update   软件包       升级
+        yum  -y  remove   软件包       卸载
+    光盘作为yum源：
+
+        1   cd  /etc/yum.repos.d/
+            mv  CentOS-Base.repo  /root/
+
+        2   mount /dev/sr0  /mnt/cdrom
+
+        3   vim  /etc/yum.repos.d/CentOS-Media.repo
+            baseurl=file:///mnt/cdrom/  指定yum源位置
+            enabled=1                   yum源文件生效
+
+        yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)
+</code></pre><h4 id="源码包安装"><a href="#源码包安装" class="headerlink" title="源码包安装"></a>源码包安装</h4><pre><code>1   远程传输工具传输apache到linux。
+    httpd-2.2.9.tar.gz 
+2   安装
+    1） 解压
+    2） cd  解压目录         
+    3） 查看安装文档
+        INSTALL     README
+    4） 编译前准备
+        ./configure  --prefix=/usr/local/apache2
+        功能：
+            1   检测系统环境，生成Makefile
+            2   定义软件选项
+    5)  编译              
+        make
+    6）编译安装
+        make  install
+
+    报错判断：
+        第一：安装过程是否停止
+        第二：注意error  warning  no  等错误报警
+
+3   启动
+    /usr/local/apache2/bin/apachectl  start
+
+4   卸载      
+    直接删除安装目录
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/mysql(1)/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/PHP/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

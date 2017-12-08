@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>归档：2017/12 | Hexo</title>
+<title>Mysql入门 | Hexo</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -36,6 +36,8 @@
 
 
 
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
@@ -118,81 +120,246 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">2017年 12月</h1>
-        
-          <li class="post-items" _href="/2017/12/08/ubantu-lamp/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/ubantu-lamp/"> ubantu-lamp环境搭建 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/test/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/test/"> test </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/JS函数/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/JS函数/"> JS常用函数 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/jQuery/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/jQuery/"> jQuery </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/php-redis操作/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/php-redis操作/"> PHP-redis操作 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/memcached/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/memcached/"> Memcache分布式缓存系统 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/JAVASCRIPT/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/JAVASCRIPT/"> Javascript课程 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/mysql(1)/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/mysql(1)/"> Mysql入门 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/linux/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/linux/"> linux 入门 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2017/12/08/PHP/">
-            <h3 class="post-item-title">
-            	<a href="/2017/12/08/PHP/"> PHP </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Mysql入门">
+            
+            Mysql入门
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>工具</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Mysql
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <span class="page-number current">1</span><a class="page-number" href="/archives/2017/12/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/12/page/2/"><i class='fa fa-angle-right'></i></a>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Mysql基本讲解"><a href="#Mysql基本讲解" class="headerlink" title="Mysql基本讲解"></a>Mysql基本讲解</h2><pre><code>数据库:存数据
+定义:存储数据的仓库
+
+数据库:database
+数据表:table
+
+按照数据结构来组织,存储和管理数据的仓库
+
+常见数据库系统
+Oracle
+MySQL
+SQL Server 微软
+
+登录数据库的必备条件
+1.服务器环境开启   wamp
+2.服务器IP地址       本地localhost
+3.用户名:root
+4.密码:空
+
+数据库每条命令都已 分号 作为结束符
+
+``:反引号  为了屏蔽关键字
+将关键字取消特殊意义(库名,表名,字段名)
+</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>1.设置密码
+    set password = password(&apos;密码&apos;)
+
+2.创建一个数据库
+    create database `库名`
+    create database if not exists `库名`    推荐用
+
+3.查看所有数据库
+    show databases
+
+4.查看当前所在的库
+    select database()
+
+5.删除一个数据库
+    drop database `库名`
+
+6.使用数据库
+    use `库名`
+
+7.查看所有的表
+    show tables
+
+8.查看当前使用的表
+    desc `表名`
+
+9.创建数据表
+    create table if not exists `表名`(
+        `表头名`   类型  属性,
+        `表头名`   类型  属性,
+        `表头名`   类型  属性,
+        ...(最后一个字段 不要加 逗号)
+    )engine=MyISAM(引擎) default charset=utf8
+
+10.删除数据表
+    drop table `表名`
+</code></pre><p>字段属性</p>
+<pre><code>1. 主键索引
+    primary key
+    一般一张表只有一个主键
+
+2.自增
+    auto_increment
+    最小是1,通常配合主键
+
+3.无符号
+    unsigned : 没有负数
+
+4.默认值
+    default 默认值
+
+5.非空约束
+    not null : 不能为空
+
+6.唯一索引
+    unique
+
+7.描述
+    comment
+</code></pre><p>新增数据<br>    插入单条数据:<br>    insert into <code>表名</code> values(包含所有表头元素的值);</p>
+<pre><code>插入多条数据:
+insert into `表名` values(包含所有表头元素的值),
+(),(),.....;
+
+插入单条指定内容的数据:
+insert into `表名` (`表头名1`,`表头名2`,....)values(&quot;值1&quot;,&quot;值2&quot;,...);
+
+插入多条指定内容的数据
+insert into `表名` (`表头名1`,`表头名2`,...)
+values
+(&quot;值1&quot;,&quot;值2&quot;,...),
+(&quot;值1&quot;,&quot;值2&quot;,...),
+(&quot;值1&quot;,&quot;值2&quot;,...),
+.....;
+</code></pre><p>数据更新<br>    全表修改:<br>    update <code>表名</code> set <code>表头名</code>=”值”,<code>表头名</code>=”值”, …;</p>
+<pre><code>指定修改:
+update `表名` set `表头名`=&quot;值&quot;, ...
+where 条件表达式 and (多条件时用)
+</code></pre><p>删除数据<br>    全表删除<br>    delete from <code>表名</code>;</p>
+<pre><code>指定删除
+delete from `表名` where 条件表达式 and (多条件时用)
+</code></pre><p>查询数据<br>    查询全表<br>    select * from user;</p>
+<pre><code>根据表头查询(返回表头下所有数据)
+select `表头名1`,`表头名2`, ...
+from `表名`;
+
+指定条件查询
+select `表头名1`,`表头名2`, ...
+from `user`
+where 条件表达式 and (多条件时用)
+
+排序查询 asc 升序 | desc 降序
+select `主键或自增属性的表头`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+order by `主键或自增属性的表头` asc;
+
+分组查询
+select `表头名1`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+group by `表头名`
+order by (根据需求,但排序必须是在分组之后执行)
+
+分组后的条件筛选
+select `表头名1`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+group by `表头名`
+having 数据库函数的条件表达式
+
+多表查询
+select 表名1.表头名1,表头名2, ...
+from `表名1`,`表名2`,...
+where 表与表之间的关系
+group by (根据需求)
+order by (根据需求)
+
+模糊查询
+select `表头名1`,`表头名2`, ...
+from `user`
+where `表头名` like &quot;%值%&quot;;
+
+表头内容下,含有like所定义的值的字符.
+%值  = 以该值结尾的字符
+值% = 以该值开头的字符
+_ 代表单个字符
+
+分页
+limit rows 指定行数
+limit key, rows 指定下标,指定行数
+
+select * from `表名` limit 2;
+select * from `表名` limit 0,2;
+
+公式:key = (页数 - 1) * 指定行数
+</code></pre><p>数据库函数</p>
+<pre><code>聚合函数
+count()     计数
+sum()       求和
+avg()       平均数
+max()       最大
+min()       最小
+
+字符串函数
+concat()    拼接字符串
+
+数据库版本
+select version();
+
+当前时间    格式化时间
+select now();
+
+当前时间    时间戳
+select UNIX_TIMESTAPM();
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/JAVASCRIPT/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/linux/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
 
 
 

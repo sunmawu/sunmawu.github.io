@@ -1,0 +1,652 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>jQuery | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="jQuery">
+            
+            jQuery
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            jQuery
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h3><pre><code>1 什么是jQuery?
+    jQuery是 JavaScript 的类库
+
+2 jQuery版本
+    jQuery 1.X    支持IE
+    jQuery 2.X    IE9+  其他...
+</code></pre><h3 id="jQuery的基本语法"><a href="#jQuery的基本语法" class="headerlink" title="jQuery的基本语法"></a>jQuery的基本语法</h3><pre><code>1.jquery标准的使用方式:
+      1.1 JQ 标准入口
+        $(document).ready(function() {
+            (JS / JQ)代码
+        });
+
+    1.2 JQ 简写
+        $(function() {
+            (JS / JQ)代码
+        });
+
+    1.3 JS写法 
+        window.onload = function () {
+            (JS / JQ)代码
+        }
+
+2.ready和onload的区别
+    1). 加载点
+        ready 文档中 DOM加载完就触发
+        onload 文档中的一且都加载完才触发
+    2). 绑定
+        ready可以多次绑定,且都会触发
+        onload 后面的事件会覆盖前面
+
+3.链式操作风格
+    JQ.css().css();
+
+4.jQueryDOM 与 JSDOM 的区别 以及相互转化
+    区别:
+        JQDOM  通过 $() 获取到的数组对象
+        JSDOM  通过 原生方法 获取到的元素对象
+    转换:
+        JSDOM ---&gt; JQDOM    $(jsdom)
+        JQDOM ---&gt; JSDOM    jqdom[index]
+
+5.jquery命名冲突
+    $ 的原意就是jQuery
+    也可以var 变量 = jQuery;
+</code></pre><h4 id="JQ-元素选择器"><a href="#JQ-元素选择器" class="headerlink" title="JQ 元素选择器"></a>JQ 元素选择器</h4><pre><code>1 基本选择器
+    *                    通配符选择器
+    #id                  ID选择器
+    .class               CLASS选择器
+    tagName              标签选择器
+    selector,selector      组合/分组选择器
+
+2 层级选择器
+    selector selector  所有的后代元素
+    selector&gt;selector  所有的子元素
+    selector+selector  紧邻着的下一个元素
+    selector~selector  紧邻着的所有元素
+
+3 过滤选择器
+    :first      首个
+    :last       最后一个
+    :eq(index)  指定第几个
+    :lt(index)  索引小于
+    :gt(index)  索引大于
+    :odd         索引为奇数
+    :even        索引为偶数 0也算作为偶
+    :header      所有的h标签
+    :not(selector) 排除
+
+4 内容选择器
+    :contains(text)  匹配包含指定文本的元素
+    :has(selector)   匹配含有指定选择器的元素的元素
+    :parent          匹配素有含子元素或非空的元素
+    :empty           匹配所有空元素
+
+5 可见性选择器
+    :visible       匹配所有可见元素
+    :hidden        匹配所有不可见元素
+
+6 属性选择器
+    selector[attrname]             选择有指定属性的元素
+    selector[attrname=&apos;value&apos;]     值等于value的元素
+    selector[attrname!=&apos;value&apos;]    值不等于value的元素
+    selector[attrname^=&apos;value&apos;]    值以value的开头元素
+    selector[attrname$=&apos;value&apos;]    值以value的结尾元素
+    selector[attrname*=&apos;value&apos;]    值包含value的元素
+    [][][] ....   多个属性选择器,用于做进一步筛选操作的
+
+7 子元素选择器
+    :first-child    是否是首个子元素
+    :last-child     是否是最后一个子元素
+    :nth-child(n)   是否是第N个子元素
+    :only-child     是否是独子元素
+
+8 表单选择器
+    :input            
+    :text
+    :password
+    :radio
+    :checkbox
+    :submit
+    :reset
+    :button
+    :file
+    :hidden
+    :image
+
+9 表单对象选择器
+    :enabled   匹配所有可用元素
+    :disabled  匹配所有不可用元素
+    :checked   匹配所有被选中元素
+    :selected  匹配所有选中的option元素
+</code></pre><h4 id="JQ-筛选方法"><a href="#JQ-筛选方法" class="headerlink" title="JQ 筛选方法"></a>JQ 筛选方法</h4><pre><code>1.过滤
+    :eq(index)           过滤出指定的某个
+    :first()             过滤出首个
+    :last()              过滤出最后一个
+    :filter(selector)    过滤出满足前面条件的
+    :not(selector)       过滤排除,与以上相反
+    :slice(start, end)   截取出一段
+    :has(selector)       含有指定选择器的元素的元素
+
+    // 条件判断 返回布尔值;
+    .hasClass()          判断前面的DOM集合中,是否包含指定class类
+    .is()                判断前面的DOM集合中,是否有符合指定表达式的
+    .map()               对JQDOM遍历,并且可以取得一部分值出来
+2 查找
+    (往里找)
+        .children()       只找子元素
+        .find()           找所有后代元素
+    (往外找)
+        .parent()         父元素
+        .parents()        父元素们
+        .parentsUntil()   父元素们,到指定的为止
+        .offsetParent()   获取已定位的父元素
+    (往后找)
+        .next()           紧邻着的一个同辈元素(后)
+        .nextAll()        紧邻着的所有同辈元素(后)
+        .nextUntil()      紧邻着的同辈元素,直到指定的为止(后)
+    (往前找)
+        .prev()           紧邻着的一个同辈元素(前)
+        .prevAll()        紧邻着的所有同辈元素(前)
+        .prevUntil()      紧邻着的同辈元素,直到指定的为止(前)
+
+        .siblings()       除了元素自己以外的所有同辈元素
+
+3 串联
+        .add()            向集合内追加新元素
+        .andSelf()        之前选中的集合,加入到当前集合内
+        .end()            返回最后一个 破坏性操作之前的样子
+        .contents()       获取所有的子节点(包括文本)
+</code></pre><h4 id="JQ-文档处理方法"><a href="#JQ-文档处理方法" class="headerlink" title="JQ 文档处理方法"></a>JQ 文档处理方法</h4><pre><code>1 内部插入
+    .append()     内部最后
+    .appendTo()   --
+    .prepend()    内部最前
+    .prependTo()
+
+2 外部插入
+    .after()       外部最后
+    .insertAfter() --
+    .before()       外部最前
+    .insertBefore()  --
+
+3 包裹
+    .wrap()      将集合内的每个元素,包裹在指定元素内
+    .wrapAll()   将整个集合元素,包裹在指定元素内
+    .wrapInner()  包裹在里面
+    .unwrap()    去掉包裹
+
+4 替换
+    .replaceWith()  替换谁
+    .replaceAll()   谁被替换
+
+5 删除
+    .remove()   删除元素
+    .empty()    清空子节点
+
+6 复制
+    .clone()
+</code></pre><h4 id="JQ-属性方法"><a href="#JQ-属性方法" class="headerlink" title="JQ 属性方法"></a>JQ 属性方法</h4><pre><code>1 属性操作
+    HTMLDOM
+        .prop()         设置属性
+        .removeProp()    删除属性
+    XMLdom
+        .attr()            设置属性
+        .removeAttr()    删除属性
+
+2 CSS 类  (class)
+    .addClass()     添加一个类属性
+    .removeClass()  移除一个类属性
+    .toggleClass()   以上俩,来回切换
+
+3 HTML代码/文本/值
+    .html()   相当于innerHTML
+    .text()   相当于innerText
+    .val()    相当于.value 表单控件的值
+</code></pre><h4 id="CSS-操作"><a href="#CSS-操作" class="headerlink" title="CSS 操作"></a>CSS 操作</h4><pre><code>连贯写法:
+    css(&apos;attr&apos;, &apos;value&apos;).css(&apos;attr&apos;, &apos;value&apos;);
+JSON写法:
+    css({
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;
+    });
+</code></pre><h4 id="位置类方法"><a href="#位置类方法" class="headerlink" title="位置类方法"></a>位置类方法</h4><pre><code>offset()     获取/设置 元素相对于body的位置  .left / .top
+position()   获取 已定位的父元素的位置
+
+scrollLeft() 获取/设置 滚动条距离左/上的像素值
+scrollTop()
+</code></pre><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><pre><code>    height()        获取/设置 css的元素宽/高
+    width()
+
+    innerHeight()      获取/设置 元素宽/高 +  内边距
+    innerWidth()
+
+    (标准盒子模型)
+    outerHeight()     获取/设置 元素宽/高 +  内边距 + 边框
+    outerWidth()
+
+其他尺寸:
+    $(window).height() //浏览器时下窗口可视区域高度
+    $(document).height() //浏览器时下窗口文档的高度
+    $(document.body).height()//浏览器时下窗口文档body的高度
+    $(document.body).outerHeight(true)//浏览器时下窗口文档body的总高度 包括border padding margin
+    $(window).width() //浏览器时下窗口可视区域宽度
+    $(document).width()//浏览器时下窗口文档对于象宽度
+    $(document.body).width()//浏览器时下窗口文档body的高度
+    $(document.body).outerWidth(true)//浏览器时下窗口文档body的总宽度 包括border padding margin
+    $(document).scrollTop() //获取滚动条到顶部的垂直高度
+    $(document).scrollLeft() //获取滚动条到左边的垂直宽度
+</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><pre><code>1 绑定事件
+    1). 简写方式 : 
+            JQDOM.event(function(){
+
+            });
+    2). 标准方式  
+            JQDOM.bind(&apos;event&apos;, function(){
+
+            });
+    3). 一次性 事件 
+            JQDOM.one(&apos;event&apos;, function(){
+
+            });
+
+2 解绑定
+    unbind()
+
+3 事件委派
+    3.1) live() 事件委派  1.9-
+        JQDOM.live({
+            &quot;event&quot;:function (){
+                // 内容
+            },
+               &quot;event&quot;:function (){
+                // 内容
+            }
+        });
+
+    3.2) on()   JQ 1.9+
+        $(document).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        }).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        });
+
+4 事件的自动触发
+    JQDOM.trigger(&apos;event&apos;);
+    // 自动触发的事件必须是已存在的!
+
+5 阻止默认事件 和 事件冒泡
+    在默认事件内 /  冒泡事件内 
+    return false;
+</code></pre><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><pre><code>1 基本
+    .show()
+    .hide()
+    .toggle()
+2 滑动效果
+    .slideDown()
+    .slideUp()
+    .slideToggle()
+3 淡入淡出
+    .fadeIn()
+    .fadeOut()
+    .fadeToggle()
+    .fadeTo()   0为完全透明 1为不透明
+4 自定义动画
+    JQDOM.animate({
+       // 内容
+
+    },time);            自定义动画
+
+
+   .stop()                停止
+   .delay()                延时
+</code></pre><h2 id="JQ-AJAX"><a href="#JQ-AJAX" class="headerlink" title="JQ-AJAX"></a>JQ-AJAX</h2><pre><code>1） load方式:
+        JQDOM.load(&apos;URL地址&apos;);
+
+2） GET方式:
+        $.get(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
+
+3） POST方式:
+        $.post(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
+
+4)  AJAX()方式: （推荐）
+        $.ajax({
+            type : &apos;Method&apos;,                
+            url : &apos;URL&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+</code></pre><h3 id="AJAX参数处理"><a href="#AJAX参数处理" class="headerlink" title="AJAX参数处理"></a>AJAX参数处理</h3><pre><code>1） GET/POST 演示：
+        // 需要先获取参数内容；
+            var num1 = $(&apos;#num1&apos;).val();
+             var num2 = $(&apos;#num2&apos;).val();
+         $.get(&apos;URL&apos;,{a:num1,b:num2},function(data){
+
+        })；
+
+2）ajax() 演示:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            data : &apos;a=&apos;+num1+&apos;&amp; b=&apos;+num2,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+
+ 3) JS串行化数据:
+        var info = $(&apos;#my input&apos;).serialize();
+        // 前提要有表单,且name属性存在.串行化的数据可以直接送进data里;
+</code></pre><h3 id="处理JSON数据"><a href="#处理JSON数据" class="headerlink" title="处理JSON数据"></a>处理JSON数据</h3><pre><code>1) GET/POST 方式:
+        $.get(&apos;URL&apos;, function (参){
+
+        },&apos;json&apos;);
+
+2) ajax 方式:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            dataType : &apos;json&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/JS函数/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/php-redis操作/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

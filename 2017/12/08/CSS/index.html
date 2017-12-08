@@ -1,0 +1,607 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>CSS | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="CSS">
+            
+            CSS
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            CSS 前端
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="CSS导入方式"><a href="#CSS导入方式" class="headerlink" title="CSS导入方式;"></a>CSS导入方式;</h3><pre><code>1.外链式:
+    在head头标签中,通过link标签 引入css
+
+2.内嵌式:
+    在head投标前中,通过style标签当场写css,支队本文件有效
+
+3.内联式(不推荐,优先级太高)
+    在开始标签中,通过style属性,给本标签写css
+
+4.导入式:
+    在head头标签里,通过style标签,用@import url(CSS文件地址)来富裕CSS
+    注意:导入式必须卸载style的最前面
+
+外链式 和 导入式的区别
+    1.外链式: 先CSS 再HTML
+    2.导入式: 先HTML 再CSS
+</code></pre><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色;"></a>颜色;</h3><pre><code>单词
+#rrggbb     6位 十六进制 0-9 a-f
+#rgb        3位  十六进制
+rgb(0~255,0~255,0~255)
+rgb(%,%,%)
+rgba(0~255,0~255,0~255,0~1) a:透明度 可小数
+hsla(0~360,%,%,0~1) 色轮
+    H : 色调  0/360红      120绿    240蓝
+    S : 饱和度     %
+    L : 亮度      %
+    A : 透明度     0~1 可小数
+透明度:opacity : 0~1
+</code></pre><h3 id="绝对长度"><a href="#绝对长度" class="headerlink" title="绝对长度:"></a>绝对长度:</h3><pre><code>px
+in  1in = 96px
+cm
+mm
+</code></pre><h3 id="相对长度"><a href="#相对长度" class="headerlink" title="相对长度:"></a>相对长度:</h3><pre><code>%   需要参照物
+em  倍数
+</code></pre><h3 id="字体"><a href="#字体" class="headerlink" title="字体;"></a>字体;</h3><pre><code>font
+font-size:      字体大小
+    -family:    字体家族
+    -weight:    bold 加粗
+    -style:     iitalic 倾斜
+
+line-height: 行高,如果与当前高度一致,可达成垂直居中的效果(仅限一行)
+
+简写:
+    font: size  family
+    font: [ bold | italic ] size family
+    font: [ bold | italic ] size[/line-height] family
+</code></pre><h3 id="背景"><a href="#背景" class="headerlink" title="背景;"></a>背景;</h3><pre><code>background
+background-color:       背景颜色
+          -image:       背景图片 url(&apos;来源地址&apos;)
+          -position: x y +:右下 -:左上 背景定位
+          -size:        背景大小
+          -repeat:no-repeat 背景重复
+          -attachment:fixed 背景固定
+简写:
+    background:[color | image | position[/size] | repeat | attachment]
+</code></pre><h3 id="边框"><a href="#边框" class="headerlink" title="边框;"></a>边框;</h3><pre><code>border
+border-color:       边框颜色
+      -style:       边框风格
+      -width:       边框宽度
+简写:
+    border: color style [width]
+
+单便边框:
+    border-方向: 属性简写
+          -top
+          -left
+          -right
+          -bottom
+圆角:
+    border-radius: px %
+
+表格边框合并
+    border-collapse: collapse
+
+border = 内边框
+outline = 外边框
+outline 的语法与border 语法一致
+outline:none
+</code></pre><h3 id="列表"><a href="#列表" class="headerlink" title="列表;"></a>列表;</h3><pre><code>list-style:none;
+</code></pre><h3 id="鼠标样式"><a href="#鼠标样式" class="headerlink" title="鼠标样式:"></a>鼠标样式:</h3><pre><code>cursor:
+        pointer     手指
+        text        I
+        move        十字键
+        wait        等待
+        none        消失
+</code></pre><h3 id="字体图标"><a href="#字体图标" class="headerlink" title="字体图标:"></a>字体图标:</h3><pre><code>内嵌式:    @font-face{
+            font-family:&apos;字体名&apos;;
+            src: url(&apos;ttf文件路劲&apos;);
+        }
+导入式:
+    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;字体CSS文件路径&quot;&gt;
+
+调用时,直接就和实体符号一样.
+</code></pre><h3 id="阴影"><a href="#阴影" class="headerlink" title="阴影;"></a>阴影;</h3><pre><code>box-shadow      盒子阴影
+box-shadow: 10px 20px 30px 40px red;
+10px:   水平位移
+20px:   垂直位移
+30px:   模糊度 值越大越模糊,不能为负数.
+40px:   阴影面积 可以为负数
+</code></pre><h3 id="文本"><a href="#文本" class="headerlink" title="文本;"></a>文本;</h3><pre><code>text
+    -indent:                    首行缩进
+    -decoration:                文本修饰
+                underline       下划线
+                overline        上划线
+                line-through    删除线
+                none            无样式
+     -align:                    水平对齐方式  (left,center,right)
+    -shadow:                文字阴影
+      -overflow: ellipsis     将溢出的隐藏文字用...代替
+
+ vertical-aglin:            垂直对齐方式 (top middle bottom)
+
+    text-shadow: 10px 20px 30px red;
+    10px:   水平位移
+    20px:   垂直位移
+    30px:   模糊度 不能为负数
+</code></pre><h3 id="溢出"><a href="#溢出" class="headerlink" title="溢出;"></a>溢出;</h3><pre><code>overflow:
+            hidden 隐藏溢出内容
+            visible 默认，显示溢出内容
+            scroll 不管是否溢出都增加滚动条
+            auto 根据内容是否溢出，自动增加滚动条
+overflow-x: hidden/visible/auto
+overflow-y: hidden/visible/auto
+
+min-width   最小宽度
+min-height  最小高度
+max-width   最大宽度
+max-height  最大高度
+</code></pre><h3 id="内外边距"><a href="#内外边距" class="headerlink" title="内外边距;"></a>内外边距;</h3><pre><code>外边距:  margin      元素与元素之间的距离
+
+        margin:1px              上下左右
+        margin:1px 2px          上下  左右
+        margin:1px 2px 3px      上 左右 下
+        margin:1px 2px 3px 4px  上 右 下 左
+
+水平居中:
+        margin: 0 auto;     没有上下居中
+
+优化水平居中写法:
+        margin-left: auto;
+        margin-right: auto;
+
+单方向的外边距设置
+        margin-方向
+              -top
+              -left
+              -right
+              -bottom
+
+内边距:
+        padding     边框与内容之间的距离
+        padding:1px                 上下左右
+        padding:1px 2px             上下 左右
+        padding:1px 2px 3px         上 左右 下
+        padding:1px 2px 3px 4px     上 右 下 左
+
+注意: 很容易造成视觉上的错觉
+</code></pre><h3 id="平滑过渡"><a href="#平滑过渡" class="headerlink" title="平滑过渡;"></a>平滑过渡;</h3><pre><code>transition: p1 p2 p3 p4
+        p1: 改变哪个属性  all:所有属性
+        p2: 转换时间        单位: s/ms
+        p3: 速率
+            linear      匀速 默认
+            ease        逐渐变慢
+            ease-in     加速
+            ease-out    减速
+            ease-in-out 先加速再减速
+        p4: 延迟时间    单位: s/ms
+
+        *一定要有数据的变化过程
+</code></pre><h3 id="变形"><a href="#变形" class="headerlink" title="变形;"></a>变形;</h3><pre><code>transform:
+        none        不变
+        rotate      旋转  单位:deg 角度
+        rotateX
+        rotateY
+
+        skew        扭曲  单位:deg
+        skewX
+        skewY
+
+        scale       中心缩放    倍数
+
+        translate   位移
+</code></pre><h3 id="行块级"><a href="#行块级" class="headerlink" title="行块级;"></a>行块级;</h3><pre><code>行级元素:   block
+    最具代表性: div
+        1. 总是独占一行
+        2. 宽度默认与浏览器一样宽,与内容无关
+        3. 高度默认与内容有关
+        4. 内外边距,行高全部可以手动控制
+        5. 容纳性:容纳一切元素
+
+行级元素: inline
+    最具代表性: span
+        1. 总是不独占一行
+        2. 宽度默认与内容有关
+        3. 高度默认与内容有关
+        4. 内外边距,行高只有部分可以控制
+        5. 容纳性:只能容纳行级元素
+</code></pre><h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动;"></a>浮动;</h3><pre><code>float: left | right
+
+清除浮动(自己不能清除自己的浮动,只能清除自己前面的兄弟元素的浮动)
+
+clear: left | right | both
+
+清除方法1:
+    在兄弟元素的最后面,加入空元素(块级),
+    赋予clear属性,清除前面的兄弟元素浮动
+
+清除方法2: BFC区域
+    在父元素赋予以下代码:
+    可以清除子元素的浮动
+        父元素::before, 父元素::after{
+            content:&apos;&apos;;
+            display:table;
+        }
+
+        父元素::after{
+            clear:both;
+        }
+</code></pre><h3 id="定位"><a href="#定位" class="headerlink" title="定位;"></a>定位;</h3><pre><code>position
+绝对定位: absolute
+    位置: 不保留原来的位置
+    原点: 基于网页第一页的四个角落,不是body体的四个角落
+
+相对定位: relative
+    位置: 保留原来的位置
+    原点: 基于原来的位置
+
+固定定位: fixed
+    位置: 不保留原来的位置
+    原点: 基于当前窗口的四个角落
+</code></pre><h3 id="元素转换"><a href="#元素转换" class="headerlink" title="元素转换;"></a>元素转换;</h3><pre><code>display:
+        none            隐藏(不占位)
+        block           转成块级元素
+        inline          转成行级元素
+        inline-block    转成行块级元素
+        table           转成表格
+        table-cell      转成普通单元格 td
+
+visibility:
+        hidden      占位隐藏
+        visible     显示
+</code></pre><h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器;"></a>选择器;</h3><pre><code>1.标签选择器
+    标签名{...}  匹配网页中所有指定标签
+
+2.class选择器
+    .class名{...}
+    注意:多个class名之间用 空格 隔开
+
+3.id选择器
+    #id名{...}
+    注意:如果id名重复了,后期js会获取不到
+
+4.关联选择器
+    s1 : 代表祖辈
+    s2 : 代表后辈
+    格式:
+        s1 s2{...}
+        匹配s1下的所有后辈元素s2
+        s1 &gt; s2{...}
+        只匹配s1下的所有儿子元素s2
+        s1 + s2{...}
+        只匹配紧跟在s1后的一个兄弟元素s2
+        s1 ~ s2{...}
+        匹配s1后的所有兄弟元素s2
+
+5.组合选择器
+    同时给不同的对象,赋予相同的属性
+    s1,s2,s3,...{...}
+
+6.伪对象选择器
+    s1::before{ ... }
+        匹配s1子元素的最前面
+    s1::after{ ... }
+        匹配s1子元素的最后面在后期浮动,会有很大的作用
+
+7.伪类选择器
+    s1:hover{ ... }
+        当鼠标悬停在s1上时,触发CSS
+    s1:hover s2{ ... }
+        当鼠标悬停在s1上时,s2触发css
+
+    s1:focus{ ... }
+        当鼠标获取到光标时,触发CSS
+
+    先看顺序,再看标签
+    s1:first-child
+        匹配父元素下的第一个子元素s1
+    s1:last-child
+        匹配父元素下的最后一个子元素s1
+    s1:nth-child(num)
+        匹配父元素下的第NUM个子元素s1
+
+    先看标签,再看顺序
+    s1:first-of-type
+        匹配父元素下的子元素s1中第一个
+    s1:last-of-type
+        匹配父元素下的子元素s1中最后一个
+    s1:nth-of-type(num)
+        匹配父元素下的子元素s1中第NUM个
+</code></pre><h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级;"></a>优先级;</h3><pre><code>1.权重值:
+    标签: 1
+    class: 10
+    id: 100
+    最高权重: !important
+    权重值可以叠加
+
+2.默认优先级: 谁离标签越近,谁的优先级就越高
+
+3.继承性:
+    大部分的后辈元素都可以继承祖辈元素的属性少部分不能继承
+    例如:
+        a标签的颜色
+        h标签的大小和颜色
+4.总结:在权重相同的情况下,比谁的优先级更高.
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/HTML/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">12</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
