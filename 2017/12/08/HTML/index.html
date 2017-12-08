@@ -176,68 +176,57 @@ doctype 文档类型
     3 有助于快速恢复记忆
     4 提高团队开发效率
     5 注释不能嵌套使用
-</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><pre><code>全局架构标签;
-    html:
-        表示该标签下的都是html代码.
-    head:
-        头标签主要负责,声明网页的标题.
-    body
-        网页主体,页面内容都显示在里面.
+</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><h4 id="全局架构标签"><a href="#全局架构标签" class="headerlink" title="全局架构标签;"></a>全局架构标签;</h4><pre><code>html:
+    表示该标签下的都是html代码.
+head:
+    头标签主要负责,声明网页的标题.
+body
+    网页主体,页面内容都显示在里面.
+title
+    主要负责网页的标题
+</code></pre><h4 id="文本格式标签"><a href="#文本格式标签" class="headerlink" title="文本格式标签;"></a>文本格式标签;</h4><pre><code>h1-h6   标题标签
+p       段落
+b       加粗
+i       倾斜
+u       下划线
+br      换行
+hr      分割线
+del     删除线
+strong  加粗强调
+u       倾斜强调
+sub     上标标签
+sup     下标标签
+pre     原样输出
+</code></pre><h4 id="列表"><a href="#列表" class="headerlink" title="列表;"></a>列表;</h4><pre><code>ul      无序列表
+ol      有序列表
+li      配合ul和ol使用
+dl      定义列表
+dt dd   配合定义列表使用
+</code></pre><h4 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号;"></a>实体符号;</h4><pre><code>&amp;lt;    小于号
+&amp;gt;    大于号
+&amp;nbsp;  空格
+&amp;yen;   人民币
+&amp;copy;  版权符号
+&amp;copytight;
+</code></pre><h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接;"></a>超链接;</h4><pre><code>标签      a
+属性:
+    href    目的路径
+    target
+           _blank   在新窗口打开链接
+           _self    在本窗口打开链接(默认)
     title
-        主要负责网页的标题
-
-文本格式标签;
-    h1-h6   标题标签
-    p       段落
-    b       加粗
-    i       倾斜
-    u       下划线
-    br      换行
-    hr      分割线
-    del     删除线
-    strong  加粗强调
-    u       倾斜强调
-    sub     上标标签
-    sup     下标标签
-    pre     原样输出
-
-列表;
-    ul      无序列表
-    ol      有序列表
-    li      配合ul和ol使用
-    dl      定义列表
-    dt dd   配合定义列表使用
-
-实体符号;
-    &amp;lt;    小于号
-    &amp;gt;    大于号
-    &amp;nbsp;  空格
-    &amp;yen;   人民币
-    &amp;copy;  版权符号
-    &amp;copytight;
-
-超链接;
-    标签      a
-    属性:
-        href    目的路径
-        target
-               _blank   在新窗口打开链接
-               _self    在本窗口打开链接(默认)
-        title
-            当鼠标悬停在超链接上时,显示title内容.
-    网址的组成:
-        1.协议 : http https ftp file ....
-        2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
-        3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
-            ? 之前: 网址的所在位置
-            ? 之后: 访问此网址所带的参数
-        4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
-        5.锚点:
-        #锚点名
-        通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
-
-多媒体图片;
-    标签  img
+        当鼠标悬停在超链接上时,显示title内容.
+网址的组成:
+    1.协议 : http https ftp file ....
+    2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
+    3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
+        ? 之前: 网址的所在位置
+        ? 之后: 访问此网址所带的参数
+    4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
+    5.锚点:
+    #锚点名
+    通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
+</code></pre><h4 id="多媒体图片"><a href="#多媒体图片" class="headerlink" title="多媒体图片;"></a>多媒体图片;</h4><pre><code>    标签  img
     属性:
         src     图片来源地址
         width   宽度
@@ -262,46 +251,41 @@ doctype 文档类型
         认识判读
         认识网址
         / : 当成 当前所在的盘符
+</code></pre><h4 id="多媒体音频-视频"><a href="#多媒体音频-视频" class="headerlink" title="多媒体音频/视频;"></a>多媒体音频/视频;</h4><pre><code>音频标签    audio
+属性:
+    src         音频来源地址
+    controls    播放器
+    Loop        循环播放
+    autoplay    自动播放
 
-多媒体音频/视频;
-    音频标签    audio
-    属性:
-        src         音频来源地址
-        controls    播放器
-        Loop        循环播放
-        autoplay    自动播放
+视频标签    video
+属性:
+    src         视频来源地址
+    controls    播放器
+    loop        循环播放
+    autoplay    自动播放
 
-    视频标签    video
-    属性:
-        src         视频来源地址
-        controls    播放器
-        loop        循环播放
-        autoplay    自动播放
+兼容性问题, 通过媒介标签 source来解决
+</code></pre><h4 id="表格-table"><a href="#表格-table" class="headerlink" title="表格      table"></a>表格      table</h4><pre><code>    表格标题    caption
+    表行      tr
+    表头      th
+    单元格     td
 
-    兼容性问题, 通过媒介标签 source来解决
-
-表格      table
-        表格标题    caption
-        表行      tr
-        表头      th
-        单元格     td
-
-    常见表格属性:
-        border          边框
-        cellspacing     外边距
-        cellpadding     内边距
-        align           水平对齐
-            left,center,right
-        valign          垂直对齐
-            top,middle,bottom
-        rowspan         行合并
-        colspan         列合并
-        width
-        height
-        bgcolor         背景颜色
-        background      背景图片
-表单;
-声明标签:       form
+常见表格属性:
+    border          边框
+    cellspacing     外边距
+    cellpadding     内边距
+    align           水平对齐
+        left,center,right
+    valign          垂直对齐
+        top,middle,bottom
+    rowspan         行合并
+    colspan         列合并
+    width
+    height
+    bgcolor         背景颜色
+    background      背景图片
+</code></pre><h4 id="表单"><a href="#表单" class="headerlink" title="表单;"></a>表单;</h4><pre><code>声明标签:       form
     属性:
         action : 提交到哪儿去,服务器的脚本地址
         method : 传输方式 get post
@@ -355,40 +339,13 @@ doctype 文档类型
         disabled        禁用
         required        不能为空
         multiple        多选值
-分帧;
-小分帧标签       iframe
+</code></pre><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧;"></a>分帧;</h4><pre><code>小分帧标签       iframe
     属性:
         src             窗口内容来源
         frameborder     窗口边框 0/ 非0
         scrolling       滚动条是否显示 yes/no
         name            给本窗口取个名字
                         通过a标签跳到指定的窗口
-</code></pre><h3 id="head头标签"><a href="#head头标签" class="headerlink" title="head头标签:"></a>head头标签:</h3><pre><code>1. 设置编码方式
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-
-2. 网页的标题
-      &lt;title&gt;Document&amp;lt;/title&gt;
-
-3. 设置网页3秒自动刷新
-    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;3&quot;&gt;
-
-4. 设置网页3秒后刷新,并跳转到其他页面
-    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;3; url=http://www.baidu.com&quot;&gt;
-
-5. 关键词
-    &lt;meta name=&quot;keywords&quot; content=&apos;关键字&apos;&gt;
-
-6. 描述
-    &lt;meta name=&quot;description&quot; content=&quot;描述&quot;&gt;
-
-7. 导入CSS
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot;&gt;
-
-8. 导入js
-    &lt;script src=&quot;./abc/test.js&quot;&gt;&amp;lt;/script&gt;
-
-9. 网页图标
-    &lt;link rel=&apos;icon&apos; href=&quot;./abc/favicon.ico&quot;&gt;
 </code></pre>
     </div>
 
@@ -406,10 +363,10 @@ doctype 文档类型
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/12/08/PHP/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/2017/12/08/linux/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
-        <a href="/2017/12/08/CSS/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/12/08/JAVASCRIPT/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 

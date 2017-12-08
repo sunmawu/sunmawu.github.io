@@ -3,123 +3,310 @@
   
     
     <entry>
-      <title><![CDATA[ubantu-lamp环境搭建]]></title>
-      <url>/2017/12/08/ubantu-lamp/</url>
-      <content type="html"><![CDATA[<h2 id="ubantu-lamp环境搭建"><a href="#ubantu-lamp环境搭建" class="headerlink" title="ubantu lamp环境搭建"></a>ubantu lamp环境搭建</h2><pre><code>1.更新apt-get源
-    sudo apt-get update
+      <title><![CDATA[linux 入门]]></title>
+      <url>/2017/12/08/linux/</url>
+      <content type="html"><![CDATA[<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><pre><code>    1        2    3    4          5             6            7
+-rw-r--r--. 1 root root     27034 12月 15 18:40 install.log
+    第一项：        权限位
+    第二项：  1     引用计数
+    第三项：  root  属主
+    第四项：  root  属组
+    第五项：        大小
+    第六项:         最后一次修改时间
+    第七项:         文件名
+</code></pre><h4 id="提示符：（特殊字符）"><a href="#提示符：（特殊字符）" class="headerlink" title="提示符：（特殊字符）"></a>提示符：（特殊字符）</h4><pre><code>[root@localhost ~]#
+当前登录用户@主机名:当前所在目录$
 
-2.安装apache
-    sudo apt-get install apache2
+    #       超级用户
+    $       普通用户
 
-3.安装Mysql (有提示输入mysql的初始密码 默认用户为root)
-    sudo apt-get install mysql-server mysql-client
+    当前所在目录：~  用户家目录
+    管理员          /root
+    普通用户        /home/用户名
+</code></pre><h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><pre><code>权限位:
+    1 234 567 8910
+    - rwx rwx ---
+    第一位：代表文件类型
+            -   普通文件
+            d   目录文件
+            l   链接文件
+    后九位：
+            属主权限    u=user
+            属组权限    g=group
+          其他人权限    o=other
 
-4.安装php
-    sudo apt-get install php7.0
+对文件的意义:
+    r    读取文件内容 more
+    w    编辑 新增 修改文件内容,但是不包含删除文件  vim
+    x     可执行
 
-5.安装php apache模块
-    sudo apt-get install libapache2-mod-php
+对目录的意义:
+    r    可以查询目录下文件名    ls
+    w    对目录具有增删改查的权限
+    x    可以进入目录
 
-6. 安装php常用插件
-    sudo apt-get install php7.0-mysql php7.0-mysql php7.0-curl php7.0-gd php7.0-mbstring php7.0-mcrypt php7.0-xml php7.0-zip
+权重:
+     r     4    可读
+     w     2    可写
+     x     1    可执行
+</code></pre><h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h5 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令:"></a>查看命令:</h5><pre><code>ls             显示目录文件
+ls -l         长格式显示
+ls -a        显示所有文件
+ls -all        显示所有文件(长格式)
+ls -hl        文件大小显示为常见大小单位 K M G
+ls -d        显示目录本身,而不是里面的子文件
+ls (路径)
 
-7.设置服务器域名解析和端口访问等
-略...
+du -sh 文件/目录     查看文件/目录的实际大小
 
-8.#配置虚拟主机(可选)
-修改文件
-    vi /etc/apache2/sites-avilabe/000-default.conf
-代码如下：
-    &lt;VirtualHost *:80&gt;
+netstat -ntlp    查看所有端口
+lsof -i tcp:80     查看80端口占用情况
 
-    ServerAdmin webmaster@localhost
-    DocumentRoot /var/www/html/laravel/public (tp5框架文件目录)
-    ServerName www.shxdledu.cn    (域名)
+ps -A            查看全部进程
+ps -C 进程名        查看某一条进程
+</code></pre><h5 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令:"></a>目录操作命令:</h5><pre><code>切换:
+    cd            切换到登录用户家目录
+    cd -        切换到上次操作的目录
+    cd..        切换到上一级目录
+    cd /usr/local/src     (路径)
+    相对路径:参照当前所在的目录,进行查找.先确定当前所在目录.
+    绝对路径:从根目录开始指定,一级一级递归查找.
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+linux常见目录:
+    /            根目录
+    /bin        命令保存目录(普通用户就可以读取的命令)
+    /boot        启动目录,启动相关文件
+    /dev        设备文件保存目录
+    /etc        配置文件保存目录
+    /home        普通用户的家目录
+    /mnt        系统挂载目录
+    /media        挂载目录
+    /root        超级用户的家目录
+    /tmp        临时目录
+    /sbin        命令保存目录(超级用户才能使用的目录)
+    /proc        直接写入内存
+    /usr        系统软件资源目录
+    /var        系统相关文档内容
 
-    &lt;/VirtualHost&gt;
+创建目录:
+    mkdir 目录名
+    mkdir /root/include/upload/     递归创建目录
 
-9.配置成功后重启apahce 
-    sudo service apache2 restart
-</code></pre><h2 id="ubuntu-PHP安装redis扩展"><a href="#ubuntu-PHP安装redis扩展" class="headerlink" title="ubuntu-PHP安装redis扩展"></a>ubuntu-PHP安装redis扩展</h2><pre><code>cd /root    切换到root目录下
+删除目录:
+    rm -rf 目录名        文件/目录
+    rm -r  目录名        删除目录
+    rm -f  目录名        强制
+</code></pre><h5 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h5><pre><code>创建空文件:
+    touch 文件名
 
-1.安装git(如果有git则跳过)
-    sudo apt-get install git
+查看文件内容:
+    cat 文件名
 
-2.下载phpredis
-    git clone https://github.com/phpredis/phpredis.git
+分屏显示文件内容
+    more 文件名
+</code></pre><h5 id="复制与剪切"><a href="#复制与剪切" class="headerlink" title="复制与剪切"></a>复制与剪切</h5><pre><code>复制粘贴:
+    cp     源文件 目标位置
+    cp -r     复制目录
+    cp -a     所有(包括文件属性一起复制)
 
-3.剪切到etc
-    mv phpredis/ /etc/
+    cp 源文件 目标位置 新名字         (改名复制)
+剪切:
+    mv 源文件 目标位置
+改名:
+    mv 源文件名 新文件名
+</code></pre><h5 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h5><pre><code>chmod  u+x  index.php          属主加上执行权限
+chmod  u-x  index.php          属主去除执行权限
+chmod  u=rwx index.php        属主添加读写执行权限
 
-4.切换目录
-    cd /etc/phpredis
+chmod  755  index.php        权重表示法
+chmod  644  index.php
+</code></pre><h5 id="属主和属组命令"><a href="#属主和属组命令" class="headerlink" title="属主和属组命令"></a>属主和属组命令</h5><pre><code>useradd jack    添加用户
+passwd    jack    设定用户密码
 
-5.安装php7.0-dev (如果有则跳过)
-    sudo apt-get install php7.0-dev
+改变文件属主:
+        chown 用户名    文件名    
+        chown jack     index.php
+同时改变属主和属组:
+        chown 用户名:组名     文件名    
+        chown jack:jack index.php
+</code></pre><h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><pre><code>man 命令名
+man cat
+</code></pre><h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h5><pre><code>1) 查找命令的命令,同时看到帮助文档的位置
+    whereis 命令名
 
-6.执行解析
-    phpize
+2) 查找文件
+    find 查找位置 -name 文件名
+    find / -name index.php        按照文件名查找
+    find / -iname index.php        不区分大小写
 
-7.执行configure
-    ./configure
+3) 查找字符串
+    grep &quot;字符串&quot; 文件名
+    grep -v &quot;字符串&quot; 文件名     (反向选择)
+    grep -i    &quot;字符串&quot; 文件名    (不区分大小写)
+</code></pre><h5 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h5><pre><code>压缩包后缀名:
+        .tar.gz        z
+        .tar.bz2    j
+压缩:
+    tar -zcvf 压缩文件/目录 源文件
+    tar -zcvf bbs.tar.gz bbs
 
-8.编译和编译安装
-    make &amp;&amp; make install
+解压缩:
+    tar -zxvf bbs.tar.gz
+简写:
+    tar -zxf bbs.tar.gz
+解压到指定位置:
+    tar -zxf bbs.tar.gz -C /tmp/
+语义:
+    -z: 识别.gz格式
+    -c: 压缩
+    -v: 显示压缩过程
+    -f: 指定压缩包名
+    -x: 解压
+    -t: 查看不解压
 
-9.修改php配置文件(需要在conf.d下创建redis.ini文件)
-    vi /etc/php/7.0/fpm/conf.d/redis.ini
-    写入（extension=/etc/phpredis/modules/redis.so）
+... -C: 指定解压位置
+</code></pre><h5 id="关闭和重启"><a href="#关闭和重启" class="headerlink" title="关闭和重启"></a>关闭和重启</h5><pre><code>关机:
+    shutdown -h now
+重启:
+    reboot
+</code></pre><h5 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h5><pre><code>linux所有存储设备都必须挂载使用
+光盘挂载
+    mount    设备描述文件     挂载点(已经存在的空目录)
+    mount    /dev/sro    /mnt/cdrom
+光盘卸载
+    umount    /dev/sro
+    umount    /mnt/cdrom    
+</code></pre><h5 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h5><pre><code>ifconfig     查看本机网络信息
+ifconfig eth0 IP地址     设置临时IP
 
-10.修改apache配置文件
-    vi /etc/php/7.0/apache2/php.ini
-    写入 （extension=/etc/phpredis/modules/redis.so）
-    插入位置可以找 extension=mysql.dll
+快捷键:
+        CTRL+C 终止命令
+        CTRL+A 光标到行首
+        CTRL+E 光标到行尾
+        CTRL+U 剪切光标前内容
+        CTRL+K 剪切光标后内容
+        CTRL+Y 粘贴剪切的内容
+        CTRL+L 清理屏幕
+        CTRL+D 注销登陆相当于exit和logout或者保存
+        CTRL+Z 将进程在后台挂起
 
-11.重启apache
-    sudo service apache2 restart
-</code></pre><h3 id="注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装"><a href="#注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装" class="headerlink" title="*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装."></a>*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装.</h3><h2 id="ubuntu-安装redis"><a href="#ubuntu-安装redis" class="headerlink" title="ubuntu-安装redis"></a>ubuntu-安装redis</h2><pre><code>1.安装redis
-    sudo apt-get install redis-server
+        |            管道符
+        tab            补全功能
+        ``          命令替换符  将一个命令的输出作为另一个命令的参数
+          ls -l `which touch`     找到touch命令的路径，然后用ls查看属性
+</code></pre><h2 id="VIM编辑器-文件操作"><a href="#VIM编辑器-文件操作" class="headerlink" title="VIM编辑器(文件操作)"></a>VIM编辑器(文件操作)</h2><pre><code>文件写入:
+    echo &apos;内容&apos; &gt;&gt; 文件名
+文件编辑:    
+    vi 文件名     编辑该文件
 
-2.启动redis(出现欢迎界面)
-    redis-server
+    a    输入
+    i    插入
+    o    新增下一行
 
-3.进入控制台
-    redis-cli
+    A    到行的尾部
+    I    到行的头部
+    O    上一行
 
-4.修改redis访问密码
-    vi /etc/redis/redis.conf
-    搜索 requirepass foobared
-    取消注释并修改成 requirepass 密码
-</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code>安装 下载工具 wget
-    sudo apt-get install -y wget
+    :w    写入
+    :wq = :x = ZZ    保存退出
+    :q!    不保存退出
 
-查看 wget版本        
-    wget -version
+命令模式操作:
+    hjkl        光标移动
+    :n(数字)        移动到第n行
+    gg            移动到文件头
+    G            移动到文件尾
 
+    x            删除单个字母
+    n(数字)+x    删除n个字母
+    dd            删除单行 剪切
+    ndd            删除多行    剪切
+    p            粘贴
+    dG            从光标所在行删除到文件尾
 
-安装composer        
-    去composer 找命令
+    yy            复制单行
+    nyy            多行复制
 
-    建议切换到 /usr/local/bin
+    u            撤销
+    Ctrl + r    反撤销
 
-    使用wget安装composer wget 加上composer的官网下载地址
+    :set nu        显示行号
+    :set nonu    不显示行号
 
-    wget https://getcomposer.org/download/1.4.1/composer.phar
+    r+(n)        替换一个字符
 
-    重命名文件composer.phar 为 composer 
-    $ mv composer.phar composer
+    /字串        查找        n下一个 N上一个
 
-    $ chmod +x composer     
+    替换:
+        :范围/原字串/新字串/g
+        ：1,10s/old/new/g         替换1到10行的所有old为new
+        ：%s/old/new/g            替换整个文件的old为new
+                     g           范围内所有old换为new
 
-    然后如果需要git 他自带有的
+        :1,10s/^/#/g            注释
+        :6,10s/^#//g            取消注释
 
-    其实linux 和Windows 差别不大的，都是系统，我们用的也就是装软件而已。
+        :11,20s/^/\/\//g        注释
+        :16,20s/^\/\///g        取消注释
+</code></pre><h2 id="软件包安装"><a href="#软件包安装" class="headerlink" title="软件包安装"></a>软件包安装</h2><pre><code>软件包分类:
+    1) 源码包    .tar.gz     .tar.bz2
+    2) 二进制包    .rpm
+</code></pre><h4 id="二进制宝安装"><a href="#二进制宝安装" class="headerlink" title="二进制宝安装"></a>二进制宝安装</h4><pre><code>A) rpm手动安装
+    1) 光盘挂载
+    2) 解决文件依赖关系
+    3) 安装tree
+    4) 基本命令
+        rpm ivh 软件包
+        -i 安装     -v 显示详细信息 -h 显示进度
 
-    常用的目录结构
-    WWW var/html
+        升级
+        rpm -Uvh 软件包
+
+        卸载
+        rpm -e 软件包
+
+B) yum命令 二进制包自动化管理
+        yum  -y  install  软件包       安装          
+        yum  -y  update   软件包       升级
+        yum  -y  remove   软件包       卸载
+    光盘作为yum源：
+
+        1   cd  /etc/yum.repos.d/
+            mv  CentOS-Base.repo  /root/
+
+        2   mount /dev/sr0  /mnt/cdrom
+
+        3   vim  /etc/yum.repos.d/CentOS-Media.repo
+            baseurl=file:///mnt/cdrom/  指定yum源位置
+            enabled=1                   yum源文件生效
+
+        yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)
+</code></pre><h4 id="源码包安装"><a href="#源码包安装" class="headerlink" title="源码包安装"></a>源码包安装</h4><pre><code>1   远程传输工具传输apache到linux。
+    httpd-2.2.9.tar.gz 
+2   安装
+    1） 解压
+    2） cd  解压目录         
+    3） 查看安装文档
+        INSTALL     README
+    4） 编译前准备
+        ./configure  --prefix=/usr/local/apache2
+        功能：
+            1   检测系统环境，生成Makefile
+            2   定义软件选项
+    5)  编译              
+        make
+    6）编译安装
+        make  install
+
+    报错判断：
+        第一：安装过程是否停止
+        第二：注意error  warning  no  等错误报警
+
+3   启动
+    /usr/local/apache2/bin/apachectl  start
+
+4   卸载      
+    直接删除安装目录
 </code></pre>]]></content>
       
         <categories>
@@ -138,107 +325,195 @@
     </entry>
     
     <entry>
-      <title><![CDATA[test]]></title>
-      <url>/2017/12/08/test/</url>
-      <content type="html"><![CDATA[<h1 id="测试博客主题"><a href="#测试博客主题" class="headerlink" title="测试博客主题"></a>测试博客主题</h1><p>##时间轴</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 工具 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> git </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[JS常用函数]]></title>
-      <url>/2017/12/08/JS%E5%87%BD%E6%95%B0/</url>
-      <content type="html"><![CDATA[<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><pre><code>不常用：
-        str.length         返回字符串长度（中文只占一个位置）
-        str.anchor        锚点
-        str.bold        加粗
-常用：
-        str.charAt(下标)    
-        获取指定下标的字符，从0开始；
+      <title><![CDATA[HTML5]]></title>
+      <url>/2017/12/08/HTML/</url>
+      <content type="html"><![CDATA[<h2 id="HTML5-基本语法"><a href="#HTML5-基本语法" class="headerlink" title="HTML5 基本语法"></a>HTML5 基本语法</h2><pre><code>HTML5声明
+doctype 文档类型
+!docype html 声明以html5的规则去解析 W3C的标准
 
-        str.indexOf(&apos;字串&apos;)    
-        返回首个给定字串的索引位置，没有则返回-1；
 
-        str.lastIndexOf(&apos;字串&apos;)
-        返回最后一个给定字串的索引位置，没有则返回-1；
+标签格式;
+        单 &lt;标签名/&gt;
+        双 &lt;标签名&gt; &lt;/标签名&gt;
 
-        str.concat(&apos;字串&apos;)
-        向字串末尾追加字串，生成新字串；
 
-        str.substr(下标)             截取从指定下标开始至结束的字串;
-        str.substr(下标,步长)        截取从指定下标开始至步长的字串;
+注释;
+    &lt;-- --&gt;
+    1 对代码的描述
+    2 不会显示在网页中
+    3 有助于快速恢复记忆
+    4 提高团队开发效率
+    5 注释不能嵌套使用
+</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><h4 id="全局架构标签"><a href="#全局架构标签" class="headerlink" title="全局架构标签;"></a>全局架构标签;</h4><pre><code>html:
+    表示该标签下的都是html代码.
+head:
+    头标签主要负责,声明网页的标题.
+body
+    网页主体,页面内容都显示在里面.
+title
+    主要负责网页的标题
+</code></pre><h4 id="文本格式标签"><a href="#文本格式标签" class="headerlink" title="文本格式标签;"></a>文本格式标签;</h4><pre><code>h1-h6   标题标签
+p       段落
+b       加粗
+i       倾斜
+u       下划线
+br      换行
+hr      分割线
+del     删除线
+strong  加粗强调
+u       倾斜强调
+sub     上标标签
+sup     下标标签
+pre     原样输出
+</code></pre><h4 id="列表"><a href="#列表" class="headerlink" title="列表;"></a>列表;</h4><pre><code>ul      无序列表
+ol      有序列表
+li      配合ul和ol使用
+dl      定义列表
+dt dd   配合定义列表使用
+</code></pre><h4 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号;"></a>实体符号;</h4><pre><code>&amp;lt;    小于号
+&amp;gt;    大于号
+&amp;nbsp;  空格
+&amp;yen;   人民币
+&amp;copy;  版权符号
+&amp;copytight;
+</code></pre><h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接;"></a>超链接;</h4><pre><code>标签      a
+属性:
+    href    目的路径
+    target
+           _blank   在新窗口打开链接
+           _self    在本窗口打开链接(默认)
+    title
+        当鼠标悬停在超链接上时,显示title内容.
+网址的组成:
+    1.协议 : http https ftp file ....
+    2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
+    3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
+        ? 之前: 网址的所在位置
+        ? 之后: 访问此网址所带的参数
+    4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
+    5.锚点:
+    #锚点名
+    通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
+</code></pre><h4 id="多媒体图片"><a href="#多媒体图片" class="headerlink" title="多媒体图片;"></a>多媒体图片;</h4><pre><code>    标签  img
+    属性:
+        src     图片来源地址
+        width   宽度
+        height  高度
+        title   当鼠标悬停在图片上时,显示title内容
+        alt     代替无法显示时的内容
 
-        str.substring(下标,下标)        根据给定下标范围截取字串,不含最大范围;
-        str.slice(下标,下标)            同substring(支持负数,负数为倒叙)
+相对路径
+    ./      当前目录下   (默认,可以省略)
+    ../     上一级目录下
+    ../../  上上级目录下
 
-        str.toUpperCase()            大写转换    
-        str.toLowerCase()            小写转换
+绝对路径
+    盘符路径  C:/wamp/xx/x/x/x/x/xxx.jpg
+    网址路径 http://www.baidu.com/x/x/x/x.jpg
 
-        str.replace(&apos;初始值&apos;,&apos;新值&apos;)        替换    也支持正则 /正则/g
+    经过服务器: 推荐
+        认识网址
+        / : 当成www/ 等于 lovalhost/
 
-        str.match(/正则/)
-        正则匹配首个符合条件的字串,成功返回字串,失败返回null;
+    不经过服务器
+        认识判读
+        认识网址
+        / : 当成 当前所在的盘符
+</code></pre><h4 id="多媒体音频-视频"><a href="#多媒体音频-视频" class="headerlink" title="多媒体音频/视频;"></a>多媒体音频/视频;</h4><pre><code>音频标签    audio
+属性:
+    src         音频来源地址
+    controls    播放器
+    Loop        循环播放
+    autoplay    自动播放
 
-        str.search(/正则/)
-        正则匹配首个符合条件的字串,成功返回该字串下标,失败返回-1;
+视频标签    video
+属性:
+    src         视频来源地址
+    controls    播放器
+    loop        循环播放
+    autoplay    自动播放
 
-        str.split()
-        根据给定元素将字串切割成数组,默认(空)不分割,空字符代表全部元素;
-</code></pre><h3 id="正则函数"><a href="#正则函数" class="headerlink" title="正则函数"></a>正则函数</h3><pre><code>原始字串:
-        var str = &apos;123456789&apos;;             
-正则声明:
-        var reg = /^\d{3}$/;            
-        var reg = new RegExp(/\w{6}/);
+兼容性问题, 通过媒介标签 source来解决
+</code></pre><h4 id="表格-table"><a href="#表格-table" class="headerlink" title="表格      table"></a>表格      table</h4><pre><code>    表格标题    caption
+    表行      tr
+    表头      th
+    单元格     td
 
-reg.test(str);
-用正则匹配字串,成功返回true,不成功放回false;
+常见表格属性:
+    border          边框
+    cellspacing     外边距
+    cellpadding     内边距
+    align           水平对齐
+        left,center,right
+    valign          垂直对齐
+        top,middle,bottom
+    rowspan         行合并
+    colspan         列合并
+    width
+    height
+    bgcolor         背景颜色
+    background      背景图片
+</code></pre><h4 id="表单"><a href="#表单" class="headerlink" title="表单;"></a>表单;</h4><pre><code>声明标签:       form
+    属性:
+        action : 提交到哪儿去,服务器的脚本地址
+        method : 传输方式 get post
+        enctype: multipart/form-data
+        只有文件上传时,才需要
+注意:
+1. 每个表单都必须加上name,没有name值,服务器则接收不到表单.
+2. 可手动输入表单:value可写可不写
+   不可手动输入的表单:value 必须写
 
-reg.exec(str);
-用正则匹配字串,成功返回关联形数组,失败返回NULL;
-</code></pre><h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><pre><code>var data = new Date();
-创建一个时间;
+表单标签:      
+    类型:
+   input type = text            文本域
+                password        密码域
+                radio           单选框
+                checkbox        多选框
+                file            文件上传
+                hidden          隐藏域
+                email           邮箱
+                number          数字
+                url             网址
+                data            日期
+                search          搜索
 
-setFullYear();        设置公元时间
-getyear();            获取当前年数 (1990-至今)
-getFullYear();        获取当前公元年
-getMonth();            获取当前月
-getDate();            获取当前日期 几号
-getDay();            获取当前日  周几
-getHours();            获取当前小时
-getMinutes();        获取当前分钟
-getSeconds();        获取当前秒
-getMillseconds();    获取当前毫秒
-getTime();            获取时间戳
-getUTCHours();        获取UTC时间
+                submit          提交
+                reset           重置
+                button          自定义按钮
 
-toString()            同date输出
-toUTCString()        UTC时间字串
-toLocaleString()    本地时间字串
-</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><pre><code>Math.PI            圆周率
-Math.E            自然常数
-Math.abs        绝对值
-Math.sqrt        开根号
-Math.max        最大数
-Math.min        最小数
-Math.floor        舍小取整
-Math.ceil        进一取整
-Math.round        四舍五入
-Math.random        随机数
+    select  下拉框
+        option      下拉框子选项
+        optgroup    对子选项分组
+        label       组名
 
-银行家四舍六入
+    textarea        多文本域
+        rows        行
+        cols        列
+
+    字段集标签
+        fieldset    外框
+        legend      标题名
+
+常见表单属性
+        placeholder     背景字
+        maxlength       最大长度
+        minlength       最小长度
+        checked         单/多选默认选中
+        selected        下拉框默认选中
+        autofocus       默认焦点选中
+        autocomplete    自动提示   on / off
+        readonly        只读
+        disabled        禁用
+        required        不能为空
+        multiple        多选值
+</code></pre><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧;"></a>分帧;</h4><pre><code>小分帧标签       iframe
+    属性:
+        src             窗口内容来源
+        frameborder     窗口边框 0/ 非0
+        scrolling       滚动条是否显示 yes/no
+        name            给本窗口取个名字
+                        通过a标签跳到指定的窗口
 </code></pre>]]></content>
       
         <categories>
@@ -250,682 +525,7 @@ Math.random        随机数
         
         <tags>
             
-            <tag> javascript </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[jQuery]]></title>
-      <url>/2017/12/08/jQuery/</url>
-      <content type="html"><![CDATA[<h3 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h3><pre><code>1 什么是jQuery?
-    jQuery是 JavaScript 的类库
-
-2 jQuery版本
-    jQuery 1.X    支持IE
-    jQuery 2.X    IE9+  其他...
-</code></pre><h3 id="jQuery的基本语法"><a href="#jQuery的基本语法" class="headerlink" title="jQuery的基本语法"></a>jQuery的基本语法</h3><pre><code>1.jquery标准的使用方式:
-      1.1 JQ 标准入口
-        $(document).ready(function() {
-            (JS / JQ)代码
-        });
-
-    1.2 JQ 简写
-        $(function() {
-            (JS / JQ)代码
-        });
-
-    1.3 JS写法 
-        window.onload = function () {
-            (JS / JQ)代码
-        }
-
-2.ready和onload的区别
-    1). 加载点
-        ready 文档中 DOM加载完就触发
-        onload 文档中的一且都加载完才触发
-    2). 绑定
-        ready可以多次绑定,且都会触发
-        onload 后面的事件会覆盖前面
-
-3.链式操作风格
-    JQ.css().css();
-
-4.jQueryDOM 与 JSDOM 的区别 以及相互转化
-    区别:
-        JQDOM  通过 $() 获取到的数组对象
-        JSDOM  通过 原生方法 获取到的元素对象
-    转换:
-        JSDOM ---&gt; JQDOM    $(jsdom)
-        JQDOM ---&gt; JSDOM    jqdom[index]
-
-5.jquery命名冲突
-    $ 的原意就是jQuery
-    也可以var 变量 = jQuery;
-</code></pre><h4 id="JQ-元素选择器"><a href="#JQ-元素选择器" class="headerlink" title="JQ 元素选择器"></a>JQ 元素选择器</h4><pre><code>1 基本选择器
-    *                    通配符选择器
-    #id                  ID选择器
-    .class               CLASS选择器
-    tagName              标签选择器
-    selector,selector      组合/分组选择器
-
-2 层级选择器
-    selector selector  所有的后代元素
-    selector&gt;selector  所有的子元素
-    selector+selector  紧邻着的下一个元素
-    selector~selector  紧邻着的所有元素
-
-3 过滤选择器
-    :first      首个
-    :last       最后一个
-    :eq(index)  指定第几个
-    :lt(index)  索引小于
-    :gt(index)  索引大于
-    :odd         索引为奇数
-    :even        索引为偶数 0也算作为偶
-    :header      所有的h标签
-    :not(selector) 排除
-
-4 内容选择器
-    :contains(text)  匹配包含指定文本的元素
-    :has(selector)   匹配含有指定选择器的元素的元素
-    :parent          匹配素有含子元素或非空的元素
-    :empty           匹配所有空元素
-
-5 可见性选择器
-    :visible       匹配所有可见元素
-    :hidden        匹配所有不可见元素
-
-6 属性选择器
-    selector[attrname]             选择有指定属性的元素
-    selector[attrname=&apos;value&apos;]     值等于value的元素
-    selector[attrname!=&apos;value&apos;]    值不等于value的元素
-    selector[attrname^=&apos;value&apos;]    值以value的开头元素
-    selector[attrname$=&apos;value&apos;]    值以value的结尾元素
-    selector[attrname*=&apos;value&apos;]    值包含value的元素
-    [][][] ....   多个属性选择器,用于做进一步筛选操作的
-
-7 子元素选择器
-    :first-child    是否是首个子元素
-    :last-child     是否是最后一个子元素
-    :nth-child(n)   是否是第N个子元素
-    :only-child     是否是独子元素
-
-8 表单选择器
-    :input            
-    :text
-    :password
-    :radio
-    :checkbox
-    :submit
-    :reset
-    :button
-    :file
-    :hidden
-    :image
-
-9 表单对象选择器
-    :enabled   匹配所有可用元素
-    :disabled  匹配所有不可用元素
-    :checked   匹配所有被选中元素
-    :selected  匹配所有选中的option元素
-</code></pre><h4 id="JQ-筛选方法"><a href="#JQ-筛选方法" class="headerlink" title="JQ 筛选方法"></a>JQ 筛选方法</h4><pre><code>1.过滤
-    :eq(index)           过滤出指定的某个
-    :first()             过滤出首个
-    :last()              过滤出最后一个
-    :filter(selector)    过滤出满足前面条件的
-    :not(selector)       过滤排除,与以上相反
-    :slice(start, end)   截取出一段
-    :has(selector)       含有指定选择器的元素的元素
-
-    // 条件判断 返回布尔值;
-    .hasClass()          判断前面的DOM集合中,是否包含指定class类
-    .is()                判断前面的DOM集合中,是否有符合指定表达式的
-    .map()               对JQDOM遍历,并且可以取得一部分值出来
-2 查找
-    (往里找)
-        .children()       只找子元素
-        .find()           找所有后代元素
-    (往外找)
-        .parent()         父元素
-        .parents()        父元素们
-        .parentsUntil()   父元素们,到指定的为止
-        .offsetParent()   获取已定位的父元素
-    (往后找)
-        .next()           紧邻着的一个同辈元素(后)
-        .nextAll()        紧邻着的所有同辈元素(后)
-        .nextUntil()      紧邻着的同辈元素,直到指定的为止(后)
-    (往前找)
-        .prev()           紧邻着的一个同辈元素(前)
-        .prevAll()        紧邻着的所有同辈元素(前)
-        .prevUntil()      紧邻着的同辈元素,直到指定的为止(前)
-
-        .siblings()       除了元素自己以外的所有同辈元素
-
-3 串联
-        .add()            向集合内追加新元素
-        .andSelf()        之前选中的集合,加入到当前集合内
-        .end()            返回最后一个 破坏性操作之前的样子
-        .contents()       获取所有的子节点(包括文本)
-</code></pre><h4 id="JQ-文档处理方法"><a href="#JQ-文档处理方法" class="headerlink" title="JQ 文档处理方法"></a>JQ 文档处理方法</h4><pre><code>1 内部插入
-    .append()     内部最后
-    .appendTo()   --
-    .prepend()    内部最前
-    .prependTo()
-
-2 外部插入
-    .after()       外部最后
-    .insertAfter() --
-    .before()       外部最前
-    .insertBefore()  --
-
-3 包裹
-    .wrap()      将集合内的每个元素,包裹在指定元素内
-    .wrapAll()   将整个集合元素,包裹在指定元素内
-    .wrapInner()  包裹在里面
-    .unwrap()    去掉包裹
-
-4 替换
-    .replaceWith()  替换谁
-    .replaceAll()   谁被替换
-
-5 删除
-    .remove()   删除元素
-    .empty()    清空子节点
-
-6 复制
-    .clone()
-</code></pre><h4 id="JQ-属性方法"><a href="#JQ-属性方法" class="headerlink" title="JQ 属性方法"></a>JQ 属性方法</h4><pre><code>1 属性操作
-    HTMLDOM
-        .prop()         设置属性
-        .removeProp()    删除属性
-    XMLdom
-        .attr()            设置属性
-        .removeAttr()    删除属性
-
-2 CSS 类  (class)
-    .addClass()     添加一个类属性
-    .removeClass()  移除一个类属性
-    .toggleClass()   以上俩,来回切换
-
-3 HTML代码/文本/值
-    .html()   相当于innerHTML
-    .text()   相当于innerText
-    .val()    相当于.value 表单控件的值
-</code></pre><h4 id="CSS-操作"><a href="#CSS-操作" class="headerlink" title="CSS 操作"></a>CSS 操作</h4><pre><code>连贯写法:
-    css(&apos;attr&apos;, &apos;value&apos;).css(&apos;attr&apos;, &apos;value&apos;);
-JSON写法:
-    css({
-        &apos;attr&apos;: &apos;value&apos;,
-        &apos;attr&apos;: &apos;value&apos;,
-        &apos;attr&apos;: &apos;value&apos;
-    });
-</code></pre><h4 id="位置类方法"><a href="#位置类方法" class="headerlink" title="位置类方法"></a>位置类方法</h4><pre><code>offset()     获取/设置 元素相对于body的位置  .left / .top
-position()   获取 已定位的父元素的位置
-
-scrollLeft() 获取/设置 滚动条距离左/上的像素值
-scrollTop()
-</code></pre><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><pre><code>    height()        获取/设置 css的元素宽/高
-    width()
-
-    innerHeight()      获取/设置 元素宽/高 +  内边距
-    innerWidth()
-
-    (标准盒子模型)
-    outerHeight()     获取/设置 元素宽/高 +  内边距 + 边框
-    outerWidth()
-
-其他尺寸:
-    $(window).height() //浏览器时下窗口可视区域高度
-    $(document).height() //浏览器时下窗口文档的高度
-    $(document.body).height()//浏览器时下窗口文档body的高度
-    $(document.body).outerHeight(true)//浏览器时下窗口文档body的总高度 包括border padding margin
-    $(window).width() //浏览器时下窗口可视区域宽度
-    $(document).width()//浏览器时下窗口文档对于象宽度
-    $(document.body).width()//浏览器时下窗口文档body的高度
-    $(document.body).outerWidth(true)//浏览器时下窗口文档body的总宽度 包括border padding margin
-    $(document).scrollTop() //获取滚动条到顶部的垂直高度
-    $(document).scrollLeft() //获取滚动条到左边的垂直宽度
-</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><pre><code>1 绑定事件
-    1). 简写方式 : 
-            JQDOM.event(function(){
-
-            });
-    2). 标准方式  
-            JQDOM.bind(&apos;event&apos;, function(){
-
-            });
-    3). 一次性 事件 
-            JQDOM.one(&apos;event&apos;, function(){
-
-            });
-
-2 解绑定
-    unbind()
-
-3 事件委派
-    3.1) live() 事件委派  1.9-
-        JQDOM.live({
-            &quot;event&quot;:function (){
-                // 内容
-            },
-               &quot;event&quot;:function (){
-                // 内容
-            }
-        });
-
-    3.2) on()   JQ 1.9+
-        $(document).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
-            // 内容
-        }).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
-            // 内容
-        });
-
-4 事件的自动触发
-    JQDOM.trigger(&apos;event&apos;);
-    // 自动触发的事件必须是已存在的!
-
-5 阻止默认事件 和 事件冒泡
-    在默认事件内 /  冒泡事件内 
-    return false;
-</code></pre><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><pre><code>1 基本
-    .show()
-    .hide()
-    .toggle()
-2 滑动效果
-    .slideDown()
-    .slideUp()
-    .slideToggle()
-3 淡入淡出
-    .fadeIn()
-    .fadeOut()
-    .fadeToggle()
-    .fadeTo()   0为完全透明 1为不透明
-4 自定义动画
-    JQDOM.animate({
-       // 内容
-
-    },time);            自定义动画
-
-
-   .stop()                停止
-   .delay()                延时
-</code></pre><h2 id="JQ-AJAX"><a href="#JQ-AJAX" class="headerlink" title="JQ-AJAX"></a>JQ-AJAX</h2><pre><code>1） load方式:
-        JQDOM.load(&apos;URL地址&apos;);
-
-2） GET方式:
-        $.get(&apos;URL地址&apos;,function(参){
-               // 响应处理行
-        });
-
-3） POST方式:
-        $.post(&apos;URL地址&apos;,function(参){
-               // 响应处理行
-        });
-
-4)  AJAX()方式: （推荐）
-        $.ajax({
-            type : &apos;Method&apos;,                
-            url : &apos;URL&apos;,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
-</code></pre><h3 id="AJAX参数处理"><a href="#AJAX参数处理" class="headerlink" title="AJAX参数处理"></a>AJAX参数处理</h3><pre><code>1） GET/POST 演示：
-        // 需要先获取参数内容；
-            var num1 = $(&apos;#num1&apos;).val();
-             var num2 = $(&apos;#num2&apos;).val();
-         $.get(&apos;URL&apos;,{a:num1,b:num2},function(data){
-
-        })；
-
-2）ajax() 演示:
-        $.ajax({
-            type : &apos;post&apos;,
-            url : &apos;URL&apos;,
-            data : &apos;a=&apos;+num1+&apos;&amp; b=&apos;+num2,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
-
- 3) JS串行化数据:
-        var info = $(&apos;#my input&apos;).serialize();
-        // 前提要有表单,且name属性存在.串行化的数据可以直接送进data里;
-</code></pre><h3 id="处理JSON数据"><a href="#处理JSON数据" class="headerlink" title="处理JSON数据"></a>处理JSON数据</h3><pre><code>1) GET/POST 方式:
-        $.get(&apos;URL&apos;, function (参){
-
-        },&apos;json&apos;);
-
-2) ajax 方式:
-        $.ajax({
-            type : &apos;post&apos;,
-            url : &apos;URL&apos;,
-            dataType : &apos;json&apos;,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 前端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> jQuery </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[PHP-redis操作]]></title>
-      <url>/2017/12/08/php-redis%E6%93%8D%E4%BD%9C/</url>
-      <content type="html"><![CDATA[<h2 id="php-redis操作"><a href="#php-redis操作" class="headerlink" title="php-redis操作"></a>php-redis操作</h2><pre><code>1.连接redis,成功返回true;
-&lt;?php
-    $redis = new redis();
-    $result = $redis-&gt;connect(&apos;服务器IP&apos;, 6379);
-    $redis-&gt;auth(&apos;密码&apos;);    //如果设置了密码，添加此行;
-    var_dump($result);
-&gt;
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 后端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> PHP </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Memcache分布式缓存系统]]></title>
-      <url>/2017/12/08/memcached/</url>
-      <content type="html"><![CDATA[<hr>
-<h2 id="Memcache简介"><a href="#Memcache简介" class="headerlink" title="Memcache简介"></a>Memcache简介</h2><p><strong>1.  缘起</strong></p>
-<blockquote>
-<p>在数据驱动的web开发中，经常要重复从数据库中取出相同的数据，<br>这种重复极大的增加了数据库负载。缓存是解决这个问题的好办法。<br>但是Web中的虽然已经可以实现对页面局部进行缓存，但还是不够灵活。<br>此时Memcached或许是你想要的。最新版本:1.4.36</p>
-</blockquote>
-<p>官网：<a href="http://memcached.org/" target="_blank" rel="noopener">http://memcached.org/</a></p>
-<p><strong>2. Memcached是什么?</strong></p>
-<blockquote>
-<p>Memcached是由Danga Interactive开发的，高性能的，分布式的内存对象缓存系统，用于在动态应用中减少数据库负载，提升访问速度。</p>
-</blockquote>
-<p><strong>3. Memcached能缓存什么？</strong></p>
-<blockquote>
-<p>通过在内存里维护一个统一的巨大的hash表，Memcached能够用来存储各种格式的数据，包括图像、视频、文件以及数据库检索的结果等。各种数据都是以字符串的方式存放的。</p>
-</blockquote>
-<p><strong>4. Memcached快么？</strong></p>
-<blockquote>
-<p>非常快。Memcached使用了libevent（如果可以的话，在linux下使用epoll）来均衡任何数量的打开链接，<br>使用非阻塞的网络I/O，对内部对象实现引用计数(因此，针对多样的客户端，对象可以处在多样的状态)，<br>使用自己的页块分配器和哈希表，因此虚拟内存不会产生碎片并且虚拟内存分配的时间复杂度可以保证为O(1)。<br>Danga Interactive为提升Danga Interactive的速度研发了Memcached。</p>
-</blockquote>
-<p><strong>5. Memcached的特点</strong></p>
-<blockquote>
-<p>Memcached的缓存是一种分布式的，可以让不同主机上的多个用户同时访问，<br>因此解决了共享内存只能单机应用的局限，更不会出现使用数据库做类似事情的时候，<br>磁盘开销和阻塞的发生。</p>
-</blockquote>
-<p>缓存数据:</p>
-<ol>
-<li>在内存中缓存数据</li>
-<li>数据形态以key-&gt;value结构</li>
-<li>安全性不佳，但有应对方法</li>
-</ol>
-<h2 id="Memcache安装"><a href="#Memcache安装" class="headerlink" title="Memcache安装"></a>Memcache安装</h2><p><strong>1. Windows安装操作</strong></p>
-<p>1.1 在网上下载memcached-1.2.1-win32.zip。解压放某个盘下面，比如在D:\memcached</p>
-<p>1.2 在终端（cmd）下：（管理员权限打开CMD!!!!!）</p>
-<pre><code>D:\&gt;memcached.exe -d install     安装
-D:\&gt;memcached.exe -d uninstall 卸载
-D:\&gt;memcached.exe -d start     启动
-D:\&gt;memcached.exe -d stop     停止
-    memcached.exe -h  获取所有帮助
-</code></pre><p>1.3 在启动之后连接：<br>    <code>D:\&gt;telnet 127.0.0.1 11211</code>   –连接memcache端口11211<br>    使用quit退出。</p>
-<p>如果没有telnet工具请在“windows功能”中选择开启“telnet客户端”</p>
-<p>1.4 其他命令参数：</p>
-<pre><code>启动Memcache 常用参数
--p &lt;num&gt;   设置端口号(默认不设置为: 11211)
--U &lt;num&gt;   UDP监听端口(默认: 11211, 0 时关闭) 
--l &lt;ip_addr&gt; 绑定地址(默认:所有都允许,无论内外网或者本机更换IP，
-    有安全隐患，若设置为127.0.0.1就只能本机访问)
--d   独立进程运行
-... -d start 启动memcached服务 
-... -d restart 重起memcached服务 
-... -d stop|shutdown 关闭正在运行的memcached服务 
-... -d install 安装memcached服务 
-... -d uninstall 卸载memcached服务 
--u &lt;username&gt; 绑定使用指定用于运行进程&lt;username&gt;
--m &lt;num&gt;  允许最大内存用量，单位M (默认: 64 MB)
--P &lt;file&gt; 将PID写入文件&lt;file&gt;，可以使得后边进行快速进程终止, 需要与-d 一起使用
--M 内存耗尽时返回错误，而不是删除项 
--c 最大同时连接数，默认是1024 
--f 块大小增长因子，默认是1.25 
--n 最小分配空间，key+value+flags默认是48 
--h 显示帮助
-</code></pre><p>1.5 windows的php扩展</p>
-<pre><code>php扩展目录 extension_dir
-php_memcache.dll放置到php扩展目录ext下
-
-php配置文件修改
-extension=php_memcache.dll,
-重启服务
-</code></pre><p><strong>2. Linux安装操作（根据当前环境等匹配安装各个包！）</strong></p>
-<p>2.1 安装memcached的底层功能依赖包libevent</p>
-<pre><code>tar -xf libevent-release-1.4.15-stable.tar.gz 
-cd libevent-release-1.4.15-stable
-./autogen.sh 
-./configure  --prefix=/usr
-make &amp;&amp; make install
-</code></pre><p>2.2 安装memcached服务</p>
-<pre><code>tar -xf memcached-1.4.36.tar.gz          解压memcached
-cd memcached-1.4.36                    进入 memcached目录
-./configure --prefix=/usr/local/memcached      配置
-make &amp;&amp; make install                        编译与安装
-useradd  memcache                            添加运行用户
-修改该伪用户的登录权限为不能登录
-vim /etc/passwd                        
-memcache:x:501:501::/home/memcache:/sbin/nologin
-</code></pre><p>2.3 运行memcached服务</p>
-<pre><code>/usr/local/memcached/bin/memcached -u memcache &amp;
-</code></pre><p>2.4 客户端访问（注意格式，错了重打）</p>
-<pre><code>telnet 127.0.0.1 11211
-
-stats
-set
-get
-……
-</code></pre><p>2.5 写入自启动和关闭进程</p>
-<pre><code>vim /etc/rc.local
-/usr/local/memcached/bin/memcached -u memcache &amp;
-pkill memcached        
-</code></pre><p>2.6 安装php_memcache扩展</p>
-<pre><code>unzip pecl-memcache-php7.zip
-cd  pecl-memcache-php7
-/usr/local/php/bin/phpize
-./configure  --with-php-config=/usr/local/php/bin/php-config
-make  &amp;&amp;  make  install
-
-修改 php.ini 后重启apache即可生效
-vim /usr/local/php/etc/php.ini
-查找extension=&quot;openssl.so&quot;;
-下一行添加extension=&quot;memcache.so&quot;;
-重启apache
-/usr/local/apache2/bin/apachectl stop
-/usr/local/apache2/bin/apachectl start
-</code></pre><p>2.7 安装libmemcached（版本匹配不能超过php_memcached）</p>
-<pre><code>tar -xf libmemcached-1.0.18.tar.gz
-cd  libmemcached-1.0.18                    
-./configure &amp;&amp; make &amp;&amp; make install
-</code></pre><p>2.8 安装php_memcached扩展</p>
-<pre><code>tar -xf memcached-3.0.3.tgz
-cd memcached-3.0.3
-
-修改文件
-vim  php_libmemcached_compat.h 
-
-/* this is the version(s) we support */
- 21 #include &lt;/usr/local/include/libmemcached/memcached.h&gt;
-
-修改结束
-
-/usr/local/php/bin/phpize
-./configure  --disable-memcached-sasl  --with-php-config=/usr/local/php/bin/php-config
-make &amp;&amp; make install
-
-修改 php.ini 后重启apache即可生效
-vim /usr/local/php/etc/php.ini
-查找extension=&quot;openssl.so&quot;;
-下一行添加extension=&quot;memcached.so&quot;;
-重启apache
-/usr/local/apache2/bin/apachectl stop
-/usr/local/apache2/bin/apachectl start
-</code></pre><h2 id="Memcache客户端（Telnet）相关操作"><a href="#Memcache客户端（Telnet）相关操作" class="headerlink" title="Memcache客户端（Telnet）相关操作"></a>Memcache客户端（Telnet）相关操作</h2><p><strong>stats 查看状态</strong></p>
-<pre><code>STAT pid 1552                      服务进程的进程ID
-STAT uptime 3792                服务从启动到当前所经过的时间，单位是秒。
-STAT time 1262517674              服务器所在主机当前系统的时间，单位是秒。
-STAT version 1.2.6                   组件的版本。这里是我当前使用的1.2.6。
-STAT pointer_size 32             服务器所在主机操作系统的指针大小，一般为32或64.
-STAT curr_items 1                   表示存放当前的所有缓存对象的数量。不包括已经从缓存中删除的对象。
-STAT total_items 2                   表示从启动到当前，系统存储过的所有对象数量，包括已经删除的对象。
-STAT bytes 593                      表示系统存储缓存对象所使用的存储空间，单位为字节。
-STAT curr_connections 2           表示当前系统打开的连接数。
-STAT total_connections 28        表示从memcached服务启动到当前时间，系统打开过的连接的总数。
-</code></pre><p><strong>set  写入缓存</strong></p>
-<pre><code>set  键名  标记  有效时间  数据的长度
-
-set  love  10     0           10
-i love you
-    键名
-        最大不能超过250个字符
-    标记
-        是一个16位的无符号的整数，在客户端get数据时返回
-    有效时间
-        单位为秒
-    数据长度
-        单位是字节
-    数据的值
-        最大不能超过1024kb
-</code></pre><p><strong>get  获取缓存</strong></p>
-<pre><code>get  键名
-get  love
-</code></pre><p><strong>delete  删除缓存</strong></p>
-<pre><code>delete   键名
-delete   love
-flush_all清空所有缓存
-</code></pre><p><strong>其它常用命令</strong></p>
-<pre><code>存储:
-    set  add  replace    格式同set
-获取:
-    get     可一次获取多个
-其它:
-stats items 命令用于显示各个 slab 中 item 的数目和存储时长,配合使用可以查看所有 key
-&gt; stats items // 这条是命令
-     STAT items:7:number 1 
-     STAT items:7:age 188
-     END
-&gt; stats cachedump 7 0 // 这条是命令
-    ITEM Sess_sidsvpc1473t1np08qnkvhf6j2 [183 b; 1394527347 s]
-    END
-&gt; version 查看版本
-</code></pre><h2 id="PHP操作Memcached服务"><a href="#PHP操作Memcached服务" class="headerlink" title="PHP操作Memcached服务"></a>PHP操作Memcached服务</h2><p><strong>PHP开启Memcache模块</strong></p>
-<pre><code>phpinfo检测是否开启
-</code></pre><p><strong>PHP Memcahe类</strong></p>
-<pre><code>详见手册
-</code></pre><p><strong>PHP Memcahed类</strong></p>
-<pre><code>详见手册
-添加后支持laravel
-</code></pre><p><strong>Memcache存放Session</strong></p>
-<blockquote>
-<p>修改session配置，有几种方法</p>
-</blockquote>
-<pre><code>1、如果你能修改到服务器配置文件，那就打开打开php.ini
-修改下面两项：
-    session.save_handler = memcache
-    session.save_path = &quot;tcp://127.0.0.1:11211&quot;
-2、修改网站根目录下的.htaccess文件
-    php_value session.save_handler &quot;memcache&quot;
-    php_value session.save_path  &quot;tcp://127.0.0.1:11211&quot;
-3、最常用的方法  在程序代码中修改（推荐）
-       ini_set(&quot;session.save_handler&quot;, &quot;memcache&quot;);
-       ini_set(&quot;session.save_path&quot;, &quot;tcp://127.0.0.1:11211&quot;);
-</code></pre><blockquote>
-<p>注：使用多个 memcached server 时用逗号”,”隔开，并且和 Memcache::addServer() 文档中说明的一样，可以带额外的参数”persistent”、”weight”、”timeout”、”retry_interval” 等等，类似这样的：</p>
-</blockquote>
-<p>“tcp://host:port?persistent=1&amp;weight=2,tcp://host2:port2”</p>
-<blockquote>
-<p>Memcache和MySQL配合存储Session</p>
-</blockquote>
-<pre><code>1、当用户登录时，将Session “set”到memcached，并写入数据库；
-2、在Session中增加一个字段，标识Session最后写入数据库的时间；
-3、每个页面加载的时候，优先从memcached读取Session，没有则从数据库读取；
-4、每加载N页或者Y分钟后，再次将Session写入数据库；
-</code></pre><h2 id="Memcache缓存机制"><a href="#Memcache缓存机制" class="headerlink" title="Memcache缓存机制"></a>Memcache缓存机制</h2><p><strong>Memcache在网站架构中的位置</strong></p>
-<p><img src="http://i.imgur.com/WxREKm1.png" alt=""></p>
-<p><strong>Memcache与MySQL的配合</strong></p>
-<p><img src="http://i.imgur.com/V5thmMG.jpg" alt=""></p>
-<p><strong>Memcache在脚本中的查询流程</strong></p>
-<blockquote>
-<p>1、先根据数据需求（SQL）取缓存，如果有返回数据，没有则根据需求查数据库</p>
-<p>2、在数据库中查出的数据，并存入缓存。</p>
-</blockquote>
-<p><img src="http://i.imgur.com/TM8Vn47.jpg" alt=""></p>
-<h2 id="Memcache的安全"><a href="#Memcache的安全" class="headerlink" title="Memcache的安全"></a>Memcache的安全</h2><blockquote>
-<p>我们上面的Memcache服务器端都是直接通过客户端连接后直接操作，没有任何的验证过程，<br>这样如果服务器是直接暴露在互联网上的话是比较危险，轻则数据泄露被其他无关人员查看，<br>重则服务器被入侵，因为Mecache是以root权限运行的，<br>况且里面可能存在一些我们未知的bug或者是缓冲区溢出的情况，这些都是我们未知的，<br>所以危险性是可以预见的。</p>
-<p>为了安全起见，我做两点建议，能够稍微的防止黑客的入侵或者数据的泄露。</p>
-</blockquote>
-<p><strong>内网访问</strong></p>
-<blockquote>
-<p>最好把两台服务器之间的访问是内网形态的，一般是Web服务器跟Memcache服务器之间。<br>普遍的服务器都是有两块网卡，一块指向互联网，一块指向内网，<br>那么就让Web服务器通过内网的网卡来访问Memcache服务器，<br>我们Memcache的服务器上启动的时候就监听内网的IP地址和端口，<br>内网间的访问能够有效阻止其他非法的访问。</p>
-</blockquote>
-<p><strong>设置防火墙</strong></p>
-<blockquote>
-<p>防火墙是简单有效的方式，如果却是两台服务器都是挂在网的，<br>并且需要通过外网IP来访问Memcache的话，<br>那么可以考虑使用防火墙或者代理程序来过滤非法访问。<br>一般我们在Linux下可以使用iptables或者FreeBSD下的ipfw来指定一些规则防止一些非法的访问，<br>比如我们可以设置只允许我们的Web服务器来访问我们Memcache服务器，同时阻止其他的访问。</p>
-</blockquote>
-<pre><code>iptables -A INPUT -p tcp -s 192.168.0.2 –dport 11211 -j ACCEPT
-iptables -A INPUT -p udp -s 192.168.0.2 –dport 11211 -j ACCEPT
-</code></pre><h2 id="《缓存二三事》"><a href="#《缓存二三事》" class="headerlink" title="《缓存二三事》"></a>《缓存二三事》</h2><blockquote>
-<p>缓存和数据库，更新缓存和淘汰缓存</p>
-</blockquote>
-<pre><code>set/replace                        delete set/add
-在数据较少修改时可用                数据量大且需要逻辑运算
-</code></pre><p><img src="http://i.imgur.com/ap8Fsva.jpg" alt="">    <img src="http://i.imgur.com/jGPkild.jpg" alt=""></p>
-<p><strong>先操作谁？</strong></p>
-<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404087915&amp;idx=1&amp;sn=075664193f334874a3fc87fd4f712ebc" target="_blank" rel="noopener">原文传送门</a></p>
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>《Memcache 内存分配策略和性能(使用)状态检查》</p>
-<p><a href="http://www.kuqin.com/shuoit/20160615/352392.html" target="_blank" rel="noopener">http://www.kuqin.com/shuoit/20160615/352392.html</a></p>
-<p>《如果Memcache集群中的服务器失效如何踢出》</p>
-<p><a href="http://www.tuicool.com/articles/qaAnUz" target="_blank" rel="noopener">http://www.tuicool.com/articles/qaAnUz</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 工具 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Memcache </tag>
+            <tag> HTML </tag>
             
         </tags>
         
@@ -1634,519 +1234,475 @@ JSONP实例:
     </entry>
     
     <entry>
-      <title><![CDATA[Mysql入门]]></title>
-      <url>/2017/12/08/mysql(1)/</url>
-      <content type="html"><![CDATA[<h2 id="Mysql基本讲解"><a href="#Mysql基本讲解" class="headerlink" title="Mysql基本讲解"></a>Mysql基本讲解</h2><pre><code>数据库:存数据
-定义:存储数据的仓库
+      <title><![CDATA[JS常用函数]]></title>
+      <url>/2017/12/08/JS%E5%87%BD%E6%95%B0/</url>
+      <content type="html"><![CDATA[<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><pre><code>不常用：
+        str.length         返回字符串长度（中文只占一个位置）
+        str.anchor        锚点
+        str.bold        加粗
+常用：
+        str.charAt(下标)    
+        获取指定下标的字符，从0开始；
 
-数据库:database
-数据表:table
+        str.indexOf(&apos;字串&apos;)    
+        返回首个给定字串的索引位置，没有则返回-1；
 
-按照数据结构来组织,存储和管理数据的仓库
+        str.lastIndexOf(&apos;字串&apos;)
+        返回最后一个给定字串的索引位置，没有则返回-1；
 
-常见数据库系统
-Oracle
-MySQL
-SQL Server 微软
+        str.concat(&apos;字串&apos;)
+        向字串末尾追加字串，生成新字串；
 
-登录数据库的必备条件
-1.服务器环境开启   wamp
-2.服务器IP地址       本地localhost
-3.用户名:root
-4.密码:空
+        str.substr(下标)             截取从指定下标开始至结束的字串;
+        str.substr(下标,步长)        截取从指定下标开始至步长的字串;
 
-数据库每条命令都已 分号 作为结束符
+        str.substring(下标,下标)        根据给定下标范围截取字串,不含最大范围;
+        str.slice(下标,下标)            同substring(支持负数,负数为倒叙)
 
-``:反引号  为了屏蔽关键字
-将关键字取消特殊意义(库名,表名,字段名)
-</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>1.设置密码
-    set password = password(&apos;密码&apos;)
+        str.toUpperCase()            大写转换    
+        str.toLowerCase()            小写转换
 
-2.创建一个数据库
-    create database `库名`
-    create database if not exists `库名`    推荐用
+        str.replace(&apos;初始值&apos;,&apos;新值&apos;)        替换    也支持正则 /正则/g
 
-3.查看所有数据库
-    show databases
+        str.match(/正则/)
+        正则匹配首个符合条件的字串,成功返回字串,失败返回null;
 
-4.查看当前所在的库
-    select database()
+        str.search(/正则/)
+        正则匹配首个符合条件的字串,成功返回该字串下标,失败返回-1;
 
-5.删除一个数据库
-    drop database `库名`
+        str.split()
+        根据给定元素将字串切割成数组,默认(空)不分割,空字符代表全部元素;
+</code></pre><h3 id="正则函数"><a href="#正则函数" class="headerlink" title="正则函数"></a>正则函数</h3><pre><code>原始字串:
+        var str = &apos;123456789&apos;;             
+正则声明:
+        var reg = /^\d{3}$/;            
+        var reg = new RegExp(/\w{6}/);
 
-6.使用数据库
-    use `库名`
+reg.test(str);
+用正则匹配字串,成功返回true,不成功放回false;
 
-7.查看所有的表
-    show tables
+reg.exec(str);
+用正则匹配字串,成功返回关联形数组,失败返回NULL;
+</code></pre><h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><pre><code>var data = new Date();
+创建一个时间;
 
-8.查看当前使用的表
-    desc `表名`
+setFullYear();        设置公元时间
+getyear();            获取当前年数 (1990-至今)
+getFullYear();        获取当前公元年
+getMonth();            获取当前月
+getDate();            获取当前日期 几号
+getDay();            获取当前日  周几
+getHours();            获取当前小时
+getMinutes();        获取当前分钟
+getSeconds();        获取当前秒
+getMillseconds();    获取当前毫秒
+getTime();            获取时间戳
+getUTCHours();        获取UTC时间
 
-9.创建数据表
-    create table if not exists `表名`(
-        `表头名`   类型  属性,
-        `表头名`   类型  属性,
-        `表头名`   类型  属性,
-        ...(最后一个字段 不要加 逗号)
-    )engine=MyISAM(引擎) default charset=utf8
+toString()            同date输出
+toUTCString()        UTC时间字串
+toLocaleString()    本地时间字串
+</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><pre><code>Math.PI            圆周率
+Math.E            自然常数
+Math.abs        绝对值
+Math.sqrt        开根号
+Math.max        最大数
+Math.min        最小数
+Math.floor        舍小取整
+Math.ceil        进一取整
+Math.round        四舍五入
+Math.random        随机数
 
-10.删除数据表
-    drop table `表名`
-</code></pre><p>字段属性</p>
-<pre><code>1. 主键索引
-    primary key
-    一般一张表只有一个主键
-
-2.自增
-    auto_increment
-    最小是1,通常配合主键
-
-3.无符号
-    unsigned : 没有负数
-
-4.默认值
-    default 默认值
-
-5.非空约束
-    not null : 不能为空
-
-6.唯一索引
-    unique
-
-7.描述
-    comment
-</code></pre><p>新增数据<br>    插入单条数据:<br>    insert into <code>表名</code> values(包含所有表头元素的值);</p>
-<pre><code>插入多条数据:
-insert into `表名` values(包含所有表头元素的值),
-(),(),.....;
-
-插入单条指定内容的数据:
-insert into `表名` (`表头名1`,`表头名2`,....)values(&quot;值1&quot;,&quot;值2&quot;,...);
-
-插入多条指定内容的数据
-insert into `表名` (`表头名1`,`表头名2`,...)
-values
-(&quot;值1&quot;,&quot;值2&quot;,...),
-(&quot;值1&quot;,&quot;值2&quot;,...),
-(&quot;值1&quot;,&quot;值2&quot;,...),
-.....;
-</code></pre><p>数据更新<br>    全表修改:<br>    update <code>表名</code> set <code>表头名</code>=”值”,<code>表头名</code>=”值”, …;</p>
-<pre><code>指定修改:
-update `表名` set `表头名`=&quot;值&quot;, ...
-where 条件表达式 and (多条件时用)
-</code></pre><p>删除数据<br>    全表删除<br>    delete from <code>表名</code>;</p>
-<pre><code>指定删除
-delete from `表名` where 条件表达式 and (多条件时用)
-</code></pre><p>查询数据<br>    查询全表<br>    select * from user;</p>
-<pre><code>根据表头查询(返回表头下所有数据)
-select `表头名1`,`表头名2`, ...
-from `表名`;
-
-指定条件查询
-select `表头名1`,`表头名2`, ...
-from `user`
-where 条件表达式 and (多条件时用)
-
-排序查询 asc 升序 | desc 降序
-select `主键或自增属性的表头`,`表头名2`, ...
-from `表名`
-where 条件表达式 (根据需求)
-order by `主键或自增属性的表头` asc;
-
-分组查询
-select `表头名1`,`表头名2`, ...
-from `表名`
-where 条件表达式 (根据需求)
-group by `表头名`
-order by (根据需求,但排序必须是在分组之后执行)
-
-分组后的条件筛选
-select `表头名1`,`表头名2`, ...
-from `表名`
-where 条件表达式 (根据需求)
-group by `表头名`
-having 数据库函数的条件表达式
-
-多表查询
-select 表名1.表头名1,表头名2, ...
-from `表名1`,`表名2`,...
-where 表与表之间的关系
-group by (根据需求)
-order by (根据需求)
-
-模糊查询
-select `表头名1`,`表头名2`, ...
-from `user`
-where `表头名` like &quot;%值%&quot;;
-
-表头内容下,含有like所定义的值的字符.
-%值  = 以该值结尾的字符
-值% = 以该值开头的字符
-_ 代表单个字符
-
-分页
-limit rows 指定行数
-limit key, rows 指定下标,指定行数
-
-select * from `表名` limit 2;
-select * from `表名` limit 0,2;
-
-公式:key = (页数 - 1) * 指定行数
-</code></pre><p>数据库函数</p>
-<pre><code>聚合函数
-count()     计数
-sum()       求和
-avg()       平均数
-max()       最大
-min()       最小
-
-字符串函数
-concat()    拼接字符串
-
-数据库版本
-select version();
-
-当前时间    格式化时间
-select now();
-
-当前时间    时间戳
-select UNIX_TIMESTAPM();
+银行家四舍六入
 </code></pre>]]></content>
       
         <categories>
             
-            <category> 工具 </category>
+            <category> 前端 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> Mysql </tag>
+            <tag> javascript </tag>
             
         </tags>
         
     </entry>
     
     <entry>
-      <title><![CDATA[linux 入门]]></title>
-      <url>/2017/12/08/linux/</url>
-      <content type="html"><![CDATA[<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><pre><code>    1        2    3    4          5             6            7
--rw-r--r--. 1 root root     27034 12月 15 18:40 install.log
-    第一项：        权限位
-    第二项：  1     引用计数
-    第三项：  root  属主
-    第四项：  root  属组
-    第五项：        大小
-    第六项:         最后一次修改时间
-    第七项:         文件名
-</code></pre><h4 id="提示符：（特殊字符）"><a href="#提示符：（特殊字符）" class="headerlink" title="提示符：（特殊字符）"></a>提示符：（特殊字符）</h4><pre><code>[root@localhost ~]#
-当前登录用户@主机名:当前所在目录$
+      <title><![CDATA[jQuery]]></title>
+      <url>/2017/12/08/jQuery/</url>
+      <content type="html"><![CDATA[<h3 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h3><pre><code>1 什么是jQuery?
+    jQuery是 JavaScript 的类库
 
-    #       超级用户
-    $       普通用户
+2 jQuery版本
+    jQuery 1.X    支持IE
+    jQuery 2.X    IE9+  其他...
+</code></pre><h3 id="jQuery的基本语法"><a href="#jQuery的基本语法" class="headerlink" title="jQuery的基本语法"></a>jQuery的基本语法</h3><pre><code>1.jquery标准的使用方式:
+      1.1 JQ 标准入口
+        $(document).ready(function() {
+            (JS / JQ)代码
+        });
 
-    当前所在目录：~  用户家目录
-    管理员          /root
-    普通用户        /home/用户名
-</code></pre><h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><pre><code>权限位:
-    1 234 567 8910
-    - rwx rwx ---
-    第一位：代表文件类型
-            -   普通文件
-            d   目录文件
-            l   链接文件
-    后九位：
-            属主权限    u=user
-            属组权限    g=group
-          其他人权限    o=other
+    1.2 JQ 简写
+        $(function() {
+            (JS / JQ)代码
+        });
 
-对文件的意义:
-    r    读取文件内容 more
-    w    编辑 新增 修改文件内容,但是不包含删除文件  vim
-    x     可执行
+    1.3 JS写法 
+        window.onload = function () {
+            (JS / JQ)代码
+        }
 
-对目录的意义:
-    r    可以查询目录下文件名    ls
-    w    对目录具有增删改查的权限
-    x    可以进入目录
+2.ready和onload的区别
+    1). 加载点
+        ready 文档中 DOM加载完就触发
+        onload 文档中的一且都加载完才触发
+    2). 绑定
+        ready可以多次绑定,且都会触发
+        onload 后面的事件会覆盖前面
 
-权重:
-     r     4    可读
-     w     2    可写
-     x     1    可执行
-</code></pre><h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h5 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令:"></a>查看命令:</h5><pre><code>ls             显示目录文件
-ls -l         长格式显示
-ls -a        显示所有文件
-ls -all        显示所有文件(长格式)
-ls -hl        文件大小显示为常见大小单位 K M G
-ls -d        显示目录本身,而不是里面的子文件
-ls (路径)
+3.链式操作风格
+    JQ.css().css();
 
-du -sh 文件/目录     查看文件/目录的实际大小
+4.jQueryDOM 与 JSDOM 的区别 以及相互转化
+    区别:
+        JQDOM  通过 $() 获取到的数组对象
+        JSDOM  通过 原生方法 获取到的元素对象
+    转换:
+        JSDOM ---&gt; JQDOM    $(jsdom)
+        JQDOM ---&gt; JSDOM    jqdom[index]
 
-netstat -ntlp    查看所有端口
-lsof -i tcp:80     查看80端口占用情况
+5.jquery命名冲突
+    $ 的原意就是jQuery
+    也可以var 变量 = jQuery;
+</code></pre><h4 id="JQ-元素选择器"><a href="#JQ-元素选择器" class="headerlink" title="JQ 元素选择器"></a>JQ 元素选择器</h4><pre><code>1 基本选择器
+    *                    通配符选择器
+    #id                  ID选择器
+    .class               CLASS选择器
+    tagName              标签选择器
+    selector,selector      组合/分组选择器
 
-ps -A            查看全部进程
-ps -C 进程名        查看某一条进程
-</code></pre><h5 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令:"></a>目录操作命令:</h5><pre><code>切换:
-    cd            切换到登录用户家目录
-    cd -        切换到上次操作的目录
-    cd..        切换到上一级目录
-    cd /usr/local/src     (路径)
-    相对路径:参照当前所在的目录,进行查找.先确定当前所在目录.
-    绝对路径:从根目录开始指定,一级一级递归查找.
+2 层级选择器
+    selector selector  所有的后代元素
+    selector&gt;selector  所有的子元素
+    selector+selector  紧邻着的下一个元素
+    selector~selector  紧邻着的所有元素
 
-linux常见目录:
-    /            根目录
-    /bin        命令保存目录(普通用户就可以读取的命令)
-    /boot        启动目录,启动相关文件
-    /dev        设备文件保存目录
-    /etc        配置文件保存目录
-    /home        普通用户的家目录
-    /mnt        系统挂载目录
-    /media        挂载目录
-    /root        超级用户的家目录
-    /tmp        临时目录
-    /sbin        命令保存目录(超级用户才能使用的目录)
-    /proc        直接写入内存
-    /usr        系统软件资源目录
-    /var        系统相关文档内容
+3 过滤选择器
+    :first      首个
+    :last       最后一个
+    :eq(index)  指定第几个
+    :lt(index)  索引小于
+    :gt(index)  索引大于
+    :odd         索引为奇数
+    :even        索引为偶数 0也算作为偶
+    :header      所有的h标签
+    :not(selector) 排除
 
-创建目录:
-    mkdir 目录名
-    mkdir /root/include/upload/     递归创建目录
+4 内容选择器
+    :contains(text)  匹配包含指定文本的元素
+    :has(selector)   匹配含有指定选择器的元素的元素
+    :parent          匹配素有含子元素或非空的元素
+    :empty           匹配所有空元素
 
-删除目录:
-    rm -rf 目录名        文件/目录
-    rm -r  目录名        删除目录
-    rm -f  目录名        强制
-</code></pre><h5 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h5><pre><code>创建空文件:
-    touch 文件名
+5 可见性选择器
+    :visible       匹配所有可见元素
+    :hidden        匹配所有不可见元素
 
-查看文件内容:
-    cat 文件名
+6 属性选择器
+    selector[attrname]             选择有指定属性的元素
+    selector[attrname=&apos;value&apos;]     值等于value的元素
+    selector[attrname!=&apos;value&apos;]    值不等于value的元素
+    selector[attrname^=&apos;value&apos;]    值以value的开头元素
+    selector[attrname$=&apos;value&apos;]    值以value的结尾元素
+    selector[attrname*=&apos;value&apos;]    值包含value的元素
+    [][][] ....   多个属性选择器,用于做进一步筛选操作的
 
-分屏显示文件内容
-    more 文件名
-</code></pre><h5 id="复制与剪切"><a href="#复制与剪切" class="headerlink" title="复制与剪切"></a>复制与剪切</h5><pre><code>复制粘贴:
-    cp     源文件 目标位置
-    cp -r     复制目录
-    cp -a     所有(包括文件属性一起复制)
+7 子元素选择器
+    :first-child    是否是首个子元素
+    :last-child     是否是最后一个子元素
+    :nth-child(n)   是否是第N个子元素
+    :only-child     是否是独子元素
 
-    cp 源文件 目标位置 新名字         (改名复制)
-剪切:
-    mv 源文件 目标位置
-改名:
-    mv 源文件名 新文件名
-</code></pre><h5 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h5><pre><code>chmod  u+x  index.php          属主加上执行权限
-chmod  u-x  index.php          属主去除执行权限
-chmod  u=rwx index.php        属主添加读写执行权限
+8 表单选择器
+    :input            
+    :text
+    :password
+    :radio
+    :checkbox
+    :submit
+    :reset
+    :button
+    :file
+    :hidden
+    :image
 
-chmod  755  index.php        权重表示法
-chmod  644  index.php
-</code></pre><h5 id="属主和属组命令"><a href="#属主和属组命令" class="headerlink" title="属主和属组命令"></a>属主和属组命令</h5><pre><code>useradd jack    添加用户
-passwd    jack    设定用户密码
+9 表单对象选择器
+    :enabled   匹配所有可用元素
+    :disabled  匹配所有不可用元素
+    :checked   匹配所有被选中元素
+    :selected  匹配所有选中的option元素
+</code></pre><h4 id="JQ-筛选方法"><a href="#JQ-筛选方法" class="headerlink" title="JQ 筛选方法"></a>JQ 筛选方法</h4><pre><code>1.过滤
+    :eq(index)           过滤出指定的某个
+    :first()             过滤出首个
+    :last()              过滤出最后一个
+    :filter(selector)    过滤出满足前面条件的
+    :not(selector)       过滤排除,与以上相反
+    :slice(start, end)   截取出一段
+    :has(selector)       含有指定选择器的元素的元素
 
-改变文件属主:
-        chown 用户名    文件名    
-        chown jack     index.php
-同时改变属主和属组:
-        chown 用户名:组名     文件名    
-        chown jack:jack index.php
-</code></pre><h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><pre><code>man 命令名
-man cat
-</code></pre><h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h5><pre><code>1) 查找命令的命令,同时看到帮助文档的位置
-    whereis 命令名
+    // 条件判断 返回布尔值;
+    .hasClass()          判断前面的DOM集合中,是否包含指定class类
+    .is()                判断前面的DOM集合中,是否有符合指定表达式的
+    .map()               对JQDOM遍历,并且可以取得一部分值出来
+2 查找
+    (往里找)
+        .children()       只找子元素
+        .find()           找所有后代元素
+    (往外找)
+        .parent()         父元素
+        .parents()        父元素们
+        .parentsUntil()   父元素们,到指定的为止
+        .offsetParent()   获取已定位的父元素
+    (往后找)
+        .next()           紧邻着的一个同辈元素(后)
+        .nextAll()        紧邻着的所有同辈元素(后)
+        .nextUntil()      紧邻着的同辈元素,直到指定的为止(后)
+    (往前找)
+        .prev()           紧邻着的一个同辈元素(前)
+        .prevAll()        紧邻着的所有同辈元素(前)
+        .prevUntil()      紧邻着的同辈元素,直到指定的为止(前)
 
-2) 查找文件
-    find 查找位置 -name 文件名
-    find / -name index.php        按照文件名查找
-    find / -iname index.php        不区分大小写
+        .siblings()       除了元素自己以外的所有同辈元素
 
-3) 查找字符串
-    grep &quot;字符串&quot; 文件名
-    grep -v &quot;字符串&quot; 文件名     (反向选择)
-    grep -i    &quot;字符串&quot; 文件名    (不区分大小写)
-</code></pre><h5 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h5><pre><code>压缩包后缀名:
-        .tar.gz        z
-        .tar.bz2    j
-压缩:
-    tar -zcvf 压缩文件/目录 源文件
-    tar -zcvf bbs.tar.gz bbs
+3 串联
+        .add()            向集合内追加新元素
+        .andSelf()        之前选中的集合,加入到当前集合内
+        .end()            返回最后一个 破坏性操作之前的样子
+        .contents()       获取所有的子节点(包括文本)
+</code></pre><h4 id="JQ-文档处理方法"><a href="#JQ-文档处理方法" class="headerlink" title="JQ 文档处理方法"></a>JQ 文档处理方法</h4><pre><code>1 内部插入
+    .append()     内部最后
+    .appendTo()   --
+    .prepend()    内部最前
+    .prependTo()
 
-解压缩:
-    tar -zxvf bbs.tar.gz
-简写:
-    tar -zxf bbs.tar.gz
-解压到指定位置:
-    tar -zxf bbs.tar.gz -C /tmp/
-语义:
-    -z: 识别.gz格式
-    -c: 压缩
-    -v: 显示压缩过程
-    -f: 指定压缩包名
-    -x: 解压
-    -t: 查看不解压
+2 外部插入
+    .after()       外部最后
+    .insertAfter() --
+    .before()       外部最前
+    .insertBefore()  --
 
-... -C: 指定解压位置
-</code></pre><h5 id="关闭和重启"><a href="#关闭和重启" class="headerlink" title="关闭和重启"></a>关闭和重启</h5><pre><code>关机:
-    shutdown -h now
-重启:
-    reboot
-</code></pre><h5 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h5><pre><code>linux所有存储设备都必须挂载使用
-光盘挂载
-    mount    设备描述文件     挂载点(已经存在的空目录)
-    mount    /dev/sro    /mnt/cdrom
-光盘卸载
-    umount    /dev/sro
-    umount    /mnt/cdrom    
-</code></pre><h5 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h5><pre><code>ifconfig     查看本机网络信息
-ifconfig eth0 IP地址     设置临时IP
+3 包裹
+    .wrap()      将集合内的每个元素,包裹在指定元素内
+    .wrapAll()   将整个集合元素,包裹在指定元素内
+    .wrapInner()  包裹在里面
+    .unwrap()    去掉包裹
 
-快捷键:
-        CTRL+C 终止命令
-        CTRL+A 光标到行首
-        CTRL+E 光标到行尾
-        CTRL+U 剪切光标前内容
-        CTRL+K 剪切光标后内容
-        CTRL+Y 粘贴剪切的内容
-        CTRL+L 清理屏幕
-        CTRL+D 注销登陆相当于exit和logout或者保存
-        CTRL+Z 将进程在后台挂起
+4 替换
+    .replaceWith()  替换谁
+    .replaceAll()   谁被替换
 
-        |            管道符
-        tab            补全功能
-        ``          命令替换符  将一个命令的输出作为另一个命令的参数
-          ls -l `which touch`     找到touch命令的路径，然后用ls查看属性
-</code></pre><h2 id="VIM编辑器-文件操作"><a href="#VIM编辑器-文件操作" class="headerlink" title="VIM编辑器(文件操作)"></a>VIM编辑器(文件操作)</h2><pre><code>文件写入:
-    echo &apos;内容&apos; &gt;&gt; 文件名
-文件编辑:    
-    vi 文件名     编辑该文件
+5 删除
+    .remove()   删除元素
+    .empty()    清空子节点
 
-    a    输入
-    i    插入
-    o    新增下一行
+6 复制
+    .clone()
+</code></pre><h4 id="JQ-属性方法"><a href="#JQ-属性方法" class="headerlink" title="JQ 属性方法"></a>JQ 属性方法</h4><pre><code>1 属性操作
+    HTMLDOM
+        .prop()         设置属性
+        .removeProp()    删除属性
+    XMLdom
+        .attr()            设置属性
+        .removeAttr()    删除属性
 
-    A    到行的尾部
-    I    到行的头部
-    O    上一行
+2 CSS 类  (class)
+    .addClass()     添加一个类属性
+    .removeClass()  移除一个类属性
+    .toggleClass()   以上俩,来回切换
 
-    :w    写入
-    :wq = :x = ZZ    保存退出
-    :q!    不保存退出
+3 HTML代码/文本/值
+    .html()   相当于innerHTML
+    .text()   相当于innerText
+    .val()    相当于.value 表单控件的值
+</code></pre><h4 id="CSS-操作"><a href="#CSS-操作" class="headerlink" title="CSS 操作"></a>CSS 操作</h4><pre><code>连贯写法:
+    css(&apos;attr&apos;, &apos;value&apos;).css(&apos;attr&apos;, &apos;value&apos;);
+JSON写法:
+    css({
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;
+    });
+</code></pre><h4 id="位置类方法"><a href="#位置类方法" class="headerlink" title="位置类方法"></a>位置类方法</h4><pre><code>offset()     获取/设置 元素相对于body的位置  .left / .top
+position()   获取 已定位的父元素的位置
 
-命令模式操作:
-    hjkl        光标移动
-    :n(数字)        移动到第n行
-    gg            移动到文件头
-    G            移动到文件尾
+scrollLeft() 获取/设置 滚动条距离左/上的像素值
+scrollTop()
+</code></pre><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><pre><code>    height()        获取/设置 css的元素宽/高
+    width()
 
-    x            删除单个字母
-    n(数字)+x    删除n个字母
-    dd            删除单行 剪切
-    ndd            删除多行    剪切
-    p            粘贴
-    dG            从光标所在行删除到文件尾
+    innerHeight()      获取/设置 元素宽/高 +  内边距
+    innerWidth()
 
-    yy            复制单行
-    nyy            多行复制
+    (标准盒子模型)
+    outerHeight()     获取/设置 元素宽/高 +  内边距 + 边框
+    outerWidth()
 
-    u            撤销
-    Ctrl + r    反撤销
+其他尺寸:
+    $(window).height() //浏览器时下窗口可视区域高度
+    $(document).height() //浏览器时下窗口文档的高度
+    $(document.body).height()//浏览器时下窗口文档body的高度
+    $(document.body).outerHeight(true)//浏览器时下窗口文档body的总高度 包括border padding margin
+    $(window).width() //浏览器时下窗口可视区域宽度
+    $(document).width()//浏览器时下窗口文档对于象宽度
+    $(document.body).width()//浏览器时下窗口文档body的高度
+    $(document.body).outerWidth(true)//浏览器时下窗口文档body的总宽度 包括border padding margin
+    $(document).scrollTop() //获取滚动条到顶部的垂直高度
+    $(document).scrollLeft() //获取滚动条到左边的垂直宽度
+</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><pre><code>1 绑定事件
+    1). 简写方式 : 
+            JQDOM.event(function(){
 
-    :set nu        显示行号
-    :set nonu    不显示行号
+            });
+    2). 标准方式  
+            JQDOM.bind(&apos;event&apos;, function(){
 
-    r+(n)        替换一个字符
+            });
+    3). 一次性 事件 
+            JQDOM.one(&apos;event&apos;, function(){
 
-    /字串        查找        n下一个 N上一个
+            });
 
-    替换:
-        :范围/原字串/新字串/g
-        ：1,10s/old/new/g         替换1到10行的所有old为new
-        ：%s/old/new/g            替换整个文件的old为new
-                     g           范围内所有old换为new
+2 解绑定
+    unbind()
 
-        :1,10s/^/#/g            注释
-        :6,10s/^#//g            取消注释
+3 事件委派
+    3.1) live() 事件委派  1.9-
+        JQDOM.live({
+            &quot;event&quot;:function (){
+                // 内容
+            },
+               &quot;event&quot;:function (){
+                // 内容
+            }
+        });
 
-        :11,20s/^/\/\//g        注释
-        :16,20s/^\/\///g        取消注释
-</code></pre><h2 id="软件包安装"><a href="#软件包安装" class="headerlink" title="软件包安装"></a>软件包安装</h2><pre><code>软件包分类:
-    1) 源码包    .tar.gz     .tar.bz2
-    2) 二进制包    .rpm
-</code></pre><h4 id="二进制宝安装"><a href="#二进制宝安装" class="headerlink" title="二进制宝安装"></a>二进制宝安装</h4><pre><code>A) rpm手动安装
-    1) 光盘挂载
-    2) 解决文件依赖关系
-    3) 安装tree
-    4) 基本命令
-        rpm ivh 软件包
-        -i 安装     -v 显示详细信息 -h 显示进度
+    3.2) on()   JQ 1.9+
+        $(document).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        }).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        });
 
-        升级
-        rpm -Uvh 软件包
+4 事件的自动触发
+    JQDOM.trigger(&apos;event&apos;);
+    // 自动触发的事件必须是已存在的!
 
-        卸载
-        rpm -e 软件包
+5 阻止默认事件 和 事件冒泡
+    在默认事件内 /  冒泡事件内 
+    return false;
+</code></pre><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><pre><code>1 基本
+    .show()
+    .hide()
+    .toggle()
+2 滑动效果
+    .slideDown()
+    .slideUp()
+    .slideToggle()
+3 淡入淡出
+    .fadeIn()
+    .fadeOut()
+    .fadeToggle()
+    .fadeTo()   0为完全透明 1为不透明
+4 自定义动画
+    JQDOM.animate({
+       // 内容
 
-B) yum命令 二进制包自动化管理
-        yum  -y  install  软件包       安装          
-        yum  -y  update   软件包       升级
-        yum  -y  remove   软件包       卸载
-    光盘作为yum源：
+    },time);            自定义动画
 
-        1   cd  /etc/yum.repos.d/
-            mv  CentOS-Base.repo  /root/
 
-        2   mount /dev/sr0  /mnt/cdrom
+   .stop()                停止
+   .delay()                延时
+</code></pre><h2 id="JQ-AJAX"><a href="#JQ-AJAX" class="headerlink" title="JQ-AJAX"></a>JQ-AJAX</h2><pre><code>1） load方式:
+        JQDOM.load(&apos;URL地址&apos;);
 
-        3   vim  /etc/yum.repos.d/CentOS-Media.repo
-            baseurl=file:///mnt/cdrom/  指定yum源位置
-            enabled=1                   yum源文件生效
+2） GET方式:
+        $.get(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
 
-        yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)
-</code></pre><h4 id="源码包安装"><a href="#源码包安装" class="headerlink" title="源码包安装"></a>源码包安装</h4><pre><code>1   远程传输工具传输apache到linux。
-    httpd-2.2.9.tar.gz 
-2   安装
-    1） 解压
-    2） cd  解压目录         
-    3） 查看安装文档
-        INSTALL     README
-    4） 编译前准备
-        ./configure  --prefix=/usr/local/apache2
-        功能：
-            1   检测系统环境，生成Makefile
-            2   定义软件选项
-    5)  编译              
-        make
-    6）编译安装
-        make  install
+3） POST方式:
+        $.post(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
 
-    报错判断：
-        第一：安装过程是否停止
-        第二：注意error  warning  no  等错误报警
+4)  AJAX()方式: （推荐）
+        $.ajax({
+            type : &apos;Method&apos;,                
+            url : &apos;URL&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+</code></pre><h3 id="AJAX参数处理"><a href="#AJAX参数处理" class="headerlink" title="AJAX参数处理"></a>AJAX参数处理</h3><pre><code>1） GET/POST 演示：
+        // 需要先获取参数内容；
+            var num1 = $(&apos;#num1&apos;).val();
+             var num2 = $(&apos;#num2&apos;).val();
+         $.get(&apos;URL&apos;,{a:num1,b:num2},function(data){
 
-3   启动
-    /usr/local/apache2/bin/apachectl  start
+        })；
 
-4   卸载      
-    直接删除安装目录
+2）ajax() 演示:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            data : &apos;a=&apos;+num1+&apos;&amp; b=&apos;+num2,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+
+ 3) JS串行化数据:
+        var info = $(&apos;#my input&apos;).serialize();
+        // 前提要有表单,且name属性存在.串行化的数据可以直接送进data里;
+</code></pre><h3 id="处理JSON数据"><a href="#处理JSON数据" class="headerlink" title="处理JSON数据"></a>处理JSON数据</h3><pre><code>1) GET/POST 方式:
+        $.get(&apos;URL&apos;, function (参){
+
+        },&apos;json&apos;);
+
+2) ajax 方式:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            dataType : &apos;json&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
 </code></pre>]]></content>
       
         <categories>
             
-            <category> 工具 </category>
+            <category> 前端 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> linux </tag>
+            <tag> jQuery </tag>
             
         </tags>
         
@@ -3125,256 +2681,6 @@ MySQL::getConnect();
     </entry>
     
     <entry>
-      <title><![CDATA[HTML5]]></title>
-      <url>/2017/12/08/HTML/</url>
-      <content type="html"><![CDATA[<h2 id="HTML5-基本语法"><a href="#HTML5-基本语法" class="headerlink" title="HTML5 基本语法"></a>HTML5 基本语法</h2><pre><code>HTML5声明
-doctype 文档类型
-!docype html 声明以html5的规则去解析 W3C的标准
-
-
-标签格式;
-        单 &lt;标签名/&gt;
-        双 &lt;标签名&gt; &lt;/标签名&gt;
-
-
-注释;
-    &lt;-- --&gt;
-    1 对代码的描述
-    2 不会显示在网页中
-    3 有助于快速恢复记忆
-    4 提高团队开发效率
-    5 注释不能嵌套使用
-</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><pre><code>全局架构标签;
-    html:
-        表示该标签下的都是html代码.
-    head:
-        头标签主要负责,声明网页的标题.
-    body
-        网页主体,页面内容都显示在里面.
-    title
-        主要负责网页的标题
-
-文本格式标签;
-    h1-h6   标题标签
-    p       段落
-    b       加粗
-    i       倾斜
-    u       下划线
-    br      换行
-    hr      分割线
-    del     删除线
-    strong  加粗强调
-    u       倾斜强调
-    sub     上标标签
-    sup     下标标签
-    pre     原样输出
-
-列表;
-    ul      无序列表
-    ol      有序列表
-    li      配合ul和ol使用
-    dl      定义列表
-    dt dd   配合定义列表使用
-
-实体符号;
-    &amp;lt;    小于号
-    &amp;gt;    大于号
-    &amp;nbsp;  空格
-    &amp;yen;   人民币
-    &amp;copy;  版权符号
-    &amp;copytight;
-
-超链接;
-    标签      a
-    属性:
-        href    目的路径
-        target
-               _blank   在新窗口打开链接
-               _self    在本窗口打开链接(默认)
-        title
-            当鼠标悬停在超链接上时,显示title内容.
-    网址的组成:
-        1.协议 : http https ftp file ....
-        2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
-        3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
-            ? 之前: 网址的所在位置
-            ? 之后: 访问此网址所带的参数
-        4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
-        5.锚点:
-        #锚点名
-        通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
-
-多媒体图片;
-    标签  img
-    属性:
-        src     图片来源地址
-        width   宽度
-        height  高度
-        title   当鼠标悬停在图片上时,显示title内容
-        alt     代替无法显示时的内容
-
-相对路径
-    ./      当前目录下   (默认,可以省略)
-    ../     上一级目录下
-    ../../  上上级目录下
-
-绝对路径
-    盘符路径  C:/wamp/xx/x/x/x/x/xxx.jpg
-    网址路径 http://www.baidu.com/x/x/x/x.jpg
-
-    经过服务器: 推荐
-        认识网址
-        / : 当成www/ 等于 lovalhost/
-
-    不经过服务器
-        认识判读
-        认识网址
-        / : 当成 当前所在的盘符
-
-多媒体音频/视频;
-    音频标签    audio
-    属性:
-        src         音频来源地址
-        controls    播放器
-        Loop        循环播放
-        autoplay    自动播放
-
-    视频标签    video
-    属性:
-        src         视频来源地址
-        controls    播放器
-        loop        循环播放
-        autoplay    自动播放
-
-    兼容性问题, 通过媒介标签 source来解决
-
-表格      table
-        表格标题    caption
-        表行      tr
-        表头      th
-        单元格     td
-
-    常见表格属性:
-        border          边框
-        cellspacing     外边距
-        cellpadding     内边距
-        align           水平对齐
-            left,center,right
-        valign          垂直对齐
-            top,middle,bottom
-        rowspan         行合并
-        colspan         列合并
-        width
-        height
-        bgcolor         背景颜色
-        background      背景图片
-表单;
-声明标签:       form
-    属性:
-        action : 提交到哪儿去,服务器的脚本地址
-        method : 传输方式 get post
-        enctype: multipart/form-data
-        只有文件上传时,才需要
-注意:
-1. 每个表单都必须加上name,没有name值,服务器则接收不到表单.
-2. 可手动输入表单:value可写可不写
-   不可手动输入的表单:value 必须写
-
-表单标签:      
-    类型:
-   input type = text            文本域
-                password        密码域
-                radio           单选框
-                checkbox        多选框
-                file            文件上传
-                hidden          隐藏域
-                email           邮箱
-                number          数字
-                url             网址
-                data            日期
-                search          搜索
-
-                submit          提交
-                reset           重置
-                button          自定义按钮
-
-    select  下拉框
-        option      下拉框子选项
-        optgroup    对子选项分组
-        label       组名
-
-    textarea        多文本域
-        rows        行
-        cols        列
-
-    字段集标签
-        fieldset    外框
-        legend      标题名
-
-常见表单属性
-        placeholder     背景字
-        maxlength       最大长度
-        minlength       最小长度
-        checked         单/多选默认选中
-        selected        下拉框默认选中
-        autofocus       默认焦点选中
-        autocomplete    自动提示   on / off
-        readonly        只读
-        disabled        禁用
-        required        不能为空
-        multiple        多选值
-分帧;
-小分帧标签       iframe
-    属性:
-        src             窗口内容来源
-        frameborder     窗口边框 0/ 非0
-        scrolling       滚动条是否显示 yes/no
-        name            给本窗口取个名字
-                        通过a标签跳到指定的窗口
-</code></pre><h3 id="head头标签"><a href="#head头标签" class="headerlink" title="head头标签:"></a>head头标签:</h3><pre><code>1. 设置编码方式
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-
-2. 网页的标题
-      &lt;title&gt;Document&amp;lt;/title&gt;
-
-3. 设置网页3秒自动刷新
-    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;3&quot;&gt;
-
-4. 设置网页3秒后刷新,并跳转到其他页面
-    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;3; url=http://www.baidu.com&quot;&gt;
-
-5. 关键词
-    &lt;meta name=&quot;keywords&quot; content=&apos;关键字&apos;&gt;
-
-6. 描述
-    &lt;meta name=&quot;description&quot; content=&quot;描述&quot;&gt;
-
-7. 导入CSS
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot;&gt;
-
-8. 导入js
-    &lt;script src=&quot;./abc/test.js&quot;&gt;&amp;lt;/script&gt;
-
-9. 网页图标
-    &lt;link rel=&apos;icon&apos; href=&quot;./abc/favicon.ico&quot;&gt;
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 前端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> HTML </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[CSS]]></title>
       <url>/2017/12/08/CSS/</url>
       <content type="html"><![CDATA[<h3 id="CSS导入方式"><a href="#CSS导入方式" class="headerlink" title="CSS导入方式;"></a>CSS导入方式;</h3><pre><code>1.外链式:
@@ -3703,6 +3009,657 @@ visibility:
         <tags>
             
             <tag> CSS 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Memcache分布式缓存系统]]></title>
+      <url>/2017/12/08/memcached/</url>
+      <content type="html"><![CDATA[<hr>
+<h2 id="Memcache简介"><a href="#Memcache简介" class="headerlink" title="Memcache简介"></a>Memcache简介</h2><p><strong>1.  缘起</strong></p>
+<blockquote>
+<p>在数据驱动的web开发中，经常要重复从数据库中取出相同的数据，<br>这种重复极大的增加了数据库负载。缓存是解决这个问题的好办法。<br>但是Web中的虽然已经可以实现对页面局部进行缓存，但还是不够灵活。<br>此时Memcached或许是你想要的。最新版本:1.4.36</p>
+</blockquote>
+<p>官网：<a href="http://memcached.org/" target="_blank" rel="noopener">http://memcached.org/</a></p>
+<p><strong>2. Memcached是什么?</strong></p>
+<blockquote>
+<p>Memcached是由Danga Interactive开发的，高性能的，分布式的内存对象缓存系统，用于在动态应用中减少数据库负载，提升访问速度。</p>
+</blockquote>
+<p><strong>3. Memcached能缓存什么？</strong></p>
+<blockquote>
+<p>通过在内存里维护一个统一的巨大的hash表，Memcached能够用来存储各种格式的数据，包括图像、视频、文件以及数据库检索的结果等。各种数据都是以字符串的方式存放的。</p>
+</blockquote>
+<p><strong>4. Memcached快么？</strong></p>
+<blockquote>
+<p>非常快。Memcached使用了libevent（如果可以的话，在linux下使用epoll）来均衡任何数量的打开链接，<br>使用非阻塞的网络I/O，对内部对象实现引用计数(因此，针对多样的客户端，对象可以处在多样的状态)，<br>使用自己的页块分配器和哈希表，因此虚拟内存不会产生碎片并且虚拟内存分配的时间复杂度可以保证为O(1)。<br>Danga Interactive为提升Danga Interactive的速度研发了Memcached。</p>
+</blockquote>
+<p><strong>5. Memcached的特点</strong></p>
+<blockquote>
+<p>Memcached的缓存是一种分布式的，可以让不同主机上的多个用户同时访问，<br>因此解决了共享内存只能单机应用的局限，更不会出现使用数据库做类似事情的时候，<br>磁盘开销和阻塞的发生。</p>
+</blockquote>
+<p>缓存数据:</p>
+<ol>
+<li>在内存中缓存数据</li>
+<li>数据形态以key-&gt;value结构</li>
+<li>安全性不佳，但有应对方法</li>
+</ol>
+<h2 id="Memcache安装"><a href="#Memcache安装" class="headerlink" title="Memcache安装"></a>Memcache安装</h2><p><strong>1. Windows安装操作</strong></p>
+<p>1.1 在网上下载memcached-1.2.1-win32.zip。解压放某个盘下面，比如在D:\memcached</p>
+<p>1.2 在终端（cmd）下：（管理员权限打开CMD!!!!!）</p>
+<pre><code>D:\&gt;memcached.exe -d install     安装
+D:\&gt;memcached.exe -d uninstall 卸载
+D:\&gt;memcached.exe -d start     启动
+D:\&gt;memcached.exe -d stop     停止
+    memcached.exe -h  获取所有帮助
+</code></pre><p>1.3 在启动之后连接：<br>    <code>D:\&gt;telnet 127.0.0.1 11211</code>   –连接memcache端口11211<br>    使用quit退出。</p>
+<p>如果没有telnet工具请在“windows功能”中选择开启“telnet客户端”</p>
+<p>1.4 其他命令参数：</p>
+<pre><code>启动Memcache 常用参数
+-p &lt;num&gt;   设置端口号(默认不设置为: 11211)
+-U &lt;num&gt;   UDP监听端口(默认: 11211, 0 时关闭) 
+-l &lt;ip_addr&gt; 绑定地址(默认:所有都允许,无论内外网或者本机更换IP，
+    有安全隐患，若设置为127.0.0.1就只能本机访问)
+-d   独立进程运行
+... -d start 启动memcached服务 
+... -d restart 重起memcached服务 
+... -d stop|shutdown 关闭正在运行的memcached服务 
+... -d install 安装memcached服务 
+... -d uninstall 卸载memcached服务 
+-u &lt;username&gt; 绑定使用指定用于运行进程&lt;username&gt;
+-m &lt;num&gt;  允许最大内存用量，单位M (默认: 64 MB)
+-P &lt;file&gt; 将PID写入文件&lt;file&gt;，可以使得后边进行快速进程终止, 需要与-d 一起使用
+-M 内存耗尽时返回错误，而不是删除项 
+-c 最大同时连接数，默认是1024 
+-f 块大小增长因子，默认是1.25 
+-n 最小分配空间，key+value+flags默认是48 
+-h 显示帮助
+</code></pre><p>1.5 windows的php扩展</p>
+<pre><code>php扩展目录 extension_dir
+php_memcache.dll放置到php扩展目录ext下
+
+php配置文件修改
+extension=php_memcache.dll,
+重启服务
+</code></pre><p><strong>2. Linux安装操作（根据当前环境等匹配安装各个包！）</strong></p>
+<p>2.1 安装memcached的底层功能依赖包libevent</p>
+<pre><code>tar -xf libevent-release-1.4.15-stable.tar.gz 
+cd libevent-release-1.4.15-stable
+./autogen.sh 
+./configure  --prefix=/usr
+make &amp;&amp; make install
+</code></pre><p>2.2 安装memcached服务</p>
+<pre><code>tar -xf memcached-1.4.36.tar.gz          解压memcached
+cd memcached-1.4.36                    进入 memcached目录
+./configure --prefix=/usr/local/memcached      配置
+make &amp;&amp; make install                        编译与安装
+useradd  memcache                            添加运行用户
+修改该伪用户的登录权限为不能登录
+vim /etc/passwd                        
+memcache:x:501:501::/home/memcache:/sbin/nologin
+</code></pre><p>2.3 运行memcached服务</p>
+<pre><code>/usr/local/memcached/bin/memcached -u memcache &amp;
+</code></pre><p>2.4 客户端访问（注意格式，错了重打）</p>
+<pre><code>telnet 127.0.0.1 11211
+
+stats
+set
+get
+……
+</code></pre><p>2.5 写入自启动和关闭进程</p>
+<pre><code>vim /etc/rc.local
+/usr/local/memcached/bin/memcached -u memcache &amp;
+pkill memcached        
+</code></pre><p>2.6 安装php_memcache扩展</p>
+<pre><code>unzip pecl-memcache-php7.zip
+cd  pecl-memcache-php7
+/usr/local/php/bin/phpize
+./configure  --with-php-config=/usr/local/php/bin/php-config
+make  &amp;&amp;  make  install
+
+修改 php.ini 后重启apache即可生效
+vim /usr/local/php/etc/php.ini
+查找extension=&quot;openssl.so&quot;;
+下一行添加extension=&quot;memcache.so&quot;;
+重启apache
+/usr/local/apache2/bin/apachectl stop
+/usr/local/apache2/bin/apachectl start
+</code></pre><p>2.7 安装libmemcached（版本匹配不能超过php_memcached）</p>
+<pre><code>tar -xf libmemcached-1.0.18.tar.gz
+cd  libmemcached-1.0.18                    
+./configure &amp;&amp; make &amp;&amp; make install
+</code></pre><p>2.8 安装php_memcached扩展</p>
+<pre><code>tar -xf memcached-3.0.3.tgz
+cd memcached-3.0.3
+
+修改文件
+vim  php_libmemcached_compat.h 
+
+/* this is the version(s) we support */
+ 21 #include &lt;/usr/local/include/libmemcached/memcached.h&gt;
+
+修改结束
+
+/usr/local/php/bin/phpize
+./configure  --disable-memcached-sasl  --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+
+修改 php.ini 后重启apache即可生效
+vim /usr/local/php/etc/php.ini
+查找extension=&quot;openssl.so&quot;;
+下一行添加extension=&quot;memcached.so&quot;;
+重启apache
+/usr/local/apache2/bin/apachectl stop
+/usr/local/apache2/bin/apachectl start
+</code></pre><h2 id="Memcache客户端（Telnet）相关操作"><a href="#Memcache客户端（Telnet）相关操作" class="headerlink" title="Memcache客户端（Telnet）相关操作"></a>Memcache客户端（Telnet）相关操作</h2><p><strong>stats 查看状态</strong></p>
+<pre><code>STAT pid 1552                      服务进程的进程ID
+STAT uptime 3792                服务从启动到当前所经过的时间，单位是秒。
+STAT time 1262517674              服务器所在主机当前系统的时间，单位是秒。
+STAT version 1.2.6                   组件的版本。这里是我当前使用的1.2.6。
+STAT pointer_size 32             服务器所在主机操作系统的指针大小，一般为32或64.
+STAT curr_items 1                   表示存放当前的所有缓存对象的数量。不包括已经从缓存中删除的对象。
+STAT total_items 2                   表示从启动到当前，系统存储过的所有对象数量，包括已经删除的对象。
+STAT bytes 593                      表示系统存储缓存对象所使用的存储空间，单位为字节。
+STAT curr_connections 2           表示当前系统打开的连接数。
+STAT total_connections 28        表示从memcached服务启动到当前时间，系统打开过的连接的总数。
+</code></pre><p><strong>set  写入缓存</strong></p>
+<pre><code>set  键名  标记  有效时间  数据的长度
+
+set  love  10     0           10
+i love you
+    键名
+        最大不能超过250个字符
+    标记
+        是一个16位的无符号的整数，在客户端get数据时返回
+    有效时间
+        单位为秒
+    数据长度
+        单位是字节
+    数据的值
+        最大不能超过1024kb
+</code></pre><p><strong>get  获取缓存</strong></p>
+<pre><code>get  键名
+get  love
+</code></pre><p><strong>delete  删除缓存</strong></p>
+<pre><code>delete   键名
+delete   love
+flush_all清空所有缓存
+</code></pre><p><strong>其它常用命令</strong></p>
+<pre><code>存储:
+    set  add  replace    格式同set
+获取:
+    get     可一次获取多个
+其它:
+stats items 命令用于显示各个 slab 中 item 的数目和存储时长,配合使用可以查看所有 key
+&gt; stats items // 这条是命令
+     STAT items:7:number 1 
+     STAT items:7:age 188
+     END
+&gt; stats cachedump 7 0 // 这条是命令
+    ITEM Sess_sidsvpc1473t1np08qnkvhf6j2 [183 b; 1394527347 s]
+    END
+&gt; version 查看版本
+</code></pre><h2 id="PHP操作Memcached服务"><a href="#PHP操作Memcached服务" class="headerlink" title="PHP操作Memcached服务"></a>PHP操作Memcached服务</h2><p><strong>PHP开启Memcache模块</strong></p>
+<pre><code>phpinfo检测是否开启
+</code></pre><p><strong>PHP Memcahe类</strong></p>
+<pre><code>详见手册
+</code></pre><p><strong>PHP Memcahed类</strong></p>
+<pre><code>详见手册
+添加后支持laravel
+</code></pre><p><strong>Memcache存放Session</strong></p>
+<blockquote>
+<p>修改session配置，有几种方法</p>
+</blockquote>
+<pre><code>1、如果你能修改到服务器配置文件，那就打开打开php.ini
+修改下面两项：
+    session.save_handler = memcache
+    session.save_path = &quot;tcp://127.0.0.1:11211&quot;
+2、修改网站根目录下的.htaccess文件
+    php_value session.save_handler &quot;memcache&quot;
+    php_value session.save_path  &quot;tcp://127.0.0.1:11211&quot;
+3、最常用的方法  在程序代码中修改（推荐）
+       ini_set(&quot;session.save_handler&quot;, &quot;memcache&quot;);
+       ini_set(&quot;session.save_path&quot;, &quot;tcp://127.0.0.1:11211&quot;);
+</code></pre><blockquote>
+<p>注：使用多个 memcached server 时用逗号”,”隔开，并且和 Memcache::addServer() 文档中说明的一样，可以带额外的参数”persistent”、”weight”、”timeout”、”retry_interval” 等等，类似这样的：</p>
+</blockquote>
+<p>“tcp://host:port?persistent=1&amp;weight=2,tcp://host2:port2”</p>
+<blockquote>
+<p>Memcache和MySQL配合存储Session</p>
+</blockquote>
+<pre><code>1、当用户登录时，将Session “set”到memcached，并写入数据库；
+2、在Session中增加一个字段，标识Session最后写入数据库的时间；
+3、每个页面加载的时候，优先从memcached读取Session，没有则从数据库读取；
+4、每加载N页或者Y分钟后，再次将Session写入数据库；
+</code></pre><h2 id="Memcache缓存机制"><a href="#Memcache缓存机制" class="headerlink" title="Memcache缓存机制"></a>Memcache缓存机制</h2><p><strong>Memcache在网站架构中的位置</strong></p>
+<p><img src="http://i.imgur.com/WxREKm1.png" alt=""></p>
+<p><strong>Memcache与MySQL的配合</strong></p>
+<p><img src="http://i.imgur.com/V5thmMG.jpg" alt=""></p>
+<p><strong>Memcache在脚本中的查询流程</strong></p>
+<blockquote>
+<p>1、先根据数据需求（SQL）取缓存，如果有返回数据，没有则根据需求查数据库</p>
+<p>2、在数据库中查出的数据，并存入缓存。</p>
+</blockquote>
+<p><img src="http://i.imgur.com/TM8Vn47.jpg" alt=""></p>
+<h2 id="Memcache的安全"><a href="#Memcache的安全" class="headerlink" title="Memcache的安全"></a>Memcache的安全</h2><blockquote>
+<p>我们上面的Memcache服务器端都是直接通过客户端连接后直接操作，没有任何的验证过程，<br>这样如果服务器是直接暴露在互联网上的话是比较危险，轻则数据泄露被其他无关人员查看，<br>重则服务器被入侵，因为Mecache是以root权限运行的，<br>况且里面可能存在一些我们未知的bug或者是缓冲区溢出的情况，这些都是我们未知的，<br>所以危险性是可以预见的。</p>
+<p>为了安全起见，我做两点建议，能够稍微的防止黑客的入侵或者数据的泄露。</p>
+</blockquote>
+<p><strong>内网访问</strong></p>
+<blockquote>
+<p>最好把两台服务器之间的访问是内网形态的，一般是Web服务器跟Memcache服务器之间。<br>普遍的服务器都是有两块网卡，一块指向互联网，一块指向内网，<br>那么就让Web服务器通过内网的网卡来访问Memcache服务器，<br>我们Memcache的服务器上启动的时候就监听内网的IP地址和端口，<br>内网间的访问能够有效阻止其他非法的访问。</p>
+</blockquote>
+<p><strong>设置防火墙</strong></p>
+<blockquote>
+<p>防火墙是简单有效的方式，如果却是两台服务器都是挂在网的，<br>并且需要通过外网IP来访问Memcache的话，<br>那么可以考虑使用防火墙或者代理程序来过滤非法访问。<br>一般我们在Linux下可以使用iptables或者FreeBSD下的ipfw来指定一些规则防止一些非法的访问，<br>比如我们可以设置只允许我们的Web服务器来访问我们Memcache服务器，同时阻止其他的访问。</p>
+</blockquote>
+<pre><code>iptables -A INPUT -p tcp -s 192.168.0.2 –dport 11211 -j ACCEPT
+iptables -A INPUT -p udp -s 192.168.0.2 –dport 11211 -j ACCEPT
+</code></pre><h2 id="《缓存二三事》"><a href="#《缓存二三事》" class="headerlink" title="《缓存二三事》"></a>《缓存二三事》</h2><blockquote>
+<p>缓存和数据库，更新缓存和淘汰缓存</p>
+</blockquote>
+<pre><code>set/replace                        delete set/add
+在数据较少修改时可用                数据量大且需要逻辑运算
+</code></pre><p><img src="http://i.imgur.com/ap8Fsva.jpg" alt="">    <img src="http://i.imgur.com/jGPkild.jpg" alt=""></p>
+<p><strong>先操作谁？</strong></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404087915&amp;idx=1&amp;sn=075664193f334874a3fc87fd4f712ebc" target="_blank" rel="noopener">原文传送门</a></p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>《Memcache 内存分配策略和性能(使用)状态检查》</p>
+<p><a href="http://www.kuqin.com/shuoit/20160615/352392.html" target="_blank" rel="noopener">http://www.kuqin.com/shuoit/20160615/352392.html</a></p>
+<p>《如果Memcache集群中的服务器失效如何踢出》</p>
+<p><a href="http://www.tuicool.com/articles/qaAnUz" target="_blank" rel="noopener">http://www.tuicool.com/articles/qaAnUz</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Memcache </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mysql入门]]></title>
+      <url>/2017/12/08/mysql(1)/</url>
+      <content type="html"><![CDATA[<h2 id="Mysql基本讲解"><a href="#Mysql基本讲解" class="headerlink" title="Mysql基本讲解"></a>Mysql基本讲解</h2><pre><code>数据库:存数据
+定义:存储数据的仓库
+
+数据库:database
+数据表:table
+
+按照数据结构来组织,存储和管理数据的仓库
+
+常见数据库系统
+Oracle
+MySQL
+SQL Server 微软
+
+登录数据库的必备条件
+1.服务器环境开启   wamp
+2.服务器IP地址       本地localhost
+3.用户名:root
+4.密码:空
+
+数据库每条命令都已 分号 作为结束符
+
+``:反引号  为了屏蔽关键字
+将关键字取消特殊意义(库名,表名,字段名)
+</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>1.设置密码
+    set password = password(&apos;密码&apos;)
+
+2.创建一个数据库
+    create database `库名`
+    create database if not exists `库名`    推荐用
+
+3.查看所有数据库
+    show databases
+
+4.查看当前所在的库
+    select database()
+
+5.删除一个数据库
+    drop database `库名`
+
+6.使用数据库
+    use `库名`
+
+7.查看所有的表
+    show tables
+
+8.查看当前使用的表
+    desc `表名`
+
+9.创建数据表
+    create table if not exists `表名`(
+        `表头名`   类型  属性,
+        `表头名`   类型  属性,
+        `表头名`   类型  属性,
+        ...(最后一个字段 不要加 逗号)
+    )engine=MyISAM(引擎) default charset=utf8
+
+10.删除数据表
+    drop table `表名`
+</code></pre><p>字段属性</p>
+<pre><code>1. 主键索引
+    primary key
+    一般一张表只有一个主键
+
+2.自增
+    auto_increment
+    最小是1,通常配合主键
+
+3.无符号
+    unsigned : 没有负数
+
+4.默认值
+    default 默认值
+
+5.非空约束
+    not null : 不能为空
+
+6.唯一索引
+    unique
+
+7.描述
+    comment
+</code></pre><p>新增数据<br>    插入单条数据:<br>    insert into <code>表名</code> values(包含所有表头元素的值);</p>
+<pre><code>插入多条数据:
+insert into `表名` values(包含所有表头元素的值),
+(),(),.....;
+
+插入单条指定内容的数据:
+insert into `表名` (`表头名1`,`表头名2`,....)values(&quot;值1&quot;,&quot;值2&quot;,...);
+
+插入多条指定内容的数据
+insert into `表名` (`表头名1`,`表头名2`,...)
+values
+(&quot;值1&quot;,&quot;值2&quot;,...),
+(&quot;值1&quot;,&quot;值2&quot;,...),
+(&quot;值1&quot;,&quot;值2&quot;,...),
+.....;
+</code></pre><p>数据更新<br>    全表修改:<br>    update <code>表名</code> set <code>表头名</code>=”值”,<code>表头名</code>=”值”, …;</p>
+<pre><code>指定修改:
+update `表名` set `表头名`=&quot;值&quot;, ...
+where 条件表达式 and (多条件时用)
+</code></pre><p>删除数据<br>    全表删除<br>    delete from <code>表名</code>;</p>
+<pre><code>指定删除
+delete from `表名` where 条件表达式 and (多条件时用)
+</code></pre><p>查询数据<br>    查询全表<br>    select * from user;</p>
+<pre><code>根据表头查询(返回表头下所有数据)
+select `表头名1`,`表头名2`, ...
+from `表名`;
+
+指定条件查询
+select `表头名1`,`表头名2`, ...
+from `user`
+where 条件表达式 and (多条件时用)
+
+排序查询 asc 升序 | desc 降序
+select `主键或自增属性的表头`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+order by `主键或自增属性的表头` asc;
+
+分组查询
+select `表头名1`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+group by `表头名`
+order by (根据需求,但排序必须是在分组之后执行)
+
+分组后的条件筛选
+select `表头名1`,`表头名2`, ...
+from `表名`
+where 条件表达式 (根据需求)
+group by `表头名`
+having 数据库函数的条件表达式
+
+多表查询
+select 表名1.表头名1,表头名2, ...
+from `表名1`,`表名2`,...
+where 表与表之间的关系
+group by (根据需求)
+order by (根据需求)
+
+模糊查询
+select `表头名1`,`表头名2`, ...
+from `user`
+where `表头名` like &quot;%值%&quot;;
+
+表头内容下,含有like所定义的值的字符.
+%值  = 以该值结尾的字符
+值% = 以该值开头的字符
+_ 代表单个字符
+
+分页
+limit rows 指定行数
+limit key, rows 指定下标,指定行数
+
+select * from `表名` limit 2;
+select * from `表名` limit 0,2;
+
+公式:key = (页数 - 1) * 指定行数
+</code></pre><p>数据库函数</p>
+<pre><code>聚合函数
+count()     计数
+sum()       求和
+avg()       平均数
+max()       最大
+min()       最小
+
+字符串函数
+concat()    拼接字符串
+
+数据库版本
+select version();
+
+当前时间    格式化时间
+select now();
+
+当前时间    时间戳
+select UNIX_TIMESTAPM();
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PHP-redis操作]]></title>
+      <url>/2017/12/08/php-redis%E6%93%8D%E4%BD%9C/</url>
+      <content type="html"><![CDATA[<h2 id="php-redis操作"><a href="#php-redis操作" class="headerlink" title="php-redis操作"></a>php-redis操作</h2><pre><code>1.连接redis,成功返回true;
+&lt;?php
+    $redis = new redis();
+    $result = $redis-&gt;connect(&apos;服务器IP&apos;, 6379);
+    $redis-&gt;auth(&apos;密码&apos;);    //如果设置了密码，添加此行;
+    var_dump($result);
+&gt;
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[test]]></title>
+      <url>/2017/12/08/test/</url>
+      <content type="html"><![CDATA[<h1 id="测试博客主题"><a href="#测试博客主题" class="headerlink" title="测试博客主题"></a>测试博客主题</h1><p>##时间轴</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ubantu-lamp环境搭建]]></title>
+      <url>/2017/12/08/ubantu-lamp/</url>
+      <content type="html"><![CDATA[<h2 id="ubantu-lamp环境搭建"><a href="#ubantu-lamp环境搭建" class="headerlink" title="ubantu lamp环境搭建"></a>ubantu lamp环境搭建</h2><pre><code>1.更新apt-get源
+    sudo apt-get update
+
+2.安装apache
+    sudo apt-get install apache2
+
+3.安装Mysql (有提示输入mysql的初始密码 默认用户为root)
+    sudo apt-get install mysql-server mysql-client
+
+4.安装php
+    sudo apt-get install php7.0
+
+5.安装php apache模块
+    sudo apt-get install libapache2-mod-php
+
+6. 安装php常用插件
+    sudo apt-get install php7.0-mysql php7.0-mysql php7.0-curl php7.0-gd php7.0-mbstring php7.0-mcrypt php7.0-xml php7.0-zip
+
+7.设置服务器域名解析和端口访问等
+略...
+
+8.#配置虚拟主机(可选)
+修改文件
+    vi /etc/apache2/sites-avilabe/000-default.conf
+代码如下：
+    &lt;VirtualHost *:80&gt;
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/laravel/public (tp5框架文件目录)
+    ServerName www.shxdledu.cn    (域名)
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    &lt;/VirtualHost&gt;
+
+9.配置成功后重启apahce 
+    sudo service apache2 restart
+</code></pre><h2 id="ubuntu-PHP安装redis扩展"><a href="#ubuntu-PHP安装redis扩展" class="headerlink" title="ubuntu-PHP安装redis扩展"></a>ubuntu-PHP安装redis扩展</h2><pre><code>cd /root    切换到root目录下
+
+1.安装git(如果有git则跳过)
+    sudo apt-get install git
+
+2.下载phpredis
+    git clone https://github.com/phpredis/phpredis.git
+
+3.剪切到etc
+    mv phpredis/ /etc/
+
+4.切换目录
+    cd /etc/phpredis
+
+5.安装php7.0-dev (如果有则跳过)
+    sudo apt-get install php7.0-dev
+
+6.执行解析
+    phpize
+
+7.执行configure
+    ./configure
+
+8.编译和编译安装
+    make &amp;&amp; make install
+
+9.修改php配置文件(需要在conf.d下创建redis.ini文件)
+    vi /etc/php/7.0/fpm/conf.d/redis.ini
+    写入（extension=/etc/phpredis/modules/redis.so）
+
+10.修改apache配置文件
+    vi /etc/php/7.0/apache2/php.ini
+    写入 （extension=/etc/phpredis/modules/redis.so）
+    插入位置可以找 extension=mysql.dll
+
+11.重启apache
+    sudo service apache2 restart
+</code></pre><h3 id="注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装"><a href="#注意-当安装完lamp和redis之后-访问index-php可以找到redis模块已在php中被安装" class="headerlink" title="*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装."></a>*注意:当安装完lamp和redis之后,访问index.php可以找到redis模块已在php中被安装.</h3><h2 id="ubuntu-安装redis"><a href="#ubuntu-安装redis" class="headerlink" title="ubuntu-安装redis"></a>ubuntu-安装redis</h2><pre><code>1.安装redis
+    sudo apt-get install redis-server
+
+2.启动redis(出现欢迎界面)
+    redis-server
+
+3.进入控制台
+    redis-cli
+
+4.修改redis访问密码
+    vi /etc/redis/redis.conf
+    搜索 requirepass foobared
+    取消注释并修改成 requirepass 密码
+</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code>安装 下载工具 wget
+    sudo apt-get install -y wget
+
+查看 wget版本        
+    wget -version
+
+
+安装composer        
+    去composer 找命令
+
+    建议切换到 /usr/local/bin
+
+    使用wget安装composer wget 加上composer的官网下载地址
+
+    wget https://getcomposer.org/download/1.4.1/composer.phar
+
+    重命名文件composer.phar 为 composer 
+    $ mv composer.phar composer
+
+    $ chmod +x composer     
+
+    然后如果需要git 他自带有的
+
+    其实linux 和Windows 差别不大的，都是系统，我们用的也就是装软件而已。
+
+    常用的目录结构
+    WWW var/html
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
             
         </tags>
         
