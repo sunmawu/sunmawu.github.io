@@ -1,0 +1,612 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Node.js - express | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Node.js - express">
+            
+            Node.js - express
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>后端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Node.js
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>Express框架 基于 Node.js 平台，快速、开放、极简的 web 开发框架。 它是用于后台NodeJs的框架,与JQuery/Bootstrap/vue.js/AngularJs这类前端框架是不一样的! Express 不对 Node.js 已有的特性进行二次抽象，我们只是在它之上扩展了 Web 应用所需的基本功能。丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友好的 API 变得既快速又简单。</p>
+<p>对比原生Node.js 使用原生Node.js开发,会发现有很多问题: - 呈现静态页面很不方便,需要处理每个HTTP请求,还要考虑304缓存问题. - 路由处理代码不直观清晰,需要写很多正则表达式和字符串函数. - 开发者不能集中精力写业务,要考虑很多其他的东西</p>
+<p>官网：<a href="http://expressjs.com/" target="_blank" rel="noopener">http://expressjs.com/</a></p>
+<p>中文官网：<a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">http://www.expressjs.com.cn/</a></p>
+<p>安装 npm install express –save<br>即可安装最新版本的Express;<br>Express4.x与3.x版本的差别非常大，我们讲解4.x</p>
+</blockquote>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>1.引入框架模块
+    var express = require(&apos;express&apos;);
+
+2.创建服务器 
+var app = express();
+
+3.使用EJS模块
+app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+4.对静态目录的处理(多MIME类型自动处理)
+app.use(&apos;/static&apos;, express.static(&apos;./static&apos;));
+
+5.设置默认路由规则
+app.get(&apos;/&apos;, function (req, res) {
+    res.send(&apos;hello, Express~&apos;);
+
+6.设置GET路由
+app.get(&apos;/test&apos;, function (req, res) {
+    res.send(&apos;这是Test页面GET&apos;);
+});
+
+7.设置POST路由
+app.post(&apos;/test&apos;, function (req, res) {
+    res.send(&apos;这是Test页面POST&apos;);
+});
+
+8.设置EJS页面并输出
+app.get(&apos;/users&apos;, function (req, res) {
+    res.render(&apos;user&apos;, {
+        &quot;userlist&quot; : [
+            &apos;一拳超人&apos;,
+            &apos;小金刚&apos;,
+            &apos;白小飞&apos;,
+            &apos;路飞&apos;,
+            &apos;机器猫&apos;
+        ]
+    });
+});
+
+9.监听服务器(开启)
+app.listen(3000);
+</code></pre><h3 id="路由详解"><a href="#路由详解" class="headerlink" title="路由详解"></a>路由详解</h3><pre><code>路由的设置的基本格式:
+    app.METHOD(PATH, HANDLER)
+注释:
+    用app调用请求方式(METHOD),请求路径(path),函数执行(handler);
+    常用的请求方式(get,post,put)
+</code></pre><blockquote>
+<p>Express的路由处理机制很灵活,可以把它想象成漏斗形式.通过路由中间件的特性来逐个匹配各个路由规则,得到最终结果并返回;对路径大小写不敏感,且支持正则匹配路径和参数等;</p>
+</blockquote>
+<pre><code>实例:
+
+    var express = require(&apos;express&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+    // 设置中间件,当接收到能匹配系统允许的请求方式时,都会进入这里,并通过next()传递下去;
+    app.all(&apos;/t&apos;, function (req, res, next) {
+        console.log(new Date().toString());
+        next();
+    });
+
+    // 设置GET路由
+    app.get(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是GET&apos;);
+    });
+    // 设置POST路由
+    app.post(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是POST&apos;);
+    });
+    // 设置PUT路由
+    app.put(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是PUT&apos;);
+    });
+
+    // 路由方法,默认匹配pathname部分
+    // 对大小写不明感
+    app.get(&apos;/aaa&apos;, function (req, res) {
+        //  获取GET参数
+        console.log(req.query);
+        res.send(&apos;这是3A页面&apos;);
+    });
+
+    // 路由路径 正则规则   /stu/15156165/s70
+    app.get(/^\/stu\/(\d{10})\/(\w+)$/, function (req, res) {
+        // 正则中的子模式(括号)部分,可以用params取出
+        res.send(&apos;学员学号: &apos; + req.params[0]);
+        console.log(req.params);
+    });
+
+    // 路由参数
+    app.get(&apos;/tch/:tid&apos;, function (req, res) {
+        res.send(&apos;老师的工号: &apos; + req.params.tid);
+        console.log(req.params);
+    });
+
+    // 多个路由参数,并作限制
+    app.get(&apos;/goods/:name/:num&apos;, function (req, res) {
+        var name = req.params.name;
+        var num = req.params.num;
+        if (/\d+/.test(num)) {
+            res.send(&apos;商品名: &apos;+ name + &apos;,入库: &apos;+ num);
+        } else {
+            res.send(&apos;请填写正确的数量!&apos;);
+        }
+    });
+
+    app.listen(3000);
+</code></pre><h4 id="请求-响应-中间件"><a href="#请求-响应-中间件" class="headerlink" title="请求 响应 中间件"></a>请求 响应 中间件</h4><pre><code>1. 请求对象 req
+    这里的req和原生里没有区别,返回的是请求对象的相关数据;
+    常用方式:
+        req.params        // 解析请求对象
+
+2. 响应对象 res
+    框架比起原生的使用方式显得更加直观和清晰;
+    常用方式:
+        res.download()        提示下载文件。
+        res.end()            终结响应处理流程。
+        res.json()            发送一个 JSON 格式的响应。
+        res.jsonp()            发送一个支持 JSONP 的 JSON 格式的响应。
+        res.redirect()        重定向请求。
+        res.render()        渲染视图模板。
+        res.send()            发送各种类型的响应。
+        res.sendFile        以八位字节流的形式发送文件。
+        res.sendStatus()    设置响应状态代码，并将其以字符串形式作为响应体的一部分发送。
+3. 中间件句柄 next
+    简单理解的:如果你不希望这个请求在这里被终结,那就用next(),将它丢给其他路由去处理;而当一个路由用了next参数时,它就是一个中间件;
+</code></pre><h4 id="路由重名"><a href="#路由重名" class="headerlink" title="路由重名"></a>路由重名</h4><pre><code>假设我们遇到路由重名问题,可以通过中间件来解决该问题;
+
+实例:
+    app.get(&apos;/kk&apos;, function (req, res, next) {
+    console.log(1);
+    next();
+    });
+
+    app.get(&apos;/kk&apos;, function (req, res) {
+        console.log(2);
+        res.end(&apos;KK响应完成&apos;);
+    });
+分析:
+    如果不设置next()中间件,那访问/kk的时候,永远只会在log(1)的区间;因为log(2)的访问路径重名了,这里用next()可以完美解决这个问题;
+</code></pre><h4 id="路由匹配冲突"><a href="#路由匹配冲突" class="headerlink" title="路由匹配冲突"></a>路由匹配冲突</h4><pre><code>在实际项目当中,很有可能会遇到路由匹配冲突的问题,我们同样可以通过中间件的方式来解决;    
+
+app.get(&apos;/:goods/:num&apos;, function (req, res, next) {
+    if (商品名判断) {
+        console.log(1);
+        res.send(&apos;商品: &apos;+ req.params.goods + &apos;数量: &apos;+ req.params.num);
+    } else {
+        next();
+    }
+});
+
+app.get(&apos;/admin/login&apos;, function (req, res) {
+    console.log(2);
+    res.send(&apos;后台登录&apos;);
+});
+
+分析:
+    因为路由1直接匹配参数,导致访问后续路由的时候,路径会被当成参数送到路由1里;这时候,我们需要加上中间件,并在路由1里做分支判断来解决;
+</code></pre><h4 id="app-use中间件的使用"><a href="#app-use中间件的使用" class="headerlink" title="app.use中间件的使用"></a>app.use中间件的使用</h4><pre><code>app.use([path],function);
+1.这个中间件的参1是选填的,参2方法是必填的;如果不填参1默认匹配根/,填参的话,会将参数当成根目录;
+2.模糊匹配特性,比如参1为/user;它能够识别/user/.../...;
+3.我们可以利用这个特性,让用户访问任何路径都能被识别;
+
+实例:
+    app.use(function(req, res, next) {
+        console.log(new Date().toString());
+        next();
+    });
+
+    app.use(function(req, res) {
+        res.write(req.originalUrl + &quot;\n&quot;); // 完整的URL
+        res.write(req.baseUrl + &quot;\n&quot;); // 基底URL,以这个作为基础
+        res.write(req.path + &quot;\n&quot;); // 除去基底以外的子路径.
+        res.end(&apos;后台&apos;);
+    });
+
+服务和404页面的实例:
+    var express = require(&apos;express&apos;);
+    var fs = require(&apos;fs&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+    // 静态资源服务
+    app.use(&apos;/jingtai&apos;, express.static(&apos;./static&apos;));
+
+    // 路由
+    app.get(&apos;/admin&apos;, function (req, res){
+        res.send(&apos;后台&apos;);
+    });
+
+    // 404的路由更改,必须在所有路由的末端;
+    app.use(function(req, res, next) {
+        res.status(404).render(&apos;err&apos;, {
+            &quot;errlist&quot; : [
+                &apos;您访问的页面不存在&apos;
+            ]
+        });
+    });
+
+
+    app.listen(3000);
+
+分析:
+    我们可以通过使用app.use的参数特性,伪装真实的目录名;
+</code></pre><h3 id="GET和POST处理"><a href="#GET和POST处理" class="headerlink" title="GET和POST处理"></a>GET和POST处理</h3><pre><code>GET请求的参数在URL中.
+原生node中,要想得到get参数,需要借助于url模块来识别参数字符串.
+在Express中，不需要使用url模块了.可以直接使用`req.query`对象得到GET参数
+
+GET请求的参数是隐蔽传参(在请求体中).
+POST请求在Express中不能直接获得,必须使用`body-parser`模块.使用后,将可以用req.body得到参数.
+但是如果表单中含有文件上传,那么还是需要使用`formidable`模块.
+安装:
+    npm i body-parser --save
+
+实例:
+    var express = require(&apos;express&apos;);
+    var bodyParser = require(&apos;body-parser&apos;);
+
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+    // 按照此值去解析post数据 application/x-www-form-urlencoded
+    app.use(bodyParser.urlencoded({ extended: false }));
+
+
+    // GET处理
+    app.get(&apos;/&apos;, function (req, res){
+        console.log(req.query);
+        res.send(&apos;GET完成&apos;);
+    });
+
+    // 获取表单页面请求
+    app.get(&apos;/form&apos;, function (req, res){
+        res.render(&apos;form&apos;);
+    });
+
+    // POST处理(表单提交请求)
+    app.post(&apos;/&apos;,function(req, res){
+        console.log(req.body);
+        res.send(&apos; POST完成&apos;);
+    });
+
+    app.use(function(req, res, next) {
+        res.status(404).send(&apos;404 NOT FOUND&apos;);
+    });
+
+
+    app.listen(3000);
+</code></pre><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><pre><code>http://www.expressjs.com.cn/guide/database-integration.html#mysql
+支持的数据类型,要用什么数据库先安装,这里以MYSQL为例;
+安装:
+    npm i mysql --save
+
+实例:
+    var express = require(&apos;express&apos;);
+    // 引入mysql模块;
+    var mysql = require(&apos;mysql&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+</code></pre><h4 id="两种连接数据库方式"><a href="#两种连接数据库方式" class="headerlink" title="两种连接数据库方式:"></a>两种连接数据库方式:</h4><h5 id="1-池连接-推荐"><a href="#1-池连接-推荐" class="headerlink" title="1) 池连接(推荐)"></a>1) 池连接(推荐)</h5><pre><code>// 创建连接池
+var pool = mysql.createPool({
+    host: &apos;127.0.0.1&apos;,
+    user: &apos;root&apos;,
+    password: &apos;123456&apos;,
+    database: &apos;s70&apos;
+});
+
+app.get(&apos;/pool&apos;, function (req, res) {
+    pool.getConnection(function(err, connection){
+        var sql = &quot;SELECT * FROM lover&quot;;
+        connection.query(sql, function (error, result) {
+            if (error) {
+                console.log(&apos;执行出错: &apos; + error);
+                return;
+            }
+            console.log(result);
+            res.send(result);
+        });
+    });
+});
+</code></pre><h5 id="2-路由连接"><a href="#2-路由连接" class="headerlink" title="2) 路由连接"></a>2) 路由连接</h5><pre><code>app.get(&apos;/&apos;, function (req, res) {
+    // 设置连接属性
+    var connection = mysql.createConnection({
+        host: &apos;127.0.0.1&apos;,
+        user: &apos;root&apos;,
+        password: &apos;123456&apos;,
+        database: &apos;s70&apos;
+    });
+    // 开启数据库连接
+    connection.connect(function (err) {
+        if (err) {
+            console.log(&apos;数据库连接错误: &apos; + err);
+            return;
+        }
+        console.log(&apos;数据库连接完成!&apos;);
+    });
+
+    // 执行SQL语句;
+    var sql = &quot;SELECT * FROM user&quot;;
+    connection.query(sql, function (error, result) {
+        if (error) {
+            console.log(&apos;执行出错: &apos; + error);
+            return;
+        }
+        console.log(result);
+        res.send(result);
+    });
+    // 结束连接
+    connection.end();
+});
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/CSS/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/PHP/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">Social</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Categories</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">15</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">Tag Cloud</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Friends</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

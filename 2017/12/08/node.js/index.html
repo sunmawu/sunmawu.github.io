@@ -1,0 +1,684 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Node.js | Hexo</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css?rev=9.12.0">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+    <div class="hide">
+    	<script src="https://s4.cnzz.com/z_stat.php?id=1263868967&web_id=1263868967" language="JavaScript"></script>
+    </div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Node.js">
+            
+            Node.js
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>后端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            Node.js
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2017/12/08</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一-安装"><a href="#一-安装" class="headerlink" title="一.安装"></a>一.安装</h2><pre><code>下载地址:http://nodejs.cn/
+1.根据系统选择32位或64位安装包
+2.windows推荐下载.msi的安装包
+3.linux下载源码包(注意linux系统版本)
+    可以通过命令file /sbin/init 或者 file /bin/ls查看linux的系统位数.
+</code></pre><h4 id="linux-安装步骤"><a href="#linux-安装步骤" class="headerlink" title="linux 安装步骤"></a>linux 安装步骤</h4><pre><code>1.上传源码包到/node目录下
+    mkdir node  
+    将压缩包上传到该目录
+
+2.解压到当前目录(此源码包不用编译)
+    tar -xf node-v8.9.0-linux-x64.tar.xz
+
+3.移动node目录到/usr/local
+    mv node-v8.9.0-linux-x64.tar.xz /usr/local
+
+4.进入node里的bin目录,并查看相关文件
+    cd /usr/local/node/bin
+    ls 
+    里面有 node npm npx 这三个文件即可;
+
+5.在bin目录下查看Node的版本
+    ./node -v
+    如果显示版本说明正常,否则源码包可能有问题.
+
+6.设置环境变量
+    vim ~/.bash_profile
+
+    修改:PATH=SPATH:SHOME/bin:/usr/local/node/bin
+    保存退出
+
+7.重启服务
+    source ~./bash_profile
+
+8.在全局下查看node版本
+    node -v
+    npm -v
+    出现版本说明环境变量设置成功
+</code></pre><h4 id="windows安装步骤"><a href="#windows安装步骤" class="headerlink" title="windows安装步骤"></a>windows安装步骤</h4><pre><code>1.找到安装包
+2.双击安装,一直下一步至结束.
+3.安装完成后,用cmd或cmder查看版本
+    node -v
+    出现版本说明安装成功,环境变量自动生成.
+</code></pre><h2 id="二-node-js的特点"><a href="#二-node-js的特点" class="headerlink" title="二.node.js的特点"></a>二.node.js的特点</h2><pre><code>1.它既是语言,又是平台.
+2.单线程 | 非阻塞I/O | 事件驱动
+
+    1). 单线程
+        所有客户端请求的连接 都使用一个线程来处理.
+        Node.js不是为每个连接创建一个新的线程,而是仅仅使用一个线程,来处理所有业务逻辑.
+        单线程带来的好处,系统不在有线程的创建和销毁的额外开销.(内存换页)
+
+    2). 非阻塞I/O
+        I: 输入 input
+        O: 输出 output
+        I/O操作: 读写数据库/读写文件/执行运算/网络通讯
+        I/O操作不会阻塞程序的运行
+
+        在阻塞模式下,一个线程只能处理一项任务,想要提高吞吐率(并发量)必须通过多线程.
+        而非阻塞模式下,一个线程 永远在执行运算操作,这个线程的利用率是满载的.
+
+
+    3). 事件驱动
+        客户端 请求建立连接，提交数据等行为，就会触发 相应的事件.
+        在Node中，在一个时刻，只能执行一个事件回调函数，但是在执行 一个事件回调函数的中途，
+        可以转而处理其他事件（比如，又有新用户连接了），然后返回继续执行原事件的回调函数，这种处理机制，称为“事件环”机制.
+
+    Node.js底层是C++(V8引擎也是C++写的).底层代码中，近半数都用于事件队列、回调函数队列的构建.
+    用事件驱动 来完成服务器的 任务调度,是Node.js中 真正底层核心逻辑.
+</code></pre><h2 id="三-常用模块"><a href="#三-常用模块" class="headerlink" title="三.常用模块"></a>三.常用模块</h2><pre><code>简单理解:
+    把Node.js当做一台空服务器,模块的作用就是在这台服务器上嵌入增加功能;
+</code></pre><h3 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h3><pre><code>1.引入http模块:
+    var http = require(&apos;http&apos;);
+2.主机名:
+    var hostname = &apos;IP或者域名&apos;;
+3.端口:
+    var port = 1024 ~ 65535; (建议TCP端口范围)
+4.创建服务器:
+    var server = http.createServer(回调函数);
+5.回调函数:
+    function(req,res){}
+6.回调传参:
+    1) 请求对象(request)
+        req        // 有请求时,自动接受该请求的相关参数;
+    2) 响应对象(response)
+        res        // 响应时的数据处理;
+
+        常用:
+            res.writeHead();设置HTTP响应头信息;
+            res.end();        输出响应结果;
+7.运行服务器:
+    server.listen(port,hostname,回调函数);
+
+实例:
+    // 第一部分:模块加载
+    var http = require(&apos;http&apos;);
+    var hostname = &apos;127.0.0.1&apos;;
+    var port = 3000;
+        (代码运行顺序:1)    
+    // 第二部分:服务器构造
+    var server = http.createServer(function (req, res){
+        res.writeHead(200, {&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
+        res.end(&apos;Hi~ o(*￣▽￣*)ブ, 首个Node.js页面. 您好,SVIP: 您的积分是: &apos;+ (50+10) + &apos;分!&apos;);
+        (代码运行顺序:3)
+    });
+
+    // 第三部分:运行服务器
+    server.listen(port, hostname, function (){
+        console.log(`请访问: http://${hostname}:${port}/`);
+    });
+    (代码运行顺序:2)
+
+分析:
+    把Node.js的服务拆分成三个部分,比较容易理解;
+
+    第一部分:
+        模块加载,不管是系统自带的模块,还是自己写的模块.要想在这个系统中去使用,都必须要加载模块;
+
+    第二部分:
+        服务器构造,简单说就是服务器具体功能的实现,也是Node.js无阻塞I/O和事件环的根本所在.所有请求的入口就在这里;
+
+    第三部分:        
+        运行服务器,就相当于服务器的网关.从它的传参可以看出,主要是定义服务器的端口和IP或域名;
+</code></pre><h4 id="事件驱动-事件环"><a href="#事件驱动-事件环" class="headerlink" title="事件驱动-事件环:"></a>事件驱动-事件环:</h4><pre><code>1.从代码运行顺序可以看出,并非是从上到下的顺序.因为默认情况下,它是异步的;
+2.当程序执行时,模块加载完,服务器生成,开启服务器,有请求进来的时候,req接受到请求之后,res才会触发处理数据并返回,这个过程是需要耗时的;
+3.可以通过迭代器等方式将代码执行方式变成同步;
+</code></pre><h4 id="报文对象"><a href="#报文对象" class="headerlink" title="报文对象"></a>报文对象</h4><pre><code>1.请求头信息;
+    req.headers            // 返回一个对象,包含请求的头信息数据;
+2.请求方式;
+    req.method            // 传输方式;
+3.请求头列表;
+    req.rawHeaders        // 返回一个数组,内容与headers一致;
+4.状态码;
+    res.statusCode        // 返回响应状态码
+5.响应信息;
+    res.statusMessage    // 返回状态描述
+6.URL链接;
+    req.url                // 返回url链接 (path ~ hash)
+</code></pre><h3 id="URL模块"><a href="#URL模块" class="headerlink" title="URL模块"></a>URL模块</h3><pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            href                                             │
+├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │        host         │           path            │ hash  │
+│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │   hostname   │ port │ pathname │     search     │       │
+│          │  │                     │              │      │          ├─┬──────────────┤       │
+│          │  │                     │              │      │          │ │    query     │       │
+&quot;  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;
+│          │  │          │          │   hostname   │ port │          │                │       │
+│          │  │          │          ├──────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │        host         │          │                │       │
+├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+│   origin    │                     │       origin        │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+│                                            href                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1.引入URL模块:
+    var url = require(&apos;url&apos;);
+2.解析URL:
+    req.url // 请求的路径
+
+    var path = url.parse(req.url).path;
+    var pathname = url.parse(req.url).pathname;
+    var search = url.parse(req.url).search;
+    var query = url.parse(req.url).query;
+    var hash = url.parse(req.url).hash;
+
+
+3.处理get参数:
+    var getParams = url.parse(req.url,true).query;
+
+*注: url.pars() 为解析URL的信息,当第2参为true时,可以将query(get)参数解析成对象返回;
+</code></pre><h3 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h3><pre><code>1.引入fs模块:
+    var fs = require(&apos;fs&apos;);
+
+2.创建文件夹
+    fs.mkdir(&apos;目录路径&apos;, function(err){
+
+    });
+
+3.删除文件夹
+    fs.rmdir(&apos;目录路径&apos;, function(err){
+
+    });
+
+4.读取文件或目录信息
+    fs.stat(&apos;文件或目录路径&apos;, function (err, stats){
+
+    });
+
+    1) 回调参数
+        stats 文件或目录的信息
+
+    2) 函数
+        stats.isFile()            // 是否是文件
+        stats.isDirectory()     // 是否是目录
+
+5.读取文件夹内容
+    fs.readdir(&apos;目录路径&apos;, function(err, files){
+
+    });
+
+    1) 回调参数
+        files        // 返回一个数组,包含该目录下所有文件;
+</code></pre><h3 id="四-Node-js路由"><a href="#四-Node-js路由" class="headerlink" title="四. Node.js路由"></a>四. Node.js路由</h3><pre><code>简单理解就是控制URL的访问,是对页面请求的一种控制方式;
+实例:
+    var http = require(&apos;http&apos;);
+    var url = require(&apos;url&apos;);
+    var hostname = &apos;127.0.0.1&apos;;
+    var port = 3000;
+
+    var server = http.createServer(function(req,res){
+        if (req.url == &apos;/favicon.ico&apos;)return;
+        res.writeHead(200,{&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
+
+        var user = url.parse(req.url).pathname;
+
+            if (user.substr(0,5) == &apos;/stu/&apos;) {
+                var stuid = user.substr(5);
+                if (/^\d{11}$/.test(stuid)) {
+                    res.end(&apos;学员id&apos; + stuid);
+                }else{
+                    res.end(&apos;学员不存在&apos;);
+                }
+            }else if(user.substr(0,5) == &apos;/tch/&apos;){
+                var tchid = user.substr(5);
+                if (/^\d{5}$/.test(tchid)) {
+                    res.end(&apos;员工id&apos; + tchid);
+                }else{
+                    res.end(&apos;员工不存在&apos;);
+                }
+            }else{
+                res.end(&apos;URL有误!&apos;);
+            }
+    });
+
+    // 运行服务器
+    server.listen(port, hostname);    
+
+分析:
+    从if else就可以看出这是对流程控制的一种方式.所有的if条件都是在匹配,请求的参数是否正确;
+</code></pre><h3 id="五-迭代器"><a href="#五-迭代器" class="headerlink" title="五. 迭代器"></a>五. 迭代器</h3><pre><code>在Node.js开发中,由于特性的原因,代码异步执行的情况很多.但基于环境不同,也不可能完全都用异步操作.而迭代器的作用就是强制将异步变为同步;
+
+错误实例:
+    目的:访问imgs这个文件夹,读取文件夹内容,将里面的子aaa bbb ccc 3个文件夹拿出来存入WJJ数组,然后显示出来;
+
+    var server = http.createServer(function (req, res){
+        if (req.url == &apos;/favicon.ico&apos;) return;
+
+        fs.readdir(&apos;./imgs&apos;, function (err, files){
+            // console.log(files);
+            // [ &apos;1.jpg&apos;, ...&apos;9.jpg&apos;, &apos;aaa&apos;, &apos;bbb&apos; ]
+            // 存储所有的文件夹
+            var wjj = [];
+
+            for (var i = 0; i &lt; files.length; i++) {
+                var thisname = files[i]; // 文件或文件夹
+                // 检测 是否是目录
+                fs.stat(&apos;./imgs/&apos;+thisname, function(err, stats){
+                    // 如果是文件夹 则将文件夹名字放入数组
+                    if (stats.isDirectory()) {
+                        wjj.push(thisname);
+                    }
+                    console.log(wjj);
+                });
+            }  //   END - for
+        console.log(wjj, &apos;循环完成&apos;);
+        });
+
+        res.end(&apos;SUCCESSED!&apos;);
+    });
+
+    输出结果:
+        [] &apos;循环完成&apos;
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        [ &apos;ccc&apos; ]
+        [ &apos;ccc&apos;, &apos;ccc&apos; ]
+        [ &apos;ccc&apos;, &apos;ccc&apos;, &apos;ccc&apos; ]
+    分析:
+        1) 在创建服务器的时候,就使用了回调函数,这是第1个异步操作;
+        2) 在读取文件夹的时候,又用了回调函数,这是第2个异步操作;
+        3) 在for循环里,判断每一个文件是否是目录时,又用了回调函数,这是第3个异步操作;
+
+        代码从最外层开始执行,第一个被打印的是for循环外的内容;然后打开文件夹没有问题,但for循环在执行的时候,速度是很快的.回调函数还没有来得及处理,for循环已经结束;
+        所以最终返回的只有ccc,且因为有3个文件夹,所以放入数组3次,最终结果为3个CCC;
+
+迭代器实例:
+    fs.readdir(&apos;./imgs&apos;, function (err, files){
+        var wjj = [];
+
+        (function iterator(i){
+
+            if (i == files.length) {
+                console.log(wjj,&apos;结果&apos;);
+                return;
+            }
+
+            fs.stat(&apos;./imgs/&apos;+ files[i], function (err, stats){
+                if (stats.isDirectory()) {
+                    wjj.push(files[i]);
+                }
+                console.log(wjj);
+                iterator(i+1);
+            });
+        })(0);
+    });
+    输出结果:
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        [ &apos;aaa&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ] &apos;结果&apos;
+
+    分析:
+        原理用自执行函数+递归,生成一个迭代器;(类似JS中的计数器用法)
+
+        1) 判断部分代码没有变化,只是在最后自增递归,使得这段代码可以重复执行;
+        2) files是一个数组,用数组的长度作为自执行里中断开关;
+
+
+同步函数实例:
+     for (var i = 0; i &lt; files.length; i++) {
+        var thisname = files[i];
+        var thisStat = fs.statSync(&apos;./imgs/&apos;+thisname);
+        if (thisStat.isDirectory()) {
+            wjj.push(thisname);
+        }
+    }
+
+    fs.statSync(文件路径)  // 功能与stat一样,但是是同步执行的;
+</code></pre><h3 id="六-输出变量-函数"><a href="#六-输出变量-函数" class="headerlink" title="六. 输出变量/函数"></a>六. 输出变量/函数</h3><pre><code>Node.js中,JS文件中定义的变量、函数,都只在这个文件内部有效. 
+其他文件中需要引用变量、函数时,必须使用exports对象进行输出(暴露). 
+使用者要用require()命令,引用执行这个JS文件.
+
+实例:
+    (fun1.js)
+        var str = &apos;我是fun1里的str&apos;;
+        var msg = &apos;我是fun1里的msg&apos;;
+
+        function showMsg() {
+            console.log(&apos;函数的结果是: &apos;+ msg);
+        }
+
+        exports.str = str;
+        exports.showMsg = showMsg;
+
+    (module.js)
+        var fun1 = require(&apos;./module/fun1.js&apos;);
+
+        console.log(fun1.str);
+
+        fun1.showMsg();
+</code></pre><h3 id="输出类-构造函数"><a href="#输出类-构造函数" class="headerlink" title="输出类(构造函数)"></a>输出类(构造函数)</h3><pre><code>可以用module.exports = 构造函数名;的方式 向外输出一个类
+
+实例:
+    (user.js)
+
+        function user(name, age) {
+            this.name = name;
+            this.age = age;
+            this.getInfo = function() {
+                console.log(name + &apos;:&apos; + age);
+            }
+        }
+
+        module.exports = user;
+
+    (demo.js)
+        var user = require(&apos;./module/user&apos;);
+
+        var yy = new user(&apos;艳艳&apos;,&apos;18&apos;);
+
+        console.log(yy.name);
+        yy.getInfo();
+</code></pre>
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/08/HTML/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2017/12/08/memcached/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">Social</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/sunmawu" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Categories</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">Archives</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/"><i class="fa" aria-hidden="true">December 2017</i></a><span class="archive-list-count">15</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">Tag Cloud</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/CSS-前端/" style="font-size: 10px;">CSS 前端</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Memcache/" style="font-size: 10px;">Memcache</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">Friends</h3>
+        <div class="content friends-link">
+        
+            <a href="http://dongdayu.cn/" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

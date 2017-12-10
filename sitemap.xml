@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/12/08/Node.js-express/</loc>
+    
+    <lastmod>2017-12-10T15:20:27.459Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/08/node.js(2)/</loc>
+    
+    <lastmod>2017-12-10T15:20:06.164Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/12/08/node.js/</loc>
+    
+    <lastmod>2017-12-10T15:19:36.584Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/12/08/HTML/</loc>
     
     <lastmod>2017-12-08T04:28:42.559Z</lastmod>

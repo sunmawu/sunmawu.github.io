@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>test | Hexo</title>
+<title>Node.js(2) | Hexo</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -124,9 +124,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="test">
+        <h1 id="Node.js(2)">
             
-            test
+            Node.js(2)
             
         </h1>
         <div class="post-meta">
@@ -134,7 +134,7 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <span>工具</span>
+        <span>后端</span>
     </span>
     
     
@@ -142,7 +142,7 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            git
+            Node.js
             
         </span>
     </span>
@@ -159,8 +159,168 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="测试博客主题"><a href="#测试博客主题" class="headerlink" title="测试博客主题"></a>测试博客主题</h1><p>##时间轴</p>
+        <h3 id="POST数据处理"><a href="#POST数据处理" class="headerlink" title="POST数据处理"></a>POST数据处理</h3><blockquote>
+<p>相比较GET请求，POST请求比较复杂。因为Node.js认为，使用POST请求时，数据量会比较多。为了追求极致的效率，它将数据拆分成为了众多小的数据块(chunk)，然后通过特定的事件，将这些小数据块有序传递给回调函数。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+</code></pre></blockquote>
+<pre><code>var server = http.createServer(function (req, res) {
+    // 这里的req是指访问页面的GET请求;
+    if (req.url == &apos;/form&apos;) {
+        fs.readFile(&apos;./form.html&apos;, function (err, data) {
+            res.writeHead(200, {
+                &quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;
+            });
+            res.end(data);
 
+        });
+    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
+        var postData = &apos;&apos;;
+        // 监听并处理POST请求;这里data是固定参数;
+        req.addListener(&apos;data&apos;, function (chunk) {
+            postData += chunk;
+        });
+        // node为了追求极致效率,将POTS数据分割为小块的形式进行传输
+
+        // 全部传输完成,参1改成end,参2处理回调逻辑;
+        req.addListener(&apos;end&apos;, function () {
+
+            var dataObj = querystring.parse(postData);
+              // querystring.parse将POST参数解析成对象格式;需要引入模块;
+
+            res.end(&apos;POST DATA SUCCESS!&apos;);
+        });
+
+    } else {
+        res.end(&apos;404&apos;);
+    }
+
+});
+
+server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre><h3 id="文件上传处理"><a href="#文件上传处理" class="headerlink" title="文件上传处理"></a>文件上传处理</h3><pre><code>原生写POST处理,比较复杂,要写两个监听.
+文件上传业务比较麻烦.所以,用第三方模块: `formidable`
+先用NPM安装 npm install formidable --save
+</code></pre><h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+var formidable = require(&apos;formidable&apos;);
+var datetime = require(&apos;silly-datetime&apos;);
+var path = require(&apos;path&apos;);
+
+
+var server = http.createServer(function (req, res) {
+    if (req.url == &apos;/form&apos;) {
+        fs.readFile(&apos;./form_file.html&apos;, function (err, data) {
+            res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
+            res.end(data);
+        });
+    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
+        // 进行POST 文件数据处理
+        var form = new formidable.IncomingForm();
+        form.uploadDir = &quot;./uploads&quot;;
+
+        // 该模块已经将 POST数据和文件数据 分离好了;fields是表单对象,files是文件对象;
+        // 当执行到parse的回调时,表示表单的各种数据已经接收到了; 
+        form.parse(req, function (err, fields, files) {
+
+            res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
+
+            // 文件改名
+            // 生成新名字: 时间 + 随机数 + 源文件后缀: 2017012311223301236.jpg
+            var t = datetime.format(new Date(), &apos;YYYYMMDDHHmmss&apos;);
+            var ran = parseInt(Math.random() * 10000);
+            var extname = path.extname(files.myfile.name);
+
+            // 旧文件名
+            var oldpath = &apos;./&apos; + files.myfile.path;
+            // 新文件名
+            // var newpath = &apos;./uploads/&apos; + t + ran + extname;
+            var newpath = &apos;./uploads/111&apos; + extname;
+
+            // 执行改名
+            fs.rename(oldpath, newpath, function (err) {
+                 if(err) console.log(&apos;改名失败&apos;);
+                res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
+                res.end(&apos;表单信息 处理完成111&apos;);
+            });
+
+        });
+
+    } else {
+        res.end(&apos;404&apos;);
+    }
+});
+
+
+server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre><h3 id="EJS模板使用"><a href="#EJS模板使用" class="headerlink" title="EJS模板使用"></a>EJS模板使用</h3><pre><code>http://www.embeddedjs.com/        #官网
+https://www.npmjs.com/package/ejs #npm上的ejs包
+ejs是Embedded JavaScript templates的简称,意思是嵌入式JavaScript模板.node中的后台模版.
+1.安装ejs模块
+     npm install ejs --save
+2.引入ejs模块
+    var ejs = require(&apos;ejs&apos;);
+3.创建模版(必须是字串形式)
+    var str = &apos;扎心了,老铁. 双击 &lt;%= num %&gt;&apos;;
+4.准备数据(数组形式)
+    var data = {
+        num: 6666666
+    }
+5.数据绑定
+    var html = ejs.render(str, data);
+
+6.输出
+    console.log(html);
+</code></pre><h4 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h4><pre><code>1.创建(EJS模板)
+    先用HTML文档编辑好之后,把文件后缀改成ejs即可,变量设置方式参照上文;
+2.模块部分
+    var http = require(&apos;http&apos;);
+    var fs = require(&apos;fs&apos;);
+    var ejs = require(&apos;ejs&apos;);
+
+    var server = http.createServer(function (req, res) {
+        if (req.url == &apos;/&apos;) {
+            fs.readFile(&apos;./views/index.ejs&apos;,function (err, data) {
+                // 数据处理
+                var template = data.toString();
+
+                var dict = {
+                    title  : &quot;EJS模版引擎的实用&quot;,
+                    content : &quot;我就是个段落内容&quot;,
+                    pic : &apos;./imgs/01.jpg&apos;,
+                    songci : {
+                        title : &apos;水调歌头&apos;,
+                        list : [
+                            &quot;明月几时有&quot;,
+                            &quot;把酒问青天&quot;,
+                            &quot;不知天上宫阙&quot;,
+                            &quot;今夕是何年&quot;
+                        ]
+                    }
+                }
+                // 绑定数据
+                var html = ejs.render(template, dict);
+
+                // 输出
+                res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
+                res.end(html);
+            });
+        } else if (req.url == &apos;/imgs/01.jpg&apos;) {
+            fs.readFile(&apos;./imgs/01.jpg&apos;,function (err, data) {
+                // 输出
+                res.writeHead(200, {&apos;content-type&apos;: &apos;image/jpeg&apos;});
+                res.end(data);
+            });
+        } else {
+            res.writeHead(404, {&apos;content-type&apos;: &apos;text/html&apos;});
+            res.end(&apos;404&apos;);
+        }
+    });
+
+    server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre>
     </div>
 
     <div class="post-footer">   
@@ -177,10 +337,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2017/12/08/jQuery/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/2017/12/08/php-redis操作/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2017/12/08/CSS/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
