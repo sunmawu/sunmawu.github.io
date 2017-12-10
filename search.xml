@@ -3,322 +3,377 @@
   
     
     <entry>
-      <title><![CDATA[linux 入门]]></title>
-      <url>/2017/12/08/linux/</url>
-      <content type="html"><![CDATA[<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><pre><code>    1        2    3    4          5             6            7
--rw-r--r--. 1 root root     27034 12月 15 18:40 install.log
-    第一项：        权限位
-    第二项：  1     引用计数
-    第三项：  root  属主
-    第四项：  root  属组
-    第五项：        大小
-    第六项:         最后一次修改时间
-    第七项:         文件名
-</code></pre><h4 id="提示符：（特殊字符）"><a href="#提示符：（特殊字符）" class="headerlink" title="提示符：（特殊字符）"></a>提示符：（特殊字符）</h4><pre><code>[root@localhost ~]#
-当前登录用户@主机名:当前所在目录$
+      <title><![CDATA[jQuery]]></title>
+      <url>/2017/12/08/jQuery/</url>
+      <content type="html"><![CDATA[<h3 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h3><pre><code>1 什么是jQuery?
+    jQuery是 JavaScript 的类库
 
-    #       超级用户
-    $       普通用户
+2 jQuery版本
+    jQuery 1.X    支持IE
+    jQuery 2.X    IE9+  其他...
+</code></pre><h3 id="jQuery的基本语法"><a href="#jQuery的基本语法" class="headerlink" title="jQuery的基本语法"></a>jQuery的基本语法</h3><pre><code>1.jquery标准的使用方式:
+      1.1 JQ 标准入口
+        $(document).ready(function() {
+            (JS / JQ)代码
+        });
 
-    当前所在目录：~  用户家目录
-    管理员          /root
-    普通用户        /home/用户名
-</code></pre><h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><pre><code>权限位:
-    1 234 567 8910
-    - rwx rwx ---
-    第一位：代表文件类型
-            -   普通文件
-            d   目录文件
-            l   链接文件
-    后九位：
-            属主权限    u=user
-            属组权限    g=group
-          其他人权限    o=other
+    1.2 JQ 简写
+        $(function() {
+            (JS / JQ)代码
+        });
 
-对文件的意义:
-    r    读取文件内容 more
-    w    编辑 新增 修改文件内容,但是不包含删除文件  vim
-    x     可执行
+    1.3 JS写法 
+        window.onload = function () {
+            (JS / JQ)代码
+        }
 
-对目录的意义:
-    r    可以查询目录下文件名    ls
-    w    对目录具有增删改查的权限
-    x    可以进入目录
+2.ready和onload的区别
+    1). 加载点
+        ready 文档中 DOM加载完就触发
+        onload 文档中的一且都加载完才触发
+    2). 绑定
+        ready可以多次绑定,且都会触发
+        onload 后面的事件会覆盖前面
 
-权重:
-     r     4    可读
-     w     2    可写
-     x     1    可执行
-</code></pre><h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h5 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令:"></a>查看命令:</h5><pre><code>ls             显示目录文件
-ls -l         长格式显示
-ls -a        显示所有文件
-ls -all        显示所有文件(长格式)
-ls -hl        文件大小显示为常见大小单位 K M G
-ls -d        显示目录本身,而不是里面的子文件
-ls (路径)
+3.链式操作风格
+    JQ.css().css();
 
-du -sh 文件/目录     查看文件/目录的实际大小
+4.jQueryDOM 与 JSDOM 的区别 以及相互转化
+    区别:
+        JQDOM  通过 $() 获取到的数组对象
+        JSDOM  通过 原生方法 获取到的元素对象
+    转换:
+        JSDOM ---&gt; JQDOM    $(jsdom)
+        JQDOM ---&gt; JSDOM    jqdom[index]
 
-netstat -ntlp    查看所有端口
-lsof -i tcp:80     查看80端口占用情况
+5.jquery命名冲突
+    $ 的原意就是jQuery
+    也可以var 变量 = jQuery;
+</code></pre><h4 id="JQ-元素选择器"><a href="#JQ-元素选择器" class="headerlink" title="JQ 元素选择器"></a>JQ 元素选择器</h4><pre><code>1 基本选择器
+    *                    通配符选择器
+    #id                  ID选择器
+    .class               CLASS选择器
+    tagName              标签选择器
+    selector,selector      组合/分组选择器
 
-ps -A            查看全部进程
-ps -C 进程名        查看某一条进程
-</code></pre><h5 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令:"></a>目录操作命令:</h5><pre><code>切换:
-    cd            切换到登录用户家目录
-    cd -        切换到上次操作的目录
-    cd..        切换到上一级目录
-    cd /usr/local/src     (路径)
-    相对路径:参照当前所在的目录,进行查找.先确定当前所在目录.
-    绝对路径:从根目录开始指定,一级一级递归查找.
+2 层级选择器
+    selector selector  所有的后代元素
+    selector&gt;selector  所有的子元素
+    selector+selector  紧邻着的下一个元素
+    selector~selector  紧邻着的所有元素
 
-linux常见目录:
-    /            根目录
-    /bin        命令保存目录(普通用户就可以读取的命令)
-    /boot        启动目录,启动相关文件
-    /dev        设备文件保存目录
-    /etc        配置文件保存目录
-    /home        普通用户的家目录
-    /mnt        系统挂载目录
-    /media        挂载目录
-    /root        超级用户的家目录
-    /tmp        临时目录
-    /sbin        命令保存目录(超级用户才能使用的目录)
-    /proc        直接写入内存
-    /usr        系统软件资源目录
-    /var        系统相关文档内容
+3 过滤选择器
+    :first      首个
+    :last       最后一个
+    :eq(index)  指定第几个
+    :lt(index)  索引小于
+    :gt(index)  索引大于
+    :odd         索引为奇数
+    :even        索引为偶数 0也算作为偶
+    :header      所有的h标签
+    :not(selector) 排除
 
-创建目录:
-    mkdir 目录名
-    mkdir /root/include/upload/     递归创建目录
+4 内容选择器
+    :contains(text)  匹配包含指定文本的元素
+    :has(selector)   匹配含有指定选择器的元素的元素
+    :parent          匹配素有含子元素或非空的元素
+    :empty           匹配所有空元素
 
-删除目录:
-    rm -rf 目录名        文件/目录
-    rm -r  目录名        删除目录
-    rm -f  目录名        强制
-</code></pre><h5 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h5><pre><code>创建空文件:
-    touch 文件名
+5 可见性选择器
+    :visible       匹配所有可见元素
+    :hidden        匹配所有不可见元素
 
-查看文件内容:
-    cat 文件名
+6 属性选择器
+    selector[attrname]             选择有指定属性的元素
+    selector[attrname=&apos;value&apos;]     值等于value的元素
+    selector[attrname!=&apos;value&apos;]    值不等于value的元素
+    selector[attrname^=&apos;value&apos;]    值以value的开头元素
+    selector[attrname$=&apos;value&apos;]    值以value的结尾元素
+    selector[attrname*=&apos;value&apos;]    值包含value的元素
+    [][][] ....   多个属性选择器,用于做进一步筛选操作的
 
-分屏显示文件内容
-    more 文件名
-</code></pre><h5 id="复制与剪切"><a href="#复制与剪切" class="headerlink" title="复制与剪切"></a>复制与剪切</h5><pre><code>复制粘贴:
-    cp     源文件 目标位置
-    cp -r     复制目录
-    cp -a     所有(包括文件属性一起复制)
+7 子元素选择器
+    :first-child    是否是首个子元素
+    :last-child     是否是最后一个子元素
+    :nth-child(n)   是否是第N个子元素
+    :only-child     是否是独子元素
 
-    cp 源文件 目标位置 新名字         (改名复制)
-剪切:
-    mv 源文件 目标位置
-改名:
-    mv 源文件名 新文件名
-</code></pre><h5 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h5><pre><code>chmod  u+x  index.php          属主加上执行权限
-chmod  u-x  index.php          属主去除执行权限
-chmod  u=rwx index.php        属主添加读写执行权限
+8 表单选择器
+    :input            
+    :text
+    :password
+    :radio
+    :checkbox
+    :submit
+    :reset
+    :button
+    :file
+    :hidden
+    :image
 
-chmod  755  index.php        权重表示法
-chmod  644  index.php
-</code></pre><h5 id="属主和属组命令"><a href="#属主和属组命令" class="headerlink" title="属主和属组命令"></a>属主和属组命令</h5><pre><code>useradd jack    添加用户
-passwd    jack    设定用户密码
+9 表单对象选择器
+    :enabled   匹配所有可用元素
+    :disabled  匹配所有不可用元素
+    :checked   匹配所有被选中元素
+    :selected  匹配所有选中的option元素
+</code></pre><h4 id="JQ-筛选方法"><a href="#JQ-筛选方法" class="headerlink" title="JQ 筛选方法"></a>JQ 筛选方法</h4><pre><code>1.过滤
+    :eq(index)           过滤出指定的某个
+    :first()             过滤出首个
+    :last()              过滤出最后一个
+    :filter(selector)    过滤出满足前面条件的
+    :not(selector)       过滤排除,与以上相反
+    :slice(start, end)   截取出一段
+    :has(selector)       含有指定选择器的元素的元素
 
-改变文件属主:
-        chown 用户名    文件名    
-        chown jack     index.php
-同时改变属主和属组:
-        chown 用户名:组名     文件名    
-        chown jack:jack index.php
-</code></pre><h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><pre><code>man 命令名
-man cat
-</code></pre><h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h5><pre><code>1) 查找命令的命令,同时看到帮助文档的位置
-    whereis 命令名
+    // 条件判断 返回布尔值;
+    .hasClass()          判断前面的DOM集合中,是否包含指定class类
+    .is()                判断前面的DOM集合中,是否有符合指定表达式的
+    .map()               对JQDOM遍历,并且可以取得一部分值出来
+2 查找
+    (往里找)
+        .children()       只找子元素
+        .find()           找所有后代元素
+    (往外找)
+        .parent()         父元素
+        .parents()        父元素们
+        .parentsUntil()   父元素们,到指定的为止
+        .offsetParent()   获取已定位的父元素
+    (往后找)
+        .next()           紧邻着的一个同辈元素(后)
+        .nextAll()        紧邻着的所有同辈元素(后)
+        .nextUntil()      紧邻着的同辈元素,直到指定的为止(后)
+    (往前找)
+        .prev()           紧邻着的一个同辈元素(前)
+        .prevAll()        紧邻着的所有同辈元素(前)
+        .prevUntil()      紧邻着的同辈元素,直到指定的为止(前)
 
-2) 查找文件
-    find 查找位置 -name 文件名
-    find / -name index.php        按照文件名查找
-    find / -iname index.php        不区分大小写
+        .siblings()       除了元素自己以外的所有同辈元素
 
-3) 查找字符串
-    grep &quot;字符串&quot; 文件名
-    grep -v &quot;字符串&quot; 文件名     (反向选择)
-    grep -i    &quot;字符串&quot; 文件名    (不区分大小写)
-</code></pre><h5 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h5><pre><code>压缩包后缀名:
-        .tar.gz        z
-        .tar.bz2    j
-压缩:
-    tar -zcvf 压缩文件/目录 源文件
-    tar -zcvf bbs.tar.gz bbs
+3 串联
+        .add()            向集合内追加新元素
+        .andSelf()        之前选中的集合,加入到当前集合内
+        .end()            返回最后一个 破坏性操作之前的样子
+        .contents()       获取所有的子节点(包括文本)
+</code></pre><h4 id="JQ-文档处理方法"><a href="#JQ-文档处理方法" class="headerlink" title="JQ 文档处理方法"></a>JQ 文档处理方法</h4><pre><code>1 内部插入
+    .append()     内部最后
+    .appendTo()   --
+    .prepend()    内部最前
+    .prependTo()
 
-解压缩:
-    tar -zxvf bbs.tar.gz
-简写:
-    tar -zxf bbs.tar.gz
-解压到指定位置:
-    tar -zxf bbs.tar.gz -C /tmp/
-语义:
-    -z: 识别.gz格式
-    -c: 压缩
-    -v: 显示压缩过程
-    -f: 指定压缩包名
-    -x: 解压
-    -t: 查看不解压
+2 外部插入
+    .after()       外部最后
+    .insertAfter() --
+    .before()       外部最前
+    .insertBefore()  --
 
-... -C: 指定解压位置
-</code></pre><h5 id="关闭和重启"><a href="#关闭和重启" class="headerlink" title="关闭和重启"></a>关闭和重启</h5><pre><code>关机:
-    shutdown -h now
-重启:
-    reboot
-</code></pre><h5 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h5><pre><code>linux所有存储设备都必须挂载使用
-光盘挂载
-    mount    设备描述文件     挂载点(已经存在的空目录)
-    mount    /dev/sro    /mnt/cdrom
-光盘卸载
-    umount    /dev/sro
-    umount    /mnt/cdrom    
-</code></pre><h5 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h5><pre><code>ifconfig     查看本机网络信息
-ifconfig eth0 IP地址     设置临时IP
+3 包裹
+    .wrap()      将集合内的每个元素,包裹在指定元素内
+    .wrapAll()   将整个集合元素,包裹在指定元素内
+    .wrapInner()  包裹在里面
+    .unwrap()    去掉包裹
 
-快捷键:
-        CTRL+C 终止命令
-        CTRL+A 光标到行首
-        CTRL+E 光标到行尾
-        CTRL+U 剪切光标前内容
-        CTRL+K 剪切光标后内容
-        CTRL+Y 粘贴剪切的内容
-        CTRL+L 清理屏幕
-        CTRL+D 注销登陆相当于exit和logout或者保存
-        CTRL+Z 将进程在后台挂起
+4 替换
+    .replaceWith()  替换谁
+    .replaceAll()   谁被替换
 
-        |            管道符
-        tab            补全功能
-        ``          命令替换符  将一个命令的输出作为另一个命令的参数
-          ls -l `which touch`     找到touch命令的路径，然后用ls查看属性
-</code></pre><h2 id="VIM编辑器-文件操作"><a href="#VIM编辑器-文件操作" class="headerlink" title="VIM编辑器(文件操作)"></a>VIM编辑器(文件操作)</h2><pre><code>文件写入:
-    echo &apos;内容&apos; &gt;&gt; 文件名
-文件编辑:    
-    vi 文件名     编辑该文件
+5 删除
+    .remove()   删除元素
+    .empty()    清空子节点
 
-    a    输入
-    i    插入
-    o    新增下一行
+6 复制
+    .clone()
+</code></pre><h4 id="JQ-属性方法"><a href="#JQ-属性方法" class="headerlink" title="JQ 属性方法"></a>JQ 属性方法</h4><pre><code>1 属性操作
+    HTMLDOM
+        .prop()         设置属性
+        .removeProp()    删除属性
+    XMLdom
+        .attr()            设置属性
+        .removeAttr()    删除属性
 
-    A    到行的尾部
-    I    到行的头部
-    O    上一行
+2 CSS 类  (class)
+    .addClass()     添加一个类属性
+    .removeClass()  移除一个类属性
+    .toggleClass()   以上俩,来回切换
 
-    :w    写入
-    :wq = :x = ZZ    保存退出
-    :q!    不保存退出
+3 HTML代码/文本/值
+    .html()   相当于innerHTML
+    .text()   相当于innerText
+    .val()    相当于.value 表单控件的值
+</code></pre><h4 id="CSS-操作"><a href="#CSS-操作" class="headerlink" title="CSS 操作"></a>CSS 操作</h4><pre><code>连贯写法:
+    css(&apos;attr&apos;, &apos;value&apos;).css(&apos;attr&apos;, &apos;value&apos;);
+JSON写法:
+    css({
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;,
+        &apos;attr&apos;: &apos;value&apos;
+    });
+</code></pre><h4 id="位置类方法"><a href="#位置类方法" class="headerlink" title="位置类方法"></a>位置类方法</h4><pre><code>offset()     获取/设置 元素相对于body的位置  .left / .top
+position()   获取 已定位的父元素的位置
 
-命令模式操作:
-    hjkl        光标移动
-    :n(数字)        移动到第n行
-    gg            移动到文件头
-    G            移动到文件尾
+scrollLeft() 获取/设置 滚动条距离左/上的像素值
+scrollTop()
+</code></pre><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><pre><code>    height()        获取/设置 css的元素宽/高
+    width()
 
-    x            删除单个字母
-    n(数字)+x    删除n个字母
-    dd            删除单行 剪切
-    ndd            删除多行    剪切
-    p            粘贴
-    dG            从光标所在行删除到文件尾
+    innerHeight()      获取/设置 元素宽/高 +  内边距
+    innerWidth()
 
-    yy            复制单行
-    nyy            多行复制
+    (标准盒子模型)
+    outerHeight()     获取/设置 元素宽/高 +  内边距 + 边框
+    outerWidth()
 
-    u            撤销
-    Ctrl + r    反撤销
+其他尺寸:
+    $(window).height() //浏览器时下窗口可视区域高度
+    $(document).height() //浏览器时下窗口文档的高度
+    $(document.body).height()//浏览器时下窗口文档body的高度
+    $(document.body).outerHeight(true)//浏览器时下窗口文档body的总高度 包括border padding margin
+    $(window).width() //浏览器时下窗口可视区域宽度
+    $(document).width()//浏览器时下窗口文档对于象宽度
+    $(document.body).width()//浏览器时下窗口文档body的高度
+    $(document.body).outerWidth(true)//浏览器时下窗口文档body的总宽度 包括border padding margin
+    $(document).scrollTop() //获取滚动条到顶部的垂直高度
+    $(document).scrollLeft() //获取滚动条到左边的垂直宽度
+</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><pre><code>1 绑定事件
+    1). 简写方式 : 
+            JQDOM.event(function(){
 
-    :set nu        显示行号
-    :set nonu    不显示行号
+            });
+    2). 标准方式  
+            JQDOM.bind(&apos;event&apos;, function(){
 
-    r+(n)        替换一个字符
+            });
+    3). 一次性 事件 
+            JQDOM.one(&apos;event&apos;, function(){
 
-    /字串        查找        n下一个 N上一个
+            });
 
-    替换:
-        :范围/原字串/新字串/g
-        ：1,10s/old/new/g         替换1到10行的所有old为new
-        ：%s/old/new/g            替换整个文件的old为new
-                     g           范围内所有old换为new
+2 解绑定
+    unbind()
 
-        :1,10s/^/#/g            注释
-        :6,10s/^#//g            取消注释
+3 事件委派
+    3.1) live() 事件委派  1.9-
+        JQDOM.live({
+            &quot;event&quot;:function (){
+                // 内容
+            },
+               &quot;event&quot;:function (){
+                // 内容
+            }
+        });
 
-        :11,20s/^/\/\//g        注释
-        :16,20s/^\/\///g        取消注释
-</code></pre><h2 id="软件包安装"><a href="#软件包安装" class="headerlink" title="软件包安装"></a>软件包安装</h2><pre><code>软件包分类:
-    1) 源码包    .tar.gz     .tar.bz2
-    2) 二进制包    .rpm
-</code></pre><h4 id="二进制宝安装"><a href="#二进制宝安装" class="headerlink" title="二进制宝安装"></a>二进制宝安装</h4><pre><code>A) rpm手动安装
-    1) 光盘挂载
-    2) 解决文件依赖关系
-    3) 安装tree
-    4) 基本命令
-        rpm ivh 软件包
-        -i 安装     -v 显示详细信息 -h 显示进度
+    3.2) on()   JQ 1.9+
+        $(document).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        }).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
+            // 内容
+        });
 
-        升级
-        rpm -Uvh 软件包
+4 事件的自动触发
+    JQDOM.trigger(&apos;event&apos;);
+    // 自动触发的事件必须是已存在的!
 
-        卸载
-        rpm -e 软件包
+5 阻止默认事件 和 事件冒泡
+    在默认事件内 /  冒泡事件内 
+    return false;
+</code></pre><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><pre><code>1 基本
+    .show()
+    .hide()
+    .toggle()
+2 滑动效果
+    .slideDown()
+    .slideUp()
+    .slideToggle()
+3 淡入淡出
+    .fadeIn()
+    .fadeOut()
+    .fadeToggle()
+    .fadeTo()   0为完全透明 1为不透明
+4 自定义动画
+    JQDOM.animate({
+       // 内容
 
-B) yum命令 二进制包自动化管理
-        yum  -y  install  软件包       安装          
-        yum  -y  update   软件包       升级
-        yum  -y  remove   软件包       卸载
-    光盘作为yum源：
+    },time);            自定义动画
 
-        1   cd  /etc/yum.repos.d/
-            mv  CentOS-Base.repo  /root/
 
-        2   mount /dev/sr0  /mnt/cdrom
+   .stop()                停止
+   .delay()                延时
+</code></pre><h2 id="JQ-AJAX"><a href="#JQ-AJAX" class="headerlink" title="JQ-AJAX"></a>JQ-AJAX</h2><pre><code>1） load方式:
+        JQDOM.load(&apos;URL地址&apos;);
 
-        3   vim  /etc/yum.repos.d/CentOS-Media.repo
-            baseurl=file:///mnt/cdrom/  指定yum源位置
-            enabled=1                   yum源文件生效
+2） GET方式:
+        $.get(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
 
-        yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)
-</code></pre><h4 id="源码包安装"><a href="#源码包安装" class="headerlink" title="源码包安装"></a>源码包安装</h4><pre><code>1   远程传输工具传输apache到linux。
-    httpd-2.2.9.tar.gz 
-2   安装
-    1） 解压
-    2） cd  解压目录         
-    3） 查看安装文档
-        INSTALL     README
-    4） 编译前准备
-        ./configure  --prefix=/usr/local/apache2
-        功能：
-            1   检测系统环境，生成Makefile
-            2   定义软件选项
-    5)  编译              
-        make
-    6）编译安装
-        make  install
+3） POST方式:
+        $.post(&apos;URL地址&apos;,function(参){
+               // 响应处理行
+        });
 
-    报错判断：
-        第一：安装过程是否停止
-        第二：注意error  warning  no  等错误报警
+4)  AJAX()方式: （推荐）
+        $.ajax({
+            type : &apos;Method&apos;,                
+            url : &apos;URL&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+</code></pre><h3 id="AJAX参数处理"><a href="#AJAX参数处理" class="headerlink" title="AJAX参数处理"></a>AJAX参数处理</h3><pre><code>1） GET/POST 演示：
+        // 需要先获取参数内容；
+            var num1 = $(&apos;#num1&apos;).val();
+             var num2 = $(&apos;#num2&apos;).val();
+         $.get(&apos;URL&apos;,{a:num1,b:num2},function(data){
 
-3   启动
-    /usr/local/apache2/bin/apachectl  start
+        })；
 
-4   卸载      
-    直接删除安装目录
+2）ajax() 演示:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            data : &apos;a=&apos;+num1+&apos;&amp; b=&apos;+num2,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
+
+ 3) JS串行化数据:
+        var info = $(&apos;#my input&apos;).serialize();
+        // 前提要有表单,且name属性存在.串行化的数据可以直接送进data里;
+</code></pre><h3 id="处理JSON数据"><a href="#处理JSON数据" class="headerlink" title="处理JSON数据"></a>处理JSON数据</h3><pre><code>1) GET/POST 方式:
+        $.get(&apos;URL&apos;, function (参){
+
+        },&apos;json&apos;);
+
+2) ajax 方式:
+        $.ajax({
+            type : &apos;post&apos;,
+            url : &apos;URL&apos;,
+            dataType : &apos;json&apos;,
+            success : function(参){
+                // 响应处理行
+            },
+            error : function(){
+                // 错误处理行
+            }
+        });
 </code></pre>]]></content>
       
         <categories>
             
-            <category> 工具 </category>
+            <category> 前端 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> linux </tag>
+            <tag> jQuery </tag>
             
         </tags>
         
@@ -653,6 +708,213 @@ visibility:
         <tags>
             
             <tag> CSS 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[HTML5]]></title>
+      <url>/2017/12/08/HTML/</url>
+      <content type="html"><![CDATA[<h2 id="HTML5-基本语法"><a href="#HTML5-基本语法" class="headerlink" title="HTML5 基本语法"></a>HTML5 基本语法</h2><pre><code>HTML5声明
+doctype 文档类型
+!docype html 声明以html5的规则去解析 W3C的标准
+
+
+标签格式;
+        单 &lt;标签名/&gt;
+        双 &lt;标签名&gt; &lt;/标签名&gt;
+
+
+注释;
+    &lt;-- --&gt;
+    1 对代码的描述
+    2 不会显示在网页中
+    3 有助于快速恢复记忆
+    4 提高团队开发效率
+    5 注释不能嵌套使用
+</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><h4 id="全局架构标签"><a href="#全局架构标签" class="headerlink" title="全局架构标签;"></a>全局架构标签;</h4><pre><code>html:
+    表示该标签下的都是html代码.
+head:
+    头标签主要负责,声明网页的标题.
+body
+    网页主体,页面内容都显示在里面.
+title
+    主要负责网页的标题
+</code></pre><h4 id="文本格式标签"><a href="#文本格式标签" class="headerlink" title="文本格式标签;"></a>文本格式标签;</h4><pre><code>h1-h6   标题标签
+p       段落
+b       加粗
+i       倾斜
+u       下划线
+br      换行
+hr      分割线
+del     删除线
+strong  加粗强调
+u       倾斜强调
+sub     上标标签
+sup     下标标签
+pre     原样输出
+</code></pre><h4 id="列表"><a href="#列表" class="headerlink" title="列表;"></a>列表;</h4><pre><code>ul      无序列表
+ol      有序列表
+li      配合ul和ol使用
+dl      定义列表
+dt dd   配合定义列表使用
+</code></pre><h4 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号;"></a>实体符号;</h4><pre><code>&amp;lt;    小于号
+&amp;gt;    大于号
+&amp;nbsp;  空格
+&amp;yen;   人民币
+&amp;copy;  版权符号
+&amp;copytight;
+</code></pre><h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接;"></a>超链接;</h4><pre><code>标签      a
+属性:
+    href    目的路径
+    target
+           _blank   在新窗口打开链接
+           _self    在本窗口打开链接(默认)
+    title
+        当鼠标悬停在超链接上时,显示title内容.
+网址的组成:
+    1.协议 : http https ftp file ....
+    2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
+    3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
+        ? 之前: 网址的所在位置
+        ? 之后: 访问此网址所带的参数
+    4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
+    5.锚点:
+    #锚点名
+    通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
+</code></pre><h4 id="多媒体图片"><a href="#多媒体图片" class="headerlink" title="多媒体图片;"></a>多媒体图片;</h4><pre><code>    标签  img
+    属性:
+        src     图片来源地址
+        width   宽度
+        height  高度
+        title   当鼠标悬停在图片上时,显示title内容
+        alt     代替无法显示时的内容
+
+相对路径
+    ./      当前目录下   (默认,可以省略)
+    ../     上一级目录下
+    ../../  上上级目录下
+
+绝对路径
+    盘符路径  C:/wamp/xx/x/x/x/x/xxx.jpg
+    网址路径 http://www.baidu.com/x/x/x/x.jpg
+
+    经过服务器: 推荐
+        认识网址
+        / : 当成www/ 等于 lovalhost/
+
+    不经过服务器
+        认识判读
+        认识网址
+        / : 当成 当前所在的盘符
+</code></pre><h4 id="多媒体音频-视频"><a href="#多媒体音频-视频" class="headerlink" title="多媒体音频/视频;"></a>多媒体音频/视频;</h4><pre><code>音频标签    audio
+属性:
+    src         音频来源地址
+    controls    播放器
+    Loop        循环播放
+    autoplay    自动播放
+
+视频标签    video
+属性:
+    src         视频来源地址
+    controls    播放器
+    loop        循环播放
+    autoplay    自动播放
+
+兼容性问题, 通过媒介标签 source来解决
+</code></pre><h4 id="表格-table"><a href="#表格-table" class="headerlink" title="表格      table"></a>表格      table</h4><pre><code>    表格标题    caption
+    表行      tr
+    表头      th
+    单元格     td
+
+常见表格属性:
+    border          边框
+    cellspacing     外边距
+    cellpadding     内边距
+    align           水平对齐
+        left,center,right
+    valign          垂直对齐
+        top,middle,bottom
+    rowspan         行合并
+    colspan         列合并
+    width
+    height
+    bgcolor         背景颜色
+    background      背景图片
+</code></pre><h4 id="表单"><a href="#表单" class="headerlink" title="表单;"></a>表单;</h4><pre><code>声明标签:       form
+    属性:
+        action : 提交到哪儿去,服务器的脚本地址
+        method : 传输方式 get post
+        enctype: multipart/form-data
+        只有文件上传时,才需要
+注意:
+1. 每个表单都必须加上name,没有name值,服务器则接收不到表单.
+2. 可手动输入表单:value可写可不写
+   不可手动输入的表单:value 必须写
+
+表单标签:      
+    类型:
+   input type = text            文本域
+                password        密码域
+                radio           单选框
+                checkbox        多选框
+                file            文件上传
+                hidden          隐藏域
+                email           邮箱
+                number          数字
+                url             网址
+                data            日期
+                search          搜索
+
+                submit          提交
+                reset           重置
+                button          自定义按钮
+
+    select  下拉框
+        option      下拉框子选项
+        optgroup    对子选项分组
+        label       组名
+
+    textarea        多文本域
+        rows        行
+        cols        列
+
+    字段集标签
+        fieldset    外框
+        legend      标题名
+
+常见表单属性
+        placeholder     背景字
+        maxlength       最大长度
+        minlength       最小长度
+        checked         单/多选默认选中
+        selected        下拉框默认选中
+        autofocus       默认焦点选中
+        autocomplete    自动提示   on / off
+        readonly        只读
+        disabled        禁用
+        required        不能为空
+        multiple        多选值
+</code></pre><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧;"></a>分帧;</h4><pre><code>小分帧标签       iframe
+    属性:
+        src             窗口内容来源
+        frameborder     窗口边框 0/ 非0
+        scrolling       滚动条是否显示 yes/no
+        name            给本窗口取个名字
+                        通过a标签跳到指定的窗口
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> HTML </tag>
             
         </tags>
         
@@ -1361,98 +1623,337 @@ JSONP实例:
     </entry>
     
     <entry>
-      <title><![CDATA[JS常用函数]]></title>
-      <url>/2017/12/08/JS%E5%87%BD%E6%95%B0/</url>
-      <content type="html"><![CDATA[<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><pre><code>不常用：
-        str.length         返回字符串长度（中文只占一个位置）
-        str.anchor        锚点
-        str.bold        加粗
-常用：
-        str.charAt(下标)    
-        获取指定下标的字符，从0开始；
+      <title><![CDATA[Node.js - express]]></title>
+      <url>/2017/12/08/Node.js-express/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>Express框架 基于 Node.js 平台，快速、开放、极简的 web 开发框架。 它是用于后台NodeJs的框架,与JQuery/Bootstrap/vue.js/AngularJs这类前端框架是不一样的! Express 不对 Node.js 已有的特性进行二次抽象，我们只是在它之上扩展了 Web 应用所需的基本功能。丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友好的 API 变得既快速又简单。</p>
+<p>对比原生Node.js 使用原生Node.js开发,会发现有很多问题: - 呈现静态页面很不方便,需要处理每个HTTP请求,还要考虑304缓存问题. - 路由处理代码不直观清晰,需要写很多正则表达式和字符串函数. - 开发者不能集中精力写业务,要考虑很多其他的东西</p>
+<p>官网：<a href="http://expressjs.com/" target="_blank" rel="noopener">http://expressjs.com/</a></p>
+<p>中文官网：<a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">http://www.expressjs.com.cn/</a></p>
+<p>安装 npm install express –save<br>即可安装最新版本的Express;<br>Express4.x与3.x版本的差别非常大，我们讲解4.x</p>
+</blockquote>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>1.引入框架模块
+    var express = require(&apos;express&apos;);
 
-        str.indexOf(&apos;字串&apos;)    
-        返回首个给定字串的索引位置，没有则返回-1；
+2.创建服务器 
+var app = express();
 
-        str.lastIndexOf(&apos;字串&apos;)
-        返回最后一个给定字串的索引位置，没有则返回-1；
+3.使用EJS模块
+app.set(&apos;view engine&apos;, &apos;ejs&apos;);
 
-        str.concat(&apos;字串&apos;)
-        向字串末尾追加字串，生成新字串；
+4.对静态目录的处理(多MIME类型自动处理)
+app.use(&apos;/static&apos;, express.static(&apos;./static&apos;));
 
-        str.substr(下标)             截取从指定下标开始至结束的字串;
-        str.substr(下标,步长)        截取从指定下标开始至步长的字串;
+5.设置默认路由规则
+app.get(&apos;/&apos;, function (req, res) {
+    res.send(&apos;hello, Express~&apos;);
 
-        str.substring(下标,下标)        根据给定下标范围截取字串,不含最大范围;
-        str.slice(下标,下标)            同substring(支持负数,负数为倒叙)
+6.设置GET路由
+app.get(&apos;/test&apos;, function (req, res) {
+    res.send(&apos;这是Test页面GET&apos;);
+});
 
-        str.toUpperCase()            大写转换    
-        str.toLowerCase()            小写转换
+7.设置POST路由
+app.post(&apos;/test&apos;, function (req, res) {
+    res.send(&apos;这是Test页面POST&apos;);
+});
 
-        str.replace(&apos;初始值&apos;,&apos;新值&apos;)        替换    也支持正则 /正则/g
+8.设置EJS页面并输出
+app.get(&apos;/users&apos;, function (req, res) {
+    res.render(&apos;user&apos;, {
+        &quot;userlist&quot; : [
+            &apos;一拳超人&apos;,
+            &apos;小金刚&apos;,
+            &apos;白小飞&apos;,
+            &apos;路飞&apos;,
+            &apos;机器猫&apos;
+        ]
+    });
+});
 
-        str.match(/正则/)
-        正则匹配首个符合条件的字串,成功返回字串,失败返回null;
+9.监听服务器(开启)
+app.listen(3000);
+</code></pre><h3 id="路由详解"><a href="#路由详解" class="headerlink" title="路由详解"></a>路由详解</h3><pre><code>路由的设置的基本格式:
+    app.METHOD(PATH, HANDLER)
+注释:
+    用app调用请求方式(METHOD),请求路径(path),函数执行(handler);
+    常用的请求方式(get,post,put)
+</code></pre><blockquote>
+<p>Express的路由处理机制很灵活,可以把它想象成漏斗形式.通过路由中间件的特性来逐个匹配各个路由规则,得到最终结果并返回;对路径大小写不敏感,且支持正则匹配路径和参数等;</p>
+</blockquote>
+<pre><code>实例:
 
-        str.search(/正则/)
-        正则匹配首个符合条件的字串,成功返回该字串下标,失败返回-1;
+    var express = require(&apos;express&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
 
-        str.split()
-        根据给定元素将字串切割成数组,默认(空)不分割,空字符代表全部元素;
-</code></pre><h3 id="正则函数"><a href="#正则函数" class="headerlink" title="正则函数"></a>正则函数</h3><pre><code>原始字串:
-        var str = &apos;123456789&apos;;             
-正则声明:
-        var reg = /^\d{3}$/;            
-        var reg = new RegExp(/\w{6}/);
+    // 设置中间件,当接收到能匹配系统允许的请求方式时,都会进入这里,并通过next()传递下去;
+    app.all(&apos;/t&apos;, function (req, res, next) {
+        console.log(new Date().toString());
+        next();
+    });
 
-reg.test(str);
-用正则匹配字串,成功返回true,不成功放回false;
+    // 设置GET路由
+    app.get(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是GET&apos;);
+    });
+    // 设置POST路由
+    app.post(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是POST&apos;);
+    });
+    // 设置PUT路由
+    app.put(&apos;/t&apos;, function (req, res) {
+        res.send(&apos;这是PUT&apos;);
+    });
 
-reg.exec(str);
-用正则匹配字串,成功返回关联形数组,失败返回NULL;
-</code></pre><h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><pre><code>var data = new Date();
-创建一个时间;
+    // 路由方法,默认匹配pathname部分
+    // 对大小写不明感
+    app.get(&apos;/aaa&apos;, function (req, res) {
+        //  获取GET参数
+        console.log(req.query);
+        res.send(&apos;这是3A页面&apos;);
+    });
 
-setFullYear();        设置公元时间
-getyear();            获取当前年数 (1990-至今)
-getFullYear();        获取当前公元年
-getMonth();            获取当前月
-getDate();            获取当前日期 几号
-getDay();            获取当前日  周几
-getHours();            获取当前小时
-getMinutes();        获取当前分钟
-getSeconds();        获取当前秒
-getMillseconds();    获取当前毫秒
-getTime();            获取时间戳
-getUTCHours();        获取UTC时间
+    // 路由路径 正则规则   /stu/15156165/s70
+    app.get(/^\/stu\/(\d{10})\/(\w+)$/, function (req, res) {
+        // 正则中的子模式(括号)部分,可以用params取出
+        res.send(&apos;学员学号: &apos; + req.params[0]);
+        console.log(req.params);
+    });
 
-toString()            同date输出
-toUTCString()        UTC时间字串
-toLocaleString()    本地时间字串
-</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><pre><code>Math.PI            圆周率
-Math.E            自然常数
-Math.abs        绝对值
-Math.sqrt        开根号
-Math.max        最大数
-Math.min        最小数
-Math.floor        舍小取整
-Math.ceil        进一取整
-Math.round        四舍五入
-Math.random        随机数
+    // 路由参数
+    app.get(&apos;/tch/:tid&apos;, function (req, res) {
+        res.send(&apos;老师的工号: &apos; + req.params.tid);
+        console.log(req.params);
+    });
 
-银行家四舍六入
+    // 多个路由参数,并作限制
+    app.get(&apos;/goods/:name/:num&apos;, function (req, res) {
+        var name = req.params.name;
+        var num = req.params.num;
+        if (/\d+/.test(num)) {
+            res.send(&apos;商品名: &apos;+ name + &apos;,入库: &apos;+ num);
+        } else {
+            res.send(&apos;请填写正确的数量!&apos;);
+        }
+    });
+
+    app.listen(3000);
+</code></pre><h4 id="请求-响应-中间件"><a href="#请求-响应-中间件" class="headerlink" title="请求 响应 中间件"></a>请求 响应 中间件</h4><pre><code>1. 请求对象 req
+    这里的req和原生里没有区别,返回的是请求对象的相关数据;
+    常用方式:
+        req.params        // 解析请求对象
+
+2. 响应对象 res
+    框架比起原生的使用方式显得更加直观和清晰;
+    常用方式:
+        res.download()        提示下载文件。
+        res.end()            终结响应处理流程。
+        res.json()            发送一个 JSON 格式的响应。
+        res.jsonp()            发送一个支持 JSONP 的 JSON 格式的响应。
+        res.redirect()        重定向请求。
+        res.render()        渲染视图模板。
+        res.send()            发送各种类型的响应。
+        res.sendFile        以八位字节流的形式发送文件。
+        res.sendStatus()    设置响应状态代码，并将其以字符串形式作为响应体的一部分发送。
+3. 中间件句柄 next
+    简单理解的:如果你不希望这个请求在这里被终结,那就用next(),将它丢给其他路由去处理;而当一个路由用了next参数时,它就是一个中间件;
+</code></pre><h4 id="路由重名"><a href="#路由重名" class="headerlink" title="路由重名"></a>路由重名</h4><pre><code>假设我们遇到路由重名问题,可以通过中间件来解决该问题;
+
+实例:
+    app.get(&apos;/kk&apos;, function (req, res, next) {
+    console.log(1);
+    next();
+    });
+
+    app.get(&apos;/kk&apos;, function (req, res) {
+        console.log(2);
+        res.end(&apos;KK响应完成&apos;);
+    });
+分析:
+    如果不设置next()中间件,那访问/kk的时候,永远只会在log(1)的区间;因为log(2)的访问路径重名了,这里用next()可以完美解决这个问题;
+</code></pre><h4 id="路由匹配冲突"><a href="#路由匹配冲突" class="headerlink" title="路由匹配冲突"></a>路由匹配冲突</h4><pre><code>在实际项目当中,很有可能会遇到路由匹配冲突的问题,我们同样可以通过中间件的方式来解决;    
+
+app.get(&apos;/:goods/:num&apos;, function (req, res, next) {
+    if (商品名判断) {
+        console.log(1);
+        res.send(&apos;商品: &apos;+ req.params.goods + &apos;数量: &apos;+ req.params.num);
+    } else {
+        next();
+    }
+});
+
+app.get(&apos;/admin/login&apos;, function (req, res) {
+    console.log(2);
+    res.send(&apos;后台登录&apos;);
+});
+
+分析:
+    因为路由1直接匹配参数,导致访问后续路由的时候,路径会被当成参数送到路由1里;这时候,我们需要加上中间件,并在路由1里做分支判断来解决;
+</code></pre><h4 id="app-use中间件的使用"><a href="#app-use中间件的使用" class="headerlink" title="app.use中间件的使用"></a>app.use中间件的使用</h4><pre><code>app.use([path],function);
+1.这个中间件的参1是选填的,参2方法是必填的;如果不填参1默认匹配根/,填参的话,会将参数当成根目录;
+2.模糊匹配特性,比如参1为/user;它能够识别/user/.../...;
+3.我们可以利用这个特性,让用户访问任何路径都能被识别;
+
+实例:
+    app.use(function(req, res, next) {
+        console.log(new Date().toString());
+        next();
+    });
+
+    app.use(function(req, res) {
+        res.write(req.originalUrl + &quot;\n&quot;); // 完整的URL
+        res.write(req.baseUrl + &quot;\n&quot;); // 基底URL,以这个作为基础
+        res.write(req.path + &quot;\n&quot;); // 除去基底以外的子路径.
+        res.end(&apos;后台&apos;);
+    });
+
+服务和404页面的实例:
+    var express = require(&apos;express&apos;);
+    var fs = require(&apos;fs&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+    // 静态资源服务
+    app.use(&apos;/jingtai&apos;, express.static(&apos;./static&apos;));
+
+    // 路由
+    app.get(&apos;/admin&apos;, function (req, res){
+        res.send(&apos;后台&apos;);
+    });
+
+    // 404的路由更改,必须在所有路由的末端;
+    app.use(function(req, res, next) {
+        res.status(404).render(&apos;err&apos;, {
+            &quot;errlist&quot; : [
+                &apos;您访问的页面不存在&apos;
+            ]
+        });
+    });
+
+
+    app.listen(3000);
+
+分析:
+    我们可以通过使用app.use的参数特性,伪装真实的目录名;
+</code></pre><h3 id="GET和POST处理"><a href="#GET和POST处理" class="headerlink" title="GET和POST处理"></a>GET和POST处理</h3><pre><code>GET请求的参数在URL中.
+原生node中,要想得到get参数,需要借助于url模块来识别参数字符串.
+在Express中，不需要使用url模块了.可以直接使用`req.query`对象得到GET参数
+
+GET请求的参数是隐蔽传参(在请求体中).
+POST请求在Express中不能直接获得,必须使用`body-parser`模块.使用后,将可以用req.body得到参数.
+但是如果表单中含有文件上传,那么还是需要使用`formidable`模块.
+安装:
+    npm i body-parser --save
+
+实例:
+    var express = require(&apos;express&apos;);
+    var bodyParser = require(&apos;body-parser&apos;);
+
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+
+    // 按照此值去解析post数据 application/x-www-form-urlencoded
+    app.use(bodyParser.urlencoded({ extended: false }));
+
+
+    // GET处理
+    app.get(&apos;/&apos;, function (req, res){
+        console.log(req.query);
+        res.send(&apos;GET完成&apos;);
+    });
+
+    // 获取表单页面请求
+    app.get(&apos;/form&apos;, function (req, res){
+        res.render(&apos;form&apos;);
+    });
+
+    // POST处理(表单提交请求)
+    app.post(&apos;/&apos;,function(req, res){
+        console.log(req.body);
+        res.send(&apos; POST完成&apos;);
+    });
+
+    app.use(function(req, res, next) {
+        res.status(404).send(&apos;404 NOT FOUND&apos;);
+    });
+
+
+    app.listen(3000);
+</code></pre><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><pre><code>http://www.expressjs.com.cn/guide/database-integration.html#mysql
+支持的数据类型,要用什么数据库先安装,这里以MYSQL为例;
+安装:
+    npm i mysql --save
+
+实例:
+    var express = require(&apos;express&apos;);
+    // 引入mysql模块;
+    var mysql = require(&apos;mysql&apos;);
+    var app = express();
+    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
+</code></pre><h4 id="两种连接数据库方式"><a href="#两种连接数据库方式" class="headerlink" title="两种连接数据库方式:"></a>两种连接数据库方式:</h4><h5 id="1-池连接-推荐"><a href="#1-池连接-推荐" class="headerlink" title="1) 池连接(推荐)"></a>1) 池连接(推荐)</h5><pre><code>// 创建连接池
+var pool = mysql.createPool({
+    host: &apos;127.0.0.1&apos;,
+    user: &apos;root&apos;,
+    password: &apos;123456&apos;,
+    database: &apos;s70&apos;
+});
+
+app.get(&apos;/pool&apos;, function (req, res) {
+    pool.getConnection(function(err, connection){
+        var sql = &quot;SELECT * FROM lover&quot;;
+        connection.query(sql, function (error, result) {
+            if (error) {
+                console.log(&apos;执行出错: &apos; + error);
+                return;
+            }
+            console.log(result);
+            res.send(result);
+        });
+    });
+});
+</code></pre><h5 id="2-路由连接"><a href="#2-路由连接" class="headerlink" title="2) 路由连接"></a>2) 路由连接</h5><pre><code>app.get(&apos;/&apos;, function (req, res) {
+    // 设置连接属性
+    var connection = mysql.createConnection({
+        host: &apos;127.0.0.1&apos;,
+        user: &apos;root&apos;,
+        password: &apos;123456&apos;,
+        database: &apos;s70&apos;
+    });
+    // 开启数据库连接
+    connection.connect(function (err) {
+        if (err) {
+            console.log(&apos;数据库连接错误: &apos; + err);
+            return;
+        }
+        console.log(&apos;数据库连接完成!&apos;);
+    });
+
+    // 执行SQL语句;
+    var sql = &quot;SELECT * FROM user&quot;;
+    connection.query(sql, function (error, result) {
+        if (error) {
+            console.log(&apos;执行出错: &apos; + error);
+            return;
+        }
+        console.log(result);
+        res.send(result);
+    });
+    // 结束连接
+    connection.end();
+});
 </code></pre>]]></content>
       
         <categories>
             
-            <category> 前端 </category>
+            <category> 后端 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> javascript </tag>
+            <tag> Node.js </tag>
             
         </tags>
         
@@ -2431,365 +2932,408 @@ MySQL::getConnect();
     </entry>
     
     <entry>
-      <title><![CDATA[jQuery]]></title>
-      <url>/2017/12/08/jQuery/</url>
-      <content type="html"><![CDATA[<h3 id="jQuery介绍"><a href="#jQuery介绍" class="headerlink" title="jQuery介绍"></a>jQuery介绍</h3><pre><code>1 什么是jQuery?
-    jQuery是 JavaScript 的类库
+      <title><![CDATA[linux 入门]]></title>
+      <url>/2017/12/08/linux/</url>
+      <content type="html"><![CDATA[<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><pre><code>    1        2    3    4          5             6            7
+-rw-r--r--. 1 root root     27034 12月 15 18:40 install.log
+    第一项：        权限位
+    第二项：  1     引用计数
+    第三项：  root  属主
+    第四项：  root  属组
+    第五项：        大小
+    第六项:         最后一次修改时间
+    第七项:         文件名
+</code></pre><h4 id="提示符：（特殊字符）"><a href="#提示符：（特殊字符）" class="headerlink" title="提示符：（特殊字符）"></a>提示符：（特殊字符）</h4><pre><code>[root@localhost ~]#
+当前登录用户@主机名:当前所在目录$
 
-2 jQuery版本
-    jQuery 1.X    支持IE
-    jQuery 2.X    IE9+  其他...
-</code></pre><h3 id="jQuery的基本语法"><a href="#jQuery的基本语法" class="headerlink" title="jQuery的基本语法"></a>jQuery的基本语法</h3><pre><code>1.jquery标准的使用方式:
-      1.1 JQ 标准入口
-        $(document).ready(function() {
-            (JS / JQ)代码
-        });
+    #       超级用户
+    $       普通用户
 
-    1.2 JQ 简写
-        $(function() {
-            (JS / JQ)代码
-        });
+    当前所在目录：~  用户家目录
+    管理员          /root
+    普通用户        /home/用户名
+</code></pre><h4 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h4><pre><code>权限位:
+    1 234 567 8910
+    - rwx rwx ---
+    第一位：代表文件类型
+            -   普通文件
+            d   目录文件
+            l   链接文件
+    后九位：
+            属主权限    u=user
+            属组权限    g=group
+          其他人权限    o=other
 
-    1.3 JS写法 
-        window.onload = function () {
-            (JS / JQ)代码
-        }
+对文件的意义:
+    r    读取文件内容 more
+    w    编辑 新增 修改文件内容,但是不包含删除文件  vim
+    x     可执行
 
-2.ready和onload的区别
-    1). 加载点
-        ready 文档中 DOM加载完就触发
-        onload 文档中的一且都加载完才触发
-    2). 绑定
-        ready可以多次绑定,且都会触发
-        onload 后面的事件会覆盖前面
+对目录的意义:
+    r    可以查询目录下文件名    ls
+    w    对目录具有增删改查的权限
+    x    可以进入目录
 
-3.链式操作风格
-    JQ.css().css();
+权重:
+     r     4    可读
+     w     2    可写
+     x     1    可执行
+</code></pre><h2 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h2><h5 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令:"></a>查看命令:</h5><pre><code>ls             显示目录文件
+ls -l         长格式显示
+ls -a        显示所有文件
+ls -all        显示所有文件(长格式)
+ls -hl        文件大小显示为常见大小单位 K M G
+ls -d        显示目录本身,而不是里面的子文件
+ls (路径)
 
-4.jQueryDOM 与 JSDOM 的区别 以及相互转化
-    区别:
-        JQDOM  通过 $() 获取到的数组对象
-        JSDOM  通过 原生方法 获取到的元素对象
-    转换:
-        JSDOM ---&gt; JQDOM    $(jsdom)
-        JQDOM ---&gt; JSDOM    jqdom[index]
+du -sh 文件/目录     查看文件/目录的实际大小
 
-5.jquery命名冲突
-    $ 的原意就是jQuery
-    也可以var 变量 = jQuery;
-</code></pre><h4 id="JQ-元素选择器"><a href="#JQ-元素选择器" class="headerlink" title="JQ 元素选择器"></a>JQ 元素选择器</h4><pre><code>1 基本选择器
-    *                    通配符选择器
-    #id                  ID选择器
-    .class               CLASS选择器
-    tagName              标签选择器
-    selector,selector      组合/分组选择器
+netstat -ntlp    查看所有端口
+lsof -i tcp:80     查看80端口占用情况
 
-2 层级选择器
-    selector selector  所有的后代元素
-    selector&gt;selector  所有的子元素
-    selector+selector  紧邻着的下一个元素
-    selector~selector  紧邻着的所有元素
+ps -A            查看全部进程
+ps -C 进程名        查看某一条进程
+</code></pre><h5 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令:"></a>目录操作命令:</h5><pre><code>切换:
+    cd            切换到登录用户家目录
+    cd -        切换到上次操作的目录
+    cd..        切换到上一级目录
+    cd /usr/local/src     (路径)
+    相对路径:参照当前所在的目录,进行查找.先确定当前所在目录.
+    绝对路径:从根目录开始指定,一级一级递归查找.
 
-3 过滤选择器
-    :first      首个
-    :last       最后一个
-    :eq(index)  指定第几个
-    :lt(index)  索引小于
-    :gt(index)  索引大于
-    :odd         索引为奇数
-    :even        索引为偶数 0也算作为偶
-    :header      所有的h标签
-    :not(selector) 排除
+linux常见目录:
+    /            根目录
+    /bin        命令保存目录(普通用户就可以读取的命令)
+    /boot        启动目录,启动相关文件
+    /dev        设备文件保存目录
+    /etc        配置文件保存目录
+    /home        普通用户的家目录
+    /mnt        系统挂载目录
+    /media        挂载目录
+    /root        超级用户的家目录
+    /tmp        临时目录
+    /sbin        命令保存目录(超级用户才能使用的目录)
+    /proc        直接写入内存
+    /usr        系统软件资源目录
+    /var        系统相关文档内容
 
-4 内容选择器
-    :contains(text)  匹配包含指定文本的元素
-    :has(selector)   匹配含有指定选择器的元素的元素
-    :parent          匹配素有含子元素或非空的元素
-    :empty           匹配所有空元素
+创建目录:
+    mkdir 目录名
+    mkdir /root/include/upload/     递归创建目录
 
-5 可见性选择器
-    :visible       匹配所有可见元素
-    :hidden        匹配所有不可见元素
+删除目录:
+    rm -rf 目录名        文件/目录
+    rm -r  目录名        删除目录
+    rm -f  目录名        强制
+</code></pre><h5 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h5><pre><code>创建空文件:
+    touch 文件名
 
-6 属性选择器
-    selector[attrname]             选择有指定属性的元素
-    selector[attrname=&apos;value&apos;]     值等于value的元素
-    selector[attrname!=&apos;value&apos;]    值不等于value的元素
-    selector[attrname^=&apos;value&apos;]    值以value的开头元素
-    selector[attrname$=&apos;value&apos;]    值以value的结尾元素
-    selector[attrname*=&apos;value&apos;]    值包含value的元素
-    [][][] ....   多个属性选择器,用于做进一步筛选操作的
+查看文件内容:
+    cat 文件名
 
-7 子元素选择器
-    :first-child    是否是首个子元素
-    :last-child     是否是最后一个子元素
-    :nth-child(n)   是否是第N个子元素
-    :only-child     是否是独子元素
+分屏显示文件内容
+    more 文件名
+</code></pre><h5 id="复制与剪切"><a href="#复制与剪切" class="headerlink" title="复制与剪切"></a>复制与剪切</h5><pre><code>复制粘贴:
+    cp     源文件 目标位置
+    cp -r     复制目录
+    cp -a     所有(包括文件属性一起复制)
 
-8 表单选择器
-    :input            
-    :text
-    :password
-    :radio
-    :checkbox
-    :submit
-    :reset
-    :button
-    :file
-    :hidden
-    :image
+    cp 源文件 目标位置 新名字         (改名复制)
+剪切:
+    mv 源文件 目标位置
+改名:
+    mv 源文件名 新文件名
+</code></pre><h5 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h5><pre><code>chmod  u+x  index.php          属主加上执行权限
+chmod  u-x  index.php          属主去除执行权限
+chmod  u=rwx index.php        属主添加读写执行权限
 
-9 表单对象选择器
-    :enabled   匹配所有可用元素
-    :disabled  匹配所有不可用元素
-    :checked   匹配所有被选中元素
-    :selected  匹配所有选中的option元素
-</code></pre><h4 id="JQ-筛选方法"><a href="#JQ-筛选方法" class="headerlink" title="JQ 筛选方法"></a>JQ 筛选方法</h4><pre><code>1.过滤
-    :eq(index)           过滤出指定的某个
-    :first()             过滤出首个
-    :last()              过滤出最后一个
-    :filter(selector)    过滤出满足前面条件的
-    :not(selector)       过滤排除,与以上相反
-    :slice(start, end)   截取出一段
-    :has(selector)       含有指定选择器的元素的元素
+chmod  755  index.php        权重表示法
+chmod  644  index.php
+</code></pre><h5 id="属主和属组命令"><a href="#属主和属组命令" class="headerlink" title="属主和属组命令"></a>属主和属组命令</h5><pre><code>useradd jack    添加用户
+passwd    jack    设定用户密码
 
-    // 条件判断 返回布尔值;
-    .hasClass()          判断前面的DOM集合中,是否包含指定class类
-    .is()                判断前面的DOM集合中,是否有符合指定表达式的
-    .map()               对JQDOM遍历,并且可以取得一部分值出来
-2 查找
-    (往里找)
-        .children()       只找子元素
-        .find()           找所有后代元素
-    (往外找)
-        .parent()         父元素
-        .parents()        父元素们
-        .parentsUntil()   父元素们,到指定的为止
-        .offsetParent()   获取已定位的父元素
-    (往后找)
-        .next()           紧邻着的一个同辈元素(后)
-        .nextAll()        紧邻着的所有同辈元素(后)
-        .nextUntil()      紧邻着的同辈元素,直到指定的为止(后)
-    (往前找)
-        .prev()           紧邻着的一个同辈元素(前)
-        .prevAll()        紧邻着的所有同辈元素(前)
-        .prevUntil()      紧邻着的同辈元素,直到指定的为止(前)
+改变文件属主:
+        chown 用户名    文件名    
+        chown jack     index.php
+同时改变属主和属组:
+        chown 用户名:组名     文件名    
+        chown jack:jack index.php
+</code></pre><h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><pre><code>man 命令名
+man cat
+</code></pre><h5 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h5><pre><code>1) 查找命令的命令,同时看到帮助文档的位置
+    whereis 命令名
 
-        .siblings()       除了元素自己以外的所有同辈元素
+2) 查找文件
+    find 查找位置 -name 文件名
+    find / -name index.php        按照文件名查找
+    find / -iname index.php        不区分大小写
 
-3 串联
-        .add()            向集合内追加新元素
-        .andSelf()        之前选中的集合,加入到当前集合内
-        .end()            返回最后一个 破坏性操作之前的样子
-        .contents()       获取所有的子节点(包括文本)
-</code></pre><h4 id="JQ-文档处理方法"><a href="#JQ-文档处理方法" class="headerlink" title="JQ 文档处理方法"></a>JQ 文档处理方法</h4><pre><code>1 内部插入
-    .append()     内部最后
-    .appendTo()   --
-    .prepend()    内部最前
-    .prependTo()
+3) 查找字符串
+    grep &quot;字符串&quot; 文件名
+    grep -v &quot;字符串&quot; 文件名     (反向选择)
+    grep -i    &quot;字符串&quot; 文件名    (不区分大小写)
+</code></pre><h5 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h5><pre><code>压缩包后缀名:
+        .tar.gz        z
+        .tar.bz2    j
+压缩:
+    tar -zcvf 压缩文件/目录 源文件
+    tar -zcvf bbs.tar.gz bbs
 
-2 外部插入
-    .after()       外部最后
-    .insertAfter() --
-    .before()       外部最前
-    .insertBefore()  --
+解压缩:
+    tar -zxvf bbs.tar.gz
+简写:
+    tar -zxf bbs.tar.gz
+解压到指定位置:
+    tar -zxf bbs.tar.gz -C /tmp/
+语义:
+    -z: 识别.gz格式
+    -c: 压缩
+    -v: 显示压缩过程
+    -f: 指定压缩包名
+    -x: 解压
+    -t: 查看不解压
 
-3 包裹
-    .wrap()      将集合内的每个元素,包裹在指定元素内
-    .wrapAll()   将整个集合元素,包裹在指定元素内
-    .wrapInner()  包裹在里面
-    .unwrap()    去掉包裹
+... -C: 指定解压位置
+</code></pre><h5 id="关闭和重启"><a href="#关闭和重启" class="headerlink" title="关闭和重启"></a>关闭和重启</h5><pre><code>关机:
+    shutdown -h now
+重启:
+    reboot
+</code></pre><h5 id="挂载命令"><a href="#挂载命令" class="headerlink" title="挂载命令"></a>挂载命令</h5><pre><code>linux所有存储设备都必须挂载使用
+光盘挂载
+    mount    设备描述文件     挂载点(已经存在的空目录)
+    mount    /dev/sro    /mnt/cdrom
+光盘卸载
+    umount    /dev/sro
+    umount    /mnt/cdrom    
+</code></pre><h5 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h5><pre><code>ifconfig     查看本机网络信息
+ifconfig eth0 IP地址     设置临时IP
 
-4 替换
-    .replaceWith()  替换谁
-    .replaceAll()   谁被替换
+快捷键:
+        CTRL+C 终止命令
+        CTRL+A 光标到行首
+        CTRL+E 光标到行尾
+        CTRL+U 剪切光标前内容
+        CTRL+K 剪切光标后内容
+        CTRL+Y 粘贴剪切的内容
+        CTRL+L 清理屏幕
+        CTRL+D 注销登陆相当于exit和logout或者保存
+        CTRL+Z 将进程在后台挂起
 
-5 删除
-    .remove()   删除元素
-    .empty()    清空子节点
+        |            管道符
+        tab            补全功能
+        ``          命令替换符  将一个命令的输出作为另一个命令的参数
+          ls -l `which touch`     找到touch命令的路径，然后用ls查看属性
+</code></pre><h2 id="VIM编辑器-文件操作"><a href="#VIM编辑器-文件操作" class="headerlink" title="VIM编辑器(文件操作)"></a>VIM编辑器(文件操作)</h2><pre><code>文件写入:
+    echo &apos;内容&apos; &gt;&gt; 文件名
+文件编辑:    
+    vi 文件名     编辑该文件
 
-6 复制
-    .clone()
-</code></pre><h4 id="JQ-属性方法"><a href="#JQ-属性方法" class="headerlink" title="JQ 属性方法"></a>JQ 属性方法</h4><pre><code>1 属性操作
-    HTMLDOM
-        .prop()         设置属性
-        .removeProp()    删除属性
-    XMLdom
-        .attr()            设置属性
-        .removeAttr()    删除属性
+    a    输入
+    i    插入
+    o    新增下一行
 
-2 CSS 类  (class)
-    .addClass()     添加一个类属性
-    .removeClass()  移除一个类属性
-    .toggleClass()   以上俩,来回切换
+    A    到行的尾部
+    I    到行的头部
+    O    上一行
 
-3 HTML代码/文本/值
-    .html()   相当于innerHTML
-    .text()   相当于innerText
-    .val()    相当于.value 表单控件的值
-</code></pre><h4 id="CSS-操作"><a href="#CSS-操作" class="headerlink" title="CSS 操作"></a>CSS 操作</h4><pre><code>连贯写法:
-    css(&apos;attr&apos;, &apos;value&apos;).css(&apos;attr&apos;, &apos;value&apos;);
-JSON写法:
-    css({
-        &apos;attr&apos;: &apos;value&apos;,
-        &apos;attr&apos;: &apos;value&apos;,
-        &apos;attr&apos;: &apos;value&apos;
-    });
-</code></pre><h4 id="位置类方法"><a href="#位置类方法" class="headerlink" title="位置类方法"></a>位置类方法</h4><pre><code>offset()     获取/设置 元素相对于body的位置  .left / .top
-position()   获取 已定位的父元素的位置
+    :w    写入
+    :wq = :x = ZZ    保存退出
+    :q!    不保存退出
 
-scrollLeft() 获取/设置 滚动条距离左/上的像素值
-scrollTop()
-</code></pre><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><pre><code>    height()        获取/设置 css的元素宽/高
-    width()
+命令模式操作:
+    hjkl        光标移动
+    :n(数字)        移动到第n行
+    gg            移动到文件头
+    G            移动到文件尾
 
-    innerHeight()      获取/设置 元素宽/高 +  内边距
-    innerWidth()
+    x            删除单个字母
+    n(数字)+x    删除n个字母
+    dd            删除单行 剪切
+    ndd            删除多行    剪切
+    p            粘贴
+    dG            从光标所在行删除到文件尾
 
-    (标准盒子模型)
-    outerHeight()     获取/设置 元素宽/高 +  内边距 + 边框
-    outerWidth()
+    yy            复制单行
+    nyy            多行复制
 
-其他尺寸:
-    $(window).height() //浏览器时下窗口可视区域高度
-    $(document).height() //浏览器时下窗口文档的高度
-    $(document.body).height()//浏览器时下窗口文档body的高度
-    $(document.body).outerHeight(true)//浏览器时下窗口文档body的总高度 包括border padding margin
-    $(window).width() //浏览器时下窗口可视区域宽度
-    $(document).width()//浏览器时下窗口文档对于象宽度
-    $(document.body).width()//浏览器时下窗口文档body的高度
-    $(document.body).outerWidth(true)//浏览器时下窗口文档body的总宽度 包括border padding margin
-    $(document).scrollTop() //获取滚动条到顶部的垂直高度
-    $(document).scrollLeft() //获取滚动条到左边的垂直宽度
-</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><pre><code>1 绑定事件
-    1). 简写方式 : 
-            JQDOM.event(function(){
+    u            撤销
+    Ctrl + r    反撤销
 
-            });
-    2). 标准方式  
-            JQDOM.bind(&apos;event&apos;, function(){
+    :set nu        显示行号
+    :set nonu    不显示行号
 
-            });
-    3). 一次性 事件 
-            JQDOM.one(&apos;event&apos;, function(){
+    r+(n)        替换一个字符
 
-            });
+    /字串        查找        n下一个 N上一个
 
-2 解绑定
-    unbind()
+    替换:
+        :范围/原字串/新字串/g
+        ：1,10s/old/new/g         替换1到10行的所有old为new
+        ：%s/old/new/g            替换整个文件的old为new
+                     g           范围内所有old换为new
 
-3 事件委派
-    3.1) live() 事件委派  1.9-
-        JQDOM.live({
-            &quot;event&quot;:function (){
-                // 内容
-            },
-               &quot;event&quot;:function (){
-                // 内容
-            }
-        });
+        :1,10s/^/#/g            注释
+        :6,10s/^#//g            取消注释
 
-    3.2) on()   JQ 1.9+
-        $(document).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
-            // 内容
-        }).on(&apos;event&apos;, &apos;JQDOM&apos;, function (){
-            // 内容
-        });
+        :11,20s/^/\/\//g        注释
+        :16,20s/^\/\///g        取消注释
+</code></pre><h2 id="软件包安装"><a href="#软件包安装" class="headerlink" title="软件包安装"></a>软件包安装</h2><pre><code>软件包分类:
+    1) 源码包    .tar.gz     .tar.bz2
+    2) 二进制包    .rpm
+</code></pre><h4 id="二进制宝安装"><a href="#二进制宝安装" class="headerlink" title="二进制宝安装"></a>二进制宝安装</h4><pre><code>A) rpm手动安装
+    1) 光盘挂载
+    2) 解决文件依赖关系
+    3) 安装tree
+    4) 基本命令
+        rpm ivh 软件包
+        -i 安装     -v 显示详细信息 -h 显示进度
 
-4 事件的自动触发
-    JQDOM.trigger(&apos;event&apos;);
-    // 自动触发的事件必须是已存在的!
+        升级
+        rpm -Uvh 软件包
 
-5 阻止默认事件 和 事件冒泡
-    在默认事件内 /  冒泡事件内 
-    return false;
-</code></pre><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3><pre><code>1 基本
-    .show()
-    .hide()
-    .toggle()
-2 滑动效果
-    .slideDown()
-    .slideUp()
-    .slideToggle()
-3 淡入淡出
-    .fadeIn()
-    .fadeOut()
-    .fadeToggle()
-    .fadeTo()   0为完全透明 1为不透明
-4 自定义动画
-    JQDOM.animate({
-       // 内容
+        卸载
+        rpm -e 软件包
 
-    },time);            自定义动画
+B) yum命令 二进制包自动化管理
+        yum  -y  install  软件包       安装          
+        yum  -y  update   软件包       升级
+        yum  -y  remove   软件包       卸载
+    光盘作为yum源：
 
+        1   cd  /etc/yum.repos.d/
+            mv  CentOS-Base.repo  /root/
 
-   .stop()                停止
-   .delay()                延时
-</code></pre><h2 id="JQ-AJAX"><a href="#JQ-AJAX" class="headerlink" title="JQ-AJAX"></a>JQ-AJAX</h2><pre><code>1） load方式:
-        JQDOM.load(&apos;URL地址&apos;);
+        2   mount /dev/sr0  /mnt/cdrom
 
-2） GET方式:
-        $.get(&apos;URL地址&apos;,function(参){
-               // 响应处理行
-        });
+        3   vim  /etc/yum.repos.d/CentOS-Media.repo
+            baseurl=file:///mnt/cdrom/  指定yum源位置
+            enabled=1                   yum源文件生效
 
-3） POST方式:
-        $.post(&apos;URL地址&apos;,function(参){
-               // 响应处理行
-        });
+        yum  -y  install  gcc   (gcc是c语言编译器，不装gcc，源码包不能安装)
+</code></pre><h4 id="源码包安装"><a href="#源码包安装" class="headerlink" title="源码包安装"></a>源码包安装</h4><pre><code>1   远程传输工具传输apache到linux。
+    httpd-2.2.9.tar.gz 
+2   安装
+    1） 解压
+    2） cd  解压目录         
+    3） 查看安装文档
+        INSTALL     README
+    4） 编译前准备
+        ./configure  --prefix=/usr/local/apache2
+        功能：
+            1   检测系统环境，生成Makefile
+            2   定义软件选项
+    5)  编译              
+        make
+    6）编译安装
+        make  install
 
-4)  AJAX()方式: （推荐）
-        $.ajax({
-            type : &apos;Method&apos;,                
-            url : &apos;URL&apos;,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
-</code></pre><h3 id="AJAX参数处理"><a href="#AJAX参数处理" class="headerlink" title="AJAX参数处理"></a>AJAX参数处理</h3><pre><code>1） GET/POST 演示：
-        // 需要先获取参数内容；
-            var num1 = $(&apos;#num1&apos;).val();
-             var num2 = $(&apos;#num2&apos;).val();
-         $.get(&apos;URL&apos;,{a:num1,b:num2},function(data){
+    报错判断：
+        第一：安装过程是否停止
+        第二：注意error  warning  no  等错误报警
 
-        })；
+3   启动
+    /usr/local/apache2/bin/apachectl  start
 
-2）ajax() 演示:
-        $.ajax({
-            type : &apos;post&apos;,
-            url : &apos;URL&apos;,
-            data : &apos;a=&apos;+num1+&apos;&amp; b=&apos;+num2,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
+4   卸载      
+    直接删除安装目录
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 工具 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JS常用函数]]></title>
+      <url>/2017/12/08/JS%E5%87%BD%E6%95%B0/</url>
+      <content type="html"><![CDATA[<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><pre><code>不常用：
+        str.length         返回字符串长度（中文只占一个位置）
+        str.anchor        锚点
+        str.bold        加粗
+常用：
+        str.charAt(下标)    
+        获取指定下标的字符，从0开始；
 
- 3) JS串行化数据:
-        var info = $(&apos;#my input&apos;).serialize();
-        // 前提要有表单,且name属性存在.串行化的数据可以直接送进data里;
-</code></pre><h3 id="处理JSON数据"><a href="#处理JSON数据" class="headerlink" title="处理JSON数据"></a>处理JSON数据</h3><pre><code>1) GET/POST 方式:
-        $.get(&apos;URL&apos;, function (参){
+        str.indexOf(&apos;字串&apos;)    
+        返回首个给定字串的索引位置，没有则返回-1；
 
-        },&apos;json&apos;);
+        str.lastIndexOf(&apos;字串&apos;)
+        返回最后一个给定字串的索引位置，没有则返回-1；
 
-2) ajax 方式:
-        $.ajax({
-            type : &apos;post&apos;,
-            url : &apos;URL&apos;,
-            dataType : &apos;json&apos;,
-            success : function(参){
-                // 响应处理行
-            },
-            error : function(){
-                // 错误处理行
-            }
-        });
+        str.concat(&apos;字串&apos;)
+        向字串末尾追加字串，生成新字串；
+
+        str.substr(下标)             截取从指定下标开始至结束的字串;
+        str.substr(下标,步长)        截取从指定下标开始至步长的字串;
+
+        str.substring(下标,下标)        根据给定下标范围截取字串,不含最大范围;
+        str.slice(下标,下标)            同substring(支持负数,负数为倒叙)
+
+        str.toUpperCase()            大写转换    
+        str.toLowerCase()            小写转换
+
+        str.replace(&apos;初始值&apos;,&apos;新值&apos;)        替换    也支持正则 /正则/g
+
+        str.match(/正则/)
+        正则匹配首个符合条件的字串,成功返回字串,失败返回null;
+
+        str.search(/正则/)
+        正则匹配首个符合条件的字串,成功返回该字串下标,失败返回-1;
+
+        str.split()
+        根据给定元素将字串切割成数组,默认(空)不分割,空字符代表全部元素;
+</code></pre><h3 id="正则函数"><a href="#正则函数" class="headerlink" title="正则函数"></a>正则函数</h3><pre><code>原始字串:
+        var str = &apos;123456789&apos;;             
+正则声明:
+        var reg = /^\d{3}$/;            
+        var reg = new RegExp(/\w{6}/);
+
+reg.test(str);
+用正则匹配字串,成功返回true,不成功放回false;
+
+reg.exec(str);
+用正则匹配字串,成功返回关联形数组,失败返回NULL;
+</code></pre><h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><pre><code>var data = new Date();
+创建一个时间;
+
+setFullYear();        设置公元时间
+getyear();            获取当前年数 (1990-至今)
+getFullYear();        获取当前公元年
+getMonth();            获取当前月
+getDate();            获取当前日期 几号
+getDay();            获取当前日  周几
+getHours();            获取当前小时
+getMinutes();        获取当前分钟
+getSeconds();        获取当前秒
+getMillseconds();    获取当前毫秒
+getTime();            获取时间戳
+getUTCHours();        获取UTC时间
+
+toString()            同date输出
+toUTCString()        UTC时间字串
+toLocaleString()    本地时间字串
+</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><pre><code>Math.PI            圆周率
+Math.E            自然常数
+Math.abs        绝对值
+Math.sqrt        开根号
+Math.max        最大数
+Math.min        最小数
+Math.floor        舍小取整
+Math.ceil        进一取整
+Math.round        四舍五入
+Math.random        随机数
+
+银行家四舍六入
 </code></pre>]]></content>
       
         <categories>
@@ -2801,1141 +3345,7 @@ scrollTop()
         
         <tags>
             
-            <tag> jQuery </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Node.js - express]]></title>
-      <url>/2017/12/08/Node.js-express/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>Express框架 基于 Node.js 平台，快速、开放、极简的 web 开发框架。 它是用于后台NodeJs的框架,与JQuery/Bootstrap/vue.js/AngularJs这类前端框架是不一样的! Express 不对 Node.js 已有的特性进行二次抽象，我们只是在它之上扩展了 Web 应用所需的基本功能。丰富的 HTTP 快捷方法和任意排列组合的 Connect 中间件，让你创建健壮、友好的 API 变得既快速又简单。</p>
-<p>对比原生Node.js 使用原生Node.js开发,会发现有很多问题: - 呈现静态页面很不方便,需要处理每个HTTP请求,还要考虑304缓存问题. - 路由处理代码不直观清晰,需要写很多正则表达式和字符串函数. - 开发者不能集中精力写业务,要考虑很多其他的东西</p>
-<p>官网：<a href="http://expressjs.com/" target="_blank" rel="noopener">http://expressjs.com/</a></p>
-<p>中文官网：<a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">http://www.expressjs.com.cn/</a></p>
-<p>安装 npm install express –save<br>即可安装最新版本的Express;<br>Express4.x与3.x版本的差别非常大，我们讲解4.x</p>
-</blockquote>
-<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>1.引入框架模块
-    var express = require(&apos;express&apos;);
-
-2.创建服务器 
-var app = express();
-
-3.使用EJS模块
-app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-
-4.对静态目录的处理(多MIME类型自动处理)
-app.use(&apos;/static&apos;, express.static(&apos;./static&apos;));
-
-5.设置默认路由规则
-app.get(&apos;/&apos;, function (req, res) {
-    res.send(&apos;hello, Express~&apos;);
-
-6.设置GET路由
-app.get(&apos;/test&apos;, function (req, res) {
-    res.send(&apos;这是Test页面GET&apos;);
-});
-
-7.设置POST路由
-app.post(&apos;/test&apos;, function (req, res) {
-    res.send(&apos;这是Test页面POST&apos;);
-});
-
-8.设置EJS页面并输出
-app.get(&apos;/users&apos;, function (req, res) {
-    res.render(&apos;user&apos;, {
-        &quot;userlist&quot; : [
-            &apos;一拳超人&apos;,
-            &apos;小金刚&apos;,
-            &apos;白小飞&apos;,
-            &apos;路飞&apos;,
-            &apos;机器猫&apos;
-        ]
-    });
-});
-
-9.监听服务器(开启)
-app.listen(3000);
-</code></pre><h3 id="路由详解"><a href="#路由详解" class="headerlink" title="路由详解"></a>路由详解</h3><pre><code>路由的设置的基本格式:
-    app.METHOD(PATH, HANDLER)
-注释:
-    用app调用请求方式(METHOD),请求路径(path),函数执行(handler);
-    常用的请求方式(get,post,put)
-</code></pre><blockquote>
-<p>Express的路由处理机制很灵活,可以把它想象成漏斗形式.通过路由中间件的特性来逐个匹配各个路由规则,得到最终结果并返回;对路径大小写不敏感,且支持正则匹配路径和参数等;</p>
-</blockquote>
-<pre><code>实例:
-
-    var express = require(&apos;express&apos;);
-    var app = express();
-    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-
-    // 设置中间件,当接收到能匹配系统允许的请求方式时,都会进入这里,并通过next()传递下去;
-    app.all(&apos;/t&apos;, function (req, res, next) {
-        console.log(new Date().toString());
-        next();
-    });
-
-    // 设置GET路由
-    app.get(&apos;/t&apos;, function (req, res) {
-        res.send(&apos;这是GET&apos;);
-    });
-    // 设置POST路由
-    app.post(&apos;/t&apos;, function (req, res) {
-        res.send(&apos;这是POST&apos;);
-    });
-    // 设置PUT路由
-    app.put(&apos;/t&apos;, function (req, res) {
-        res.send(&apos;这是PUT&apos;);
-    });
-
-    // 路由方法,默认匹配pathname部分
-    // 对大小写不明感
-    app.get(&apos;/aaa&apos;, function (req, res) {
-        //  获取GET参数
-        console.log(req.query);
-        res.send(&apos;这是3A页面&apos;);
-    });
-
-    // 路由路径 正则规则   /stu/15156165/s70
-    app.get(/^\/stu\/(\d{10})\/(\w+)$/, function (req, res) {
-        // 正则中的子模式(括号)部分,可以用params取出
-        res.send(&apos;学员学号: &apos; + req.params[0]);
-        console.log(req.params);
-    });
-
-    // 路由参数
-    app.get(&apos;/tch/:tid&apos;, function (req, res) {
-        res.send(&apos;老师的工号: &apos; + req.params.tid);
-        console.log(req.params);
-    });
-
-    // 多个路由参数,并作限制
-    app.get(&apos;/goods/:name/:num&apos;, function (req, res) {
-        var name = req.params.name;
-        var num = req.params.num;
-        if (/\d+/.test(num)) {
-            res.send(&apos;商品名: &apos;+ name + &apos;,入库: &apos;+ num);
-        } else {
-            res.send(&apos;请填写正确的数量!&apos;);
-        }
-    });
-
-    app.listen(3000);
-</code></pre><h4 id="请求-响应-中间件"><a href="#请求-响应-中间件" class="headerlink" title="请求 响应 中间件"></a>请求 响应 中间件</h4><pre><code>1. 请求对象 req
-    这里的req和原生里没有区别,返回的是请求对象的相关数据;
-    常用方式:
-        req.params        // 解析请求对象
-
-2. 响应对象 res
-    框架比起原生的使用方式显得更加直观和清晰;
-    常用方式:
-        res.download()        提示下载文件。
-        res.end()            终结响应处理流程。
-        res.json()            发送一个 JSON 格式的响应。
-        res.jsonp()            发送一个支持 JSONP 的 JSON 格式的响应。
-        res.redirect()        重定向请求。
-        res.render()        渲染视图模板。
-        res.send()            发送各种类型的响应。
-        res.sendFile        以八位字节流的形式发送文件。
-        res.sendStatus()    设置响应状态代码，并将其以字符串形式作为响应体的一部分发送。
-3. 中间件句柄 next
-    简单理解的:如果你不希望这个请求在这里被终结,那就用next(),将它丢给其他路由去处理;而当一个路由用了next参数时,它就是一个中间件;
-</code></pre><h4 id="路由重名"><a href="#路由重名" class="headerlink" title="路由重名"></a>路由重名</h4><pre><code>假设我们遇到路由重名问题,可以通过中间件来解决该问题;
-
-实例:
-    app.get(&apos;/kk&apos;, function (req, res, next) {
-    console.log(1);
-    next();
-    });
-
-    app.get(&apos;/kk&apos;, function (req, res) {
-        console.log(2);
-        res.end(&apos;KK响应完成&apos;);
-    });
-分析:
-    如果不设置next()中间件,那访问/kk的时候,永远只会在log(1)的区间;因为log(2)的访问路径重名了,这里用next()可以完美解决这个问题;
-</code></pre><h4 id="路由匹配冲突"><a href="#路由匹配冲突" class="headerlink" title="路由匹配冲突"></a>路由匹配冲突</h4><pre><code>在实际项目当中,很有可能会遇到路由匹配冲突的问题,我们同样可以通过中间件的方式来解决;    
-
-app.get(&apos;/:goods/:num&apos;, function (req, res, next) {
-    if (商品名判断) {
-        console.log(1);
-        res.send(&apos;商品: &apos;+ req.params.goods + &apos;数量: &apos;+ req.params.num);
-    } else {
-        next();
-    }
-});
-
-app.get(&apos;/admin/login&apos;, function (req, res) {
-    console.log(2);
-    res.send(&apos;后台登录&apos;);
-});
-
-分析:
-    因为路由1直接匹配参数,导致访问后续路由的时候,路径会被当成参数送到路由1里;这时候,我们需要加上中间件,并在路由1里做分支判断来解决;
-</code></pre><h4 id="app-use中间件的使用"><a href="#app-use中间件的使用" class="headerlink" title="app.use中间件的使用"></a>app.use中间件的使用</h4><pre><code>app.use([path],function);
-1.这个中间件的参1是选填的,参2方法是必填的;如果不填参1默认匹配根/,填参的话,会将参数当成根目录;
-2.模糊匹配特性,比如参1为/user;它能够识别/user/.../...;
-3.我们可以利用这个特性,让用户访问任何路径都能被识别;
-
-实例:
-    app.use(function(req, res, next) {
-        console.log(new Date().toString());
-        next();
-    });
-
-    app.use(function(req, res) {
-        res.write(req.originalUrl + &quot;\n&quot;); // 完整的URL
-        res.write(req.baseUrl + &quot;\n&quot;); // 基底URL,以这个作为基础
-        res.write(req.path + &quot;\n&quot;); // 除去基底以外的子路径.
-        res.end(&apos;后台&apos;);
-    });
-
-服务和404页面的实例:
-    var express = require(&apos;express&apos;);
-    var fs = require(&apos;fs&apos;);
-    var app = express();
-    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-
-    // 静态资源服务
-    app.use(&apos;/jingtai&apos;, express.static(&apos;./static&apos;));
-
-    // 路由
-    app.get(&apos;/admin&apos;, function (req, res){
-        res.send(&apos;后台&apos;);
-    });
-
-    // 404的路由更改,必须在所有路由的末端;
-    app.use(function(req, res, next) {
-        res.status(404).render(&apos;err&apos;, {
-            &quot;errlist&quot; : [
-                &apos;您访问的页面不存在&apos;
-            ]
-        });
-    });
-
-
-    app.listen(3000);
-
-分析:
-    我们可以通过使用app.use的参数特性,伪装真实的目录名;
-</code></pre><h3 id="GET和POST处理"><a href="#GET和POST处理" class="headerlink" title="GET和POST处理"></a>GET和POST处理</h3><pre><code>GET请求的参数在URL中.
-原生node中,要想得到get参数,需要借助于url模块来识别参数字符串.
-在Express中，不需要使用url模块了.可以直接使用`req.query`对象得到GET参数
-
-GET请求的参数是隐蔽传参(在请求体中).
-POST请求在Express中不能直接获得,必须使用`body-parser`模块.使用后,将可以用req.body得到参数.
-但是如果表单中含有文件上传,那么还是需要使用`formidable`模块.
-安装:
-    npm i body-parser --save
-
-实例:
-    var express = require(&apos;express&apos;);
-    var bodyParser = require(&apos;body-parser&apos;);
-
-    var app = express();
-    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-
-    // 按照此值去解析post数据 application/x-www-form-urlencoded
-    app.use(bodyParser.urlencoded({ extended: false }));
-
-
-    // GET处理
-    app.get(&apos;/&apos;, function (req, res){
-        console.log(req.query);
-        res.send(&apos;GET完成&apos;);
-    });
-
-    // 获取表单页面请求
-    app.get(&apos;/form&apos;, function (req, res){
-        res.render(&apos;form&apos;);
-    });
-
-    // POST处理(表单提交请求)
-    app.post(&apos;/&apos;,function(req, res){
-        console.log(req.body);
-        res.send(&apos; POST完成&apos;);
-    });
-
-    app.use(function(req, res, next) {
-        res.status(404).send(&apos;404 NOT FOUND&apos;);
-    });
-
-
-    app.listen(3000);
-</code></pre><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><pre><code>http://www.expressjs.com.cn/guide/database-integration.html#mysql
-支持的数据类型,要用什么数据库先安装,这里以MYSQL为例;
-安装:
-    npm i mysql --save
-
-实例:
-    var express = require(&apos;express&apos;);
-    // 引入mysql模块;
-    var mysql = require(&apos;mysql&apos;);
-    var app = express();
-    app.set(&apos;view engine&apos;, &apos;ejs&apos;);
-</code></pre><h4 id="两种连接数据库方式"><a href="#两种连接数据库方式" class="headerlink" title="两种连接数据库方式:"></a>两种连接数据库方式:</h4><h5 id="1-池连接-推荐"><a href="#1-池连接-推荐" class="headerlink" title="1) 池连接(推荐)"></a>1) 池连接(推荐)</h5><pre><code>// 创建连接池
-var pool = mysql.createPool({
-    host: &apos;127.0.0.1&apos;,
-    user: &apos;root&apos;,
-    password: &apos;123456&apos;,
-    database: &apos;s70&apos;
-});
-
-app.get(&apos;/pool&apos;, function (req, res) {
-    pool.getConnection(function(err, connection){
-        var sql = &quot;SELECT * FROM lover&quot;;
-        connection.query(sql, function (error, result) {
-            if (error) {
-                console.log(&apos;执行出错: &apos; + error);
-                return;
-            }
-            console.log(result);
-            res.send(result);
-        });
-    });
-});
-</code></pre><h5 id="2-路由连接"><a href="#2-路由连接" class="headerlink" title="2) 路由连接"></a>2) 路由连接</h5><pre><code>app.get(&apos;/&apos;, function (req, res) {
-    // 设置连接属性
-    var connection = mysql.createConnection({
-        host: &apos;127.0.0.1&apos;,
-        user: &apos;root&apos;,
-        password: &apos;123456&apos;,
-        database: &apos;s70&apos;
-    });
-    // 开启数据库连接
-    connection.connect(function (err) {
-        if (err) {
-            console.log(&apos;数据库连接错误: &apos; + err);
-            return;
-        }
-        console.log(&apos;数据库连接完成!&apos;);
-    });
-
-    // 执行SQL语句;
-    var sql = &quot;SELECT * FROM user&quot;;
-    connection.query(sql, function (error, result) {
-        if (error) {
-            console.log(&apos;执行出错: &apos; + error);
-            return;
-        }
-        console.log(result);
-        res.send(result);
-    });
-    // 结束连接
-    connection.end();
-});
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 后端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Node.js </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[HTML5]]></title>
-      <url>/2017/12/08/HTML/</url>
-      <content type="html"><![CDATA[<h2 id="HTML5-基本语法"><a href="#HTML5-基本语法" class="headerlink" title="HTML5 基本语法"></a>HTML5 基本语法</h2><pre><code>HTML5声明
-doctype 文档类型
-!docype html 声明以html5的规则去解析 W3C的标准
-
-
-标签格式;
-        单 &lt;标签名/&gt;
-        双 &lt;标签名&gt; &lt;/标签名&gt;
-
-
-注释;
-    &lt;-- --&gt;
-    1 对代码的描述
-    2 不会显示在网页中
-    3 有助于快速恢复记忆
-    4 提高团队开发效率
-    5 注释不能嵌套使用
-</code></pre><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><h4 id="全局架构标签"><a href="#全局架构标签" class="headerlink" title="全局架构标签;"></a>全局架构标签;</h4><pre><code>html:
-    表示该标签下的都是html代码.
-head:
-    头标签主要负责,声明网页的标题.
-body
-    网页主体,页面内容都显示在里面.
-title
-    主要负责网页的标题
-</code></pre><h4 id="文本格式标签"><a href="#文本格式标签" class="headerlink" title="文本格式标签;"></a>文本格式标签;</h4><pre><code>h1-h6   标题标签
-p       段落
-b       加粗
-i       倾斜
-u       下划线
-br      换行
-hr      分割线
-del     删除线
-strong  加粗强调
-u       倾斜强调
-sub     上标标签
-sup     下标标签
-pre     原样输出
-</code></pre><h4 id="列表"><a href="#列表" class="headerlink" title="列表;"></a>列表;</h4><pre><code>ul      无序列表
-ol      有序列表
-li      配合ul和ol使用
-dl      定义列表
-dt dd   配合定义列表使用
-</code></pre><h4 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号;"></a>实体符号;</h4><pre><code>&amp;lt;    小于号
-&amp;gt;    大于号
-&amp;nbsp;  空格
-&amp;yen;   人民币
-&amp;copy;  版权符号
-&amp;copytight;
-</code></pre><h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接;"></a>超链接;</h4><pre><code>标签      a
-属性:
-    href    目的路径
-    target
-           _blank   在新窗口打开链接
-           _self    在本窗口打开链接(默认)
-    title
-        当鼠标悬停在超链接上时,显示title内容.
-网址的组成:
-    1.协议 : http https ftp file ....
-    2.域名 : www.baidu.com =&gt; ip地址 118.242.0.155
-    3.目录 : image/start/xx/hehe.jpg 网址最终要访问的地方
-        ? 之前: 网址的所在位置
-        ? 之后: 访问此网址所带的参数
-    4.参数: 参数名=参数值  (多个参数:用&amp;隔开)
-    5.锚点:
-    #锚点名
-    通过name属性设置锚点名称，通过href=&quot;链接#锚点名&quot;设置点击跳转。
-</code></pre><h4 id="多媒体图片"><a href="#多媒体图片" class="headerlink" title="多媒体图片;"></a>多媒体图片;</h4><pre><code>    标签  img
-    属性:
-        src     图片来源地址
-        width   宽度
-        height  高度
-        title   当鼠标悬停在图片上时,显示title内容
-        alt     代替无法显示时的内容
-
-相对路径
-    ./      当前目录下   (默认,可以省略)
-    ../     上一级目录下
-    ../../  上上级目录下
-
-绝对路径
-    盘符路径  C:/wamp/xx/x/x/x/x/xxx.jpg
-    网址路径 http://www.baidu.com/x/x/x/x.jpg
-
-    经过服务器: 推荐
-        认识网址
-        / : 当成www/ 等于 lovalhost/
-
-    不经过服务器
-        认识判读
-        认识网址
-        / : 当成 当前所在的盘符
-</code></pre><h4 id="多媒体音频-视频"><a href="#多媒体音频-视频" class="headerlink" title="多媒体音频/视频;"></a>多媒体音频/视频;</h4><pre><code>音频标签    audio
-属性:
-    src         音频来源地址
-    controls    播放器
-    Loop        循环播放
-    autoplay    自动播放
-
-视频标签    video
-属性:
-    src         视频来源地址
-    controls    播放器
-    loop        循环播放
-    autoplay    自动播放
-
-兼容性问题, 通过媒介标签 source来解决
-</code></pre><h4 id="表格-table"><a href="#表格-table" class="headerlink" title="表格      table"></a>表格      table</h4><pre><code>    表格标题    caption
-    表行      tr
-    表头      th
-    单元格     td
-
-常见表格属性:
-    border          边框
-    cellspacing     外边距
-    cellpadding     内边距
-    align           水平对齐
-        left,center,right
-    valign          垂直对齐
-        top,middle,bottom
-    rowspan         行合并
-    colspan         列合并
-    width
-    height
-    bgcolor         背景颜色
-    background      背景图片
-</code></pre><h4 id="表单"><a href="#表单" class="headerlink" title="表单;"></a>表单;</h4><pre><code>声明标签:       form
-    属性:
-        action : 提交到哪儿去,服务器的脚本地址
-        method : 传输方式 get post
-        enctype: multipart/form-data
-        只有文件上传时,才需要
-注意:
-1. 每个表单都必须加上name,没有name值,服务器则接收不到表单.
-2. 可手动输入表单:value可写可不写
-   不可手动输入的表单:value 必须写
-
-表单标签:      
-    类型:
-   input type = text            文本域
-                password        密码域
-                radio           单选框
-                checkbox        多选框
-                file            文件上传
-                hidden          隐藏域
-                email           邮箱
-                number          数字
-                url             网址
-                data            日期
-                search          搜索
-
-                submit          提交
-                reset           重置
-                button          自定义按钮
-
-    select  下拉框
-        option      下拉框子选项
-        optgroup    对子选项分组
-        label       组名
-
-    textarea        多文本域
-        rows        行
-        cols        列
-
-    字段集标签
-        fieldset    外框
-        legend      标题名
-
-常见表单属性
-        placeholder     背景字
-        maxlength       最大长度
-        minlength       最小长度
-        checked         单/多选默认选中
-        selected        下拉框默认选中
-        autofocus       默认焦点选中
-        autocomplete    自动提示   on / off
-        readonly        只读
-        disabled        禁用
-        required        不能为空
-        multiple        多选值
-</code></pre><h4 id="分帧"><a href="#分帧" class="headerlink" title="分帧;"></a>分帧;</h4><pre><code>小分帧标签       iframe
-    属性:
-        src             窗口内容来源
-        frameborder     窗口边框 0/ 非0
-        scrolling       滚动条是否显示 yes/no
-        name            给本窗口取个名字
-                        通过a标签跳到指定的窗口
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 前端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> HTML </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Node.js(2)]]></title>
-      <url>/2017/12/08/node.js(2)/</url>
-      <content type="html"><![CDATA[<h3 id="POST数据处理"><a href="#POST数据处理" class="headerlink" title="POST数据处理"></a>POST数据处理</h3><blockquote>
-<p>相比较GET请求，POST请求比较复杂。因为Node.js认为，使用POST请求时，数据量会比较多。为了追求极致的效率，它将数据拆分成为了众多小的数据块(chunk)，然后通过特定的事件，将这些小数据块有序传递给回调函数。</p>
-<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
-var fs = require(&apos;fs&apos;);
-var querystring = require(&apos;querystring&apos;);
-</code></pre></blockquote>
-<pre><code>var server = http.createServer(function (req, res) {
-    // 这里的req是指访问页面的GET请求;
-    if (req.url == &apos;/form&apos;) {
-        fs.readFile(&apos;./form.html&apos;, function (err, data) {
-            res.writeHead(200, {
-                &quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;
-            });
-            res.end(data);
-
-        });
-    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
-        var postData = &apos;&apos;;
-        // 监听并处理POST请求;这里data是固定参数;
-        req.addListener(&apos;data&apos;, function (chunk) {
-            postData += chunk;
-        });
-        // node为了追求极致效率,将POTS数据分割为小块的形式进行传输
-
-        // 全部传输完成,参1改成end,参2处理回调逻辑;
-        req.addListener(&apos;end&apos;, function () {
-
-            var dataObj = querystring.parse(postData);
-              // querystring.parse将POST参数解析成对象格式;需要引入模块;
-
-            res.end(&apos;POST DATA SUCCESS!&apos;);
-        });
-
-    } else {
-        res.end(&apos;404&apos;);
-    }
-
-});
-
-server.listen(3000, &apos;127.0.0.1&apos;);
-</code></pre><h3 id="文件上传处理"><a href="#文件上传处理" class="headerlink" title="文件上传处理"></a>文件上传处理</h3><pre><code>原生写POST处理,比较复杂,要写两个监听.
-文件上传业务比较麻烦.所以,用第三方模块: `formidable`
-先用NPM安装 npm install formidable --save
-</code></pre><h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
-var fs = require(&apos;fs&apos;);
-var querystring = require(&apos;querystring&apos;);
-var formidable = require(&apos;formidable&apos;);
-var datetime = require(&apos;silly-datetime&apos;);
-var path = require(&apos;path&apos;);
-
-
-var server = http.createServer(function (req, res) {
-    if (req.url == &apos;/form&apos;) {
-        fs.readFile(&apos;./form_file.html&apos;, function (err, data) {
-            res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
-            res.end(data);
-        });
-    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
-        // 进行POST 文件数据处理
-        var form = new formidable.IncomingForm();
-        form.uploadDir = &quot;./uploads&quot;;
-
-        // 该模块已经将 POST数据和文件数据 分离好了;fields是表单对象,files是文件对象;
-        // 当执行到parse的回调时,表示表单的各种数据已经接收到了; 
-        form.parse(req, function (err, fields, files) {
-
-            res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
-
-            // 文件改名
-            // 生成新名字: 时间 + 随机数 + 源文件后缀: 2017012311223301236.jpg
-            var t = datetime.format(new Date(), &apos;YYYYMMDDHHmmss&apos;);
-            var ran = parseInt(Math.random() * 10000);
-            var extname = path.extname(files.myfile.name);
-
-            // 旧文件名
-            var oldpath = &apos;./&apos; + files.myfile.path;
-            // 新文件名
-            // var newpath = &apos;./uploads/&apos; + t + ran + extname;
-            var newpath = &apos;./uploads/111&apos; + extname;
-
-            // 执行改名
-            fs.rename(oldpath, newpath, function (err) {
-                 if(err) console.log(&apos;改名失败&apos;);
-                res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
-                res.end(&apos;表单信息 处理完成111&apos;);
-            });
-
-        });
-
-    } else {
-        res.end(&apos;404&apos;);
-    }
-});
-
-
-server.listen(3000, &apos;127.0.0.1&apos;);
-</code></pre><h3 id="EJS模板使用"><a href="#EJS模板使用" class="headerlink" title="EJS模板使用"></a>EJS模板使用</h3><pre><code>http://www.embeddedjs.com/        #官网
-https://www.npmjs.com/package/ejs #npm上的ejs包
-ejs是Embedded JavaScript templates的简称,意思是嵌入式JavaScript模板.node中的后台模版.
-1.安装ejs模块
-     npm install ejs --save
-2.引入ejs模块
-    var ejs = require(&apos;ejs&apos;);
-3.创建模版(必须是字串形式)
-    var str = &apos;扎心了,老铁. 双击 &lt;%= num %&gt;&apos;;
-4.准备数据(数组形式)
-    var data = {
-        num: 6666666
-    }
-5.数据绑定
-    var html = ejs.render(str, data);
-
-6.输出
-    console.log(html);
-</code></pre><h4 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h4><pre><code>1.创建(EJS模板)
-    先用HTML文档编辑好之后,把文件后缀改成ejs即可,变量设置方式参照上文;
-2.模块部分
-    var http = require(&apos;http&apos;);
-    var fs = require(&apos;fs&apos;);
-    var ejs = require(&apos;ejs&apos;);
-
-    var server = http.createServer(function (req, res) {
-        if (req.url == &apos;/&apos;) {
-            fs.readFile(&apos;./views/index.ejs&apos;,function (err, data) {
-                // 数据处理
-                var template = data.toString();
-
-                var dict = {
-                    title  : &quot;EJS模版引擎的实用&quot;,
-                    content : &quot;我就是个段落内容&quot;,
-                    pic : &apos;./imgs/01.jpg&apos;,
-                    songci : {
-                        title : &apos;水调歌头&apos;,
-                        list : [
-                            &quot;明月几时有&quot;,
-                            &quot;把酒问青天&quot;,
-                            &quot;不知天上宫阙&quot;,
-                            &quot;今夕是何年&quot;
-                        ]
-                    }
-                }
-                // 绑定数据
-                var html = ejs.render(template, dict);
-
-                // 输出
-                res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
-                res.end(html);
-            });
-        } else if (req.url == &apos;/imgs/01.jpg&apos;) {
-            fs.readFile(&apos;./imgs/01.jpg&apos;,function (err, data) {
-                // 输出
-                res.writeHead(200, {&apos;content-type&apos;: &apos;image/jpeg&apos;});
-                res.end(data);
-            });
-        } else {
-            res.writeHead(404, {&apos;content-type&apos;: &apos;text/html&apos;});
-            res.end(&apos;404&apos;);
-        }
-    });
-
-    server.listen(3000, &apos;127.0.0.1&apos;);
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 后端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Node.js </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Node.js]]></title>
-      <url>/2017/12/08/node.js/</url>
-      <content type="html"><![CDATA[<h2 id="一-安装"><a href="#一-安装" class="headerlink" title="一.安装"></a>一.安装</h2><pre><code>下载地址:http://nodejs.cn/
-1.根据系统选择32位或64位安装包
-2.windows推荐下载.msi的安装包
-3.linux下载源码包(注意linux系统版本)
-    可以通过命令file /sbin/init 或者 file /bin/ls查看linux的系统位数.
-</code></pre><h4 id="linux-安装步骤"><a href="#linux-安装步骤" class="headerlink" title="linux 安装步骤"></a>linux 安装步骤</h4><pre><code>1.上传源码包到/node目录下
-    mkdir node  
-    将压缩包上传到该目录
-
-2.解压到当前目录(此源码包不用编译)
-    tar -xf node-v8.9.0-linux-x64.tar.xz
-
-3.移动node目录到/usr/local
-    mv node-v8.9.0-linux-x64.tar.xz /usr/local
-
-4.进入node里的bin目录,并查看相关文件
-    cd /usr/local/node/bin
-    ls 
-    里面有 node npm npx 这三个文件即可;
-
-5.在bin目录下查看Node的版本
-    ./node -v
-    如果显示版本说明正常,否则源码包可能有问题.
-
-6.设置环境变量
-    vim ~/.bash_profile
-
-    修改:PATH=SPATH:SHOME/bin:/usr/local/node/bin
-    保存退出
-
-7.重启服务
-    source ~./bash_profile
-
-8.在全局下查看node版本
-    node -v
-    npm -v
-    出现版本说明环境变量设置成功
-</code></pre><h4 id="windows安装步骤"><a href="#windows安装步骤" class="headerlink" title="windows安装步骤"></a>windows安装步骤</h4><pre><code>1.找到安装包
-2.双击安装,一直下一步至结束.
-3.安装完成后,用cmd或cmder查看版本
-    node -v
-    出现版本说明安装成功,环境变量自动生成.
-</code></pre><h2 id="二-node-js的特点"><a href="#二-node-js的特点" class="headerlink" title="二.node.js的特点"></a>二.node.js的特点</h2><pre><code>1.它既是语言,又是平台.
-2.单线程 | 非阻塞I/O | 事件驱动
-
-    1). 单线程
-        所有客户端请求的连接 都使用一个线程来处理.
-        Node.js不是为每个连接创建一个新的线程,而是仅仅使用一个线程,来处理所有业务逻辑.
-        单线程带来的好处,系统不在有线程的创建和销毁的额外开销.(内存换页)
-
-    2). 非阻塞I/O
-        I: 输入 input
-        O: 输出 output
-        I/O操作: 读写数据库/读写文件/执行运算/网络通讯
-        I/O操作不会阻塞程序的运行
-
-        在阻塞模式下,一个线程只能处理一项任务,想要提高吞吐率(并发量)必须通过多线程.
-        而非阻塞模式下,一个线程 永远在执行运算操作,这个线程的利用率是满载的.
-
-
-    3). 事件驱动
-        客户端 请求建立连接，提交数据等行为，就会触发 相应的事件.
-        在Node中，在一个时刻，只能执行一个事件回调函数，但是在执行 一个事件回调函数的中途，
-        可以转而处理其他事件（比如，又有新用户连接了），然后返回继续执行原事件的回调函数，这种处理机制，称为“事件环”机制.
-
-    Node.js底层是C++(V8引擎也是C++写的).底层代码中，近半数都用于事件队列、回调函数队列的构建.
-    用事件驱动 来完成服务器的 任务调度,是Node.js中 真正底层核心逻辑.
-</code></pre><h2 id="三-常用模块"><a href="#三-常用模块" class="headerlink" title="三.常用模块"></a>三.常用模块</h2><pre><code>简单理解:
-    把Node.js当做一台空服务器,模块的作用就是在这台服务器上嵌入增加功能;
-</code></pre><h3 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h3><pre><code>1.引入http模块:
-    var http = require(&apos;http&apos;);
-2.主机名:
-    var hostname = &apos;IP或者域名&apos;;
-3.端口:
-    var port = 1024 ~ 65535; (建议TCP端口范围)
-4.创建服务器:
-    var server = http.createServer(回调函数);
-5.回调函数:
-    function(req,res){}
-6.回调传参:
-    1) 请求对象(request)
-        req        // 有请求时,自动接受该请求的相关参数;
-    2) 响应对象(response)
-        res        // 响应时的数据处理;
-
-        常用:
-            res.writeHead();设置HTTP响应头信息;
-            res.end();        输出响应结果;
-7.运行服务器:
-    server.listen(port,hostname,回调函数);
-
-实例:
-    // 第一部分:模块加载
-    var http = require(&apos;http&apos;);
-    var hostname = &apos;127.0.0.1&apos;;
-    var port = 3000;
-        (代码运行顺序:1)    
-    // 第二部分:服务器构造
-    var server = http.createServer(function (req, res){
-        res.writeHead(200, {&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
-        res.end(&apos;Hi~ o(*￣▽￣*)ブ, 首个Node.js页面. 您好,SVIP: 您的积分是: &apos;+ (50+10) + &apos;分!&apos;);
-        (代码运行顺序:3)
-    });
-
-    // 第三部分:运行服务器
-    server.listen(port, hostname, function (){
-        console.log(`请访问: http://${hostname}:${port}/`);
-    });
-    (代码运行顺序:2)
-
-分析:
-    把Node.js的服务拆分成三个部分,比较容易理解;
-
-    第一部分:
-        模块加载,不管是系统自带的模块,还是自己写的模块.要想在这个系统中去使用,都必须要加载模块;
-
-    第二部分:
-        服务器构造,简单说就是服务器具体功能的实现,也是Node.js无阻塞I/O和事件环的根本所在.所有请求的入口就在这里;
-
-    第三部分:        
-        运行服务器,就相当于服务器的网关.从它的传参可以看出,主要是定义服务器的端口和IP或域名;
-</code></pre><h4 id="事件驱动-事件环"><a href="#事件驱动-事件环" class="headerlink" title="事件驱动-事件环:"></a>事件驱动-事件环:</h4><pre><code>1.从代码运行顺序可以看出,并非是从上到下的顺序.因为默认情况下,它是异步的;
-2.当程序执行时,模块加载完,服务器生成,开启服务器,有请求进来的时候,req接受到请求之后,res才会触发处理数据并返回,这个过程是需要耗时的;
-3.可以通过迭代器等方式将代码执行方式变成同步;
-</code></pre><h4 id="报文对象"><a href="#报文对象" class="headerlink" title="报文对象"></a>报文对象</h4><pre><code>1.请求头信息;
-    req.headers            // 返回一个对象,包含请求的头信息数据;
-2.请求方式;
-    req.method            // 传输方式;
-3.请求头列表;
-    req.rawHeaders        // 返回一个数组,内容与headers一致;
-4.状态码;
-    res.statusCode        // 返回响应状态码
-5.响应信息;
-    res.statusMessage    // 返回状态描述
-6.URL链接;
-    req.url                // 返回url链接 (path ~ hash)
-</code></pre><h3 id="URL模块"><a href="#URL模块" class="headerlink" title="URL模块"></a>URL模块</h3><pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                            href                                             │
-├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
-│ protocol │  │        auth         │        host         │           path            │ hash  │
-│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
-│          │  │                     │   hostname   │ port │ pathname │     search     │       │
-│          │  │                     │              │      │          ├─┬──────────────┤       │
-│          │  │                     │              │      │          │ │    query     │       │
-&quot;  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;
-│          │  │          │          │   hostname   │ port │          │                │       │
-│          │  │          │          ├──────────────┴──────┤          │                │       │
-│ protocol │  │ username │ password │        host         │          │                │       │
-├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
-│   origin    │                     │       origin        │ pathname │     search     │ hash  │
-├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
-│                                            href                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
-
-1.引入URL模块:
-    var url = require(&apos;url&apos;);
-2.解析URL:
-    req.url // 请求的路径
-
-    var path = url.parse(req.url).path;
-    var pathname = url.parse(req.url).pathname;
-    var search = url.parse(req.url).search;
-    var query = url.parse(req.url).query;
-    var hash = url.parse(req.url).hash;
-
-
-3.处理get参数:
-    var getParams = url.parse(req.url,true).query;
-
-*注: url.pars() 为解析URL的信息,当第2参为true时,可以将query(get)参数解析成对象返回;
-</code></pre><h3 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h3><pre><code>1.引入fs模块:
-    var fs = require(&apos;fs&apos;);
-
-2.创建文件夹
-    fs.mkdir(&apos;目录路径&apos;, function(err){
-
-    });
-
-3.删除文件夹
-    fs.rmdir(&apos;目录路径&apos;, function(err){
-
-    });
-
-4.读取文件或目录信息
-    fs.stat(&apos;文件或目录路径&apos;, function (err, stats){
-
-    });
-
-    1) 回调参数
-        stats 文件或目录的信息
-
-    2) 函数
-        stats.isFile()            // 是否是文件
-        stats.isDirectory()     // 是否是目录
-
-5.读取文件夹内容
-    fs.readdir(&apos;目录路径&apos;, function(err, files){
-
-    });
-
-    1) 回调参数
-        files        // 返回一个数组,包含该目录下所有文件;
-</code></pre><h3 id="四-Node-js路由"><a href="#四-Node-js路由" class="headerlink" title="四. Node.js路由"></a>四. Node.js路由</h3><pre><code>简单理解就是控制URL的访问,是对页面请求的一种控制方式;
-实例:
-    var http = require(&apos;http&apos;);
-    var url = require(&apos;url&apos;);
-    var hostname = &apos;127.0.0.1&apos;;
-    var port = 3000;
-
-    var server = http.createServer(function(req,res){
-        if (req.url == &apos;/favicon.ico&apos;)return;
-        res.writeHead(200,{&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
-
-        var user = url.parse(req.url).pathname;
-
-            if (user.substr(0,5) == &apos;/stu/&apos;) {
-                var stuid = user.substr(5);
-                if (/^\d{11}$/.test(stuid)) {
-                    res.end(&apos;学员id&apos; + stuid);
-                }else{
-                    res.end(&apos;学员不存在&apos;);
-                }
-            }else if(user.substr(0,5) == &apos;/tch/&apos;){
-                var tchid = user.substr(5);
-                if (/^\d{5}$/.test(tchid)) {
-                    res.end(&apos;员工id&apos; + tchid);
-                }else{
-                    res.end(&apos;员工不存在&apos;);
-                }
-            }else{
-                res.end(&apos;URL有误!&apos;);
-            }
-    });
-
-    // 运行服务器
-    server.listen(port, hostname);    
-
-分析:
-    从if else就可以看出这是对流程控制的一种方式.所有的if条件都是在匹配,请求的参数是否正确;
-</code></pre><h3 id="五-迭代器"><a href="#五-迭代器" class="headerlink" title="五. 迭代器"></a>五. 迭代器</h3><pre><code>在Node.js开发中,由于特性的原因,代码异步执行的情况很多.但基于环境不同,也不可能完全都用异步操作.而迭代器的作用就是强制将异步变为同步;
-
-错误实例:
-    目的:访问imgs这个文件夹,读取文件夹内容,将里面的子aaa bbb ccc 3个文件夹拿出来存入WJJ数组,然后显示出来;
-
-    var server = http.createServer(function (req, res){
-        if (req.url == &apos;/favicon.ico&apos;) return;
-
-        fs.readdir(&apos;./imgs&apos;, function (err, files){
-            // console.log(files);
-            // [ &apos;1.jpg&apos;, ...&apos;9.jpg&apos;, &apos;aaa&apos;, &apos;bbb&apos; ]
-            // 存储所有的文件夹
-            var wjj = [];
-
-            for (var i = 0; i &lt; files.length; i++) {
-                var thisname = files[i]; // 文件或文件夹
-                // 检测 是否是目录
-                fs.stat(&apos;./imgs/&apos;+thisname, function(err, stats){
-                    // 如果是文件夹 则将文件夹名字放入数组
-                    if (stats.isDirectory()) {
-                        wjj.push(thisname);
-                    }
-                    console.log(wjj);
-                });
-            }  //   END - for
-        console.log(wjj, &apos;循环完成&apos;);
-        });
-
-        res.end(&apos;SUCCESSED!&apos;);
-    });
-
-    输出结果:
-        [] &apos;循环完成&apos;
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        [ &apos;ccc&apos; ]
-        [ &apos;ccc&apos;, &apos;ccc&apos; ]
-        [ &apos;ccc&apos;, &apos;ccc&apos;, &apos;ccc&apos; ]
-    分析:
-        1) 在创建服务器的时候,就使用了回调函数,这是第1个异步操作;
-        2) 在读取文件夹的时候,又用了回调函数,这是第2个异步操作;
-        3) 在for循环里,判断每一个文件是否是目录时,又用了回调函数,这是第3个异步操作;
-
-        代码从最外层开始执行,第一个被打印的是for循环外的内容;然后打开文件夹没有问题,但for循环在执行的时候,速度是很快的.回调函数还没有来得及处理,for循环已经结束;
-        所以最终返回的只有ccc,且因为有3个文件夹,所以放入数组3次,最终结果为3个CCC;
-
-迭代器实例:
-    fs.readdir(&apos;./imgs&apos;, function (err, files){
-        var wjj = [];
-
-        (function iterator(i){
-
-            if (i == files.length) {
-                console.log(wjj,&apos;结果&apos;);
-                return;
-            }
-
-            fs.stat(&apos;./imgs/&apos;+ files[i], function (err, stats){
-                if (stats.isDirectory()) {
-                    wjj.push(files[i]);
-                }
-                console.log(wjj);
-                iterator(i+1);
-            });
-        })(0);
-    });
-    输出结果:
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        []
-        [ &apos;aaa&apos; ]
-        [ &apos;aaa&apos;, &apos;bbb&apos; ]
-        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ]
-        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ] &apos;结果&apos;
-
-    分析:
-        原理用自执行函数+递归,生成一个迭代器;(类似JS中的计数器用法)
-
-        1) 判断部分代码没有变化,只是在最后自增递归,使得这段代码可以重复执行;
-        2) files是一个数组,用数组的长度作为自执行里中断开关;
-
-
-同步函数实例:
-     for (var i = 0; i &lt; files.length; i++) {
-        var thisname = files[i];
-        var thisStat = fs.statSync(&apos;./imgs/&apos;+thisname);
-        if (thisStat.isDirectory()) {
-            wjj.push(thisname);
-        }
-    }
-
-    fs.statSync(文件路径)  // 功能与stat一样,但是是同步执行的;
-</code></pre><h3 id="六-输出变量-函数"><a href="#六-输出变量-函数" class="headerlink" title="六. 输出变量/函数"></a>六. 输出变量/函数</h3><pre><code>Node.js中,JS文件中定义的变量、函数,都只在这个文件内部有效. 
-其他文件中需要引用变量、函数时,必须使用exports对象进行输出(暴露). 
-使用者要用require()命令,引用执行这个JS文件.
-
-实例:
-    (fun1.js)
-        var str = &apos;我是fun1里的str&apos;;
-        var msg = &apos;我是fun1里的msg&apos;;
-
-        function showMsg() {
-            console.log(&apos;函数的结果是: &apos;+ msg);
-        }
-
-        exports.str = str;
-        exports.showMsg = showMsg;
-
-    (module.js)
-        var fun1 = require(&apos;./module/fun1.js&apos;);
-
-        console.log(fun1.str);
-
-        fun1.showMsg();
-</code></pre><h3 id="输出类-构造函数"><a href="#输出类-构造函数" class="headerlink" title="输出类(构造函数)"></a>输出类(构造函数)</h3><pre><code>可以用module.exports = 构造函数名;的方式 向外输出一个类
-
-实例:
-    (user.js)
-
-        function user(name, age) {
-            this.name = name;
-            this.age = age;
-            this.getInfo = function() {
-                console.log(name + &apos;:&apos; + age);
-            }
-        }
-
-        module.exports = user;
-
-    (demo.js)
-        var user = require(&apos;./module/user&apos;);
-
-        var yy = new user(&apos;艳艳&apos;,&apos;18&apos;);
-
-        console.log(yy.name);
-        yy.getInfo();
-</code></pre>]]></content>
-      
-        <categories>
-            
-            <category> 后端 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Node.js </tag>
+            <tag> javascript </tag>
             
         </tags>
         
@@ -4404,6 +3814,596 @@ select UNIX_TIMESTAPM();
         <tags>
             
             <tag> Mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Node.js]]></title>
+      <url>/2017/12/08/node.js/</url>
+      <content type="html"><![CDATA[<h2 id="一-安装"><a href="#一-安装" class="headerlink" title="一.安装"></a>一.安装</h2><pre><code>下载地址:http://nodejs.cn/
+1.根据系统选择32位或64位安装包
+2.windows推荐下载.msi的安装包
+3.linux下载源码包(注意linux系统版本)
+    可以通过命令file /sbin/init 或者 file /bin/ls查看linux的系统位数.
+</code></pre><h4 id="linux-安装步骤"><a href="#linux-安装步骤" class="headerlink" title="linux 安装步骤"></a>linux 安装步骤</h4><pre><code>1.上传源码包到/node目录下
+    mkdir node  
+    将压缩包上传到该目录
+
+2.解压到当前目录(此源码包不用编译)
+    tar -xf node-v8.9.0-linux-x64.tar.xz
+
+3.移动node目录到/usr/local
+    mv node-v8.9.0-linux-x64.tar.xz /usr/local
+
+4.进入node里的bin目录,并查看相关文件
+    cd /usr/local/node/bin
+    ls 
+    里面有 node npm npx 这三个文件即可;
+
+5.在bin目录下查看Node的版本
+    ./node -v
+    如果显示版本说明正常,否则源码包可能有问题.
+
+6.设置环境变量
+    vim ~/.bash_profile
+
+    修改:PATH=SPATH:SHOME/bin:/usr/local/node/bin
+    保存退出
+
+7.重启服务
+    source ~./bash_profile
+
+8.在全局下查看node版本
+    node -v
+    npm -v
+    出现版本说明环境变量设置成功
+</code></pre><h4 id="windows安装步骤"><a href="#windows安装步骤" class="headerlink" title="windows安装步骤"></a>windows安装步骤</h4><pre><code>1.找到安装包
+2.双击安装,一直下一步至结束.
+3.安装完成后,用cmd或cmder查看版本
+    node -v
+    出现版本说明安装成功,环境变量自动生成.
+</code></pre><h2 id="二-node-js的特点"><a href="#二-node-js的特点" class="headerlink" title="二.node.js的特点"></a>二.node.js的特点</h2><pre><code>1.它既是语言,又是平台.
+2.单线程 | 非阻塞I/O | 事件驱动
+
+    1). 单线程
+        所有客户端请求的连接 都使用一个线程来处理.
+        Node.js不是为每个连接创建一个新的线程,而是仅仅使用一个线程,来处理所有业务逻辑.
+        单线程带来的好处,系统不在有线程的创建和销毁的额外开销.(内存换页)
+
+    2). 非阻塞I/O
+        I: 输入 input
+        O: 输出 output
+        I/O操作: 读写数据库/读写文件/执行运算/网络通讯
+        I/O操作不会阻塞程序的运行
+
+        在阻塞模式下,一个线程只能处理一项任务,想要提高吞吐率(并发量)必须通过多线程.
+        而非阻塞模式下,一个线程 永远在执行运算操作,这个线程的利用率是满载的.
+
+
+    3). 事件驱动
+        客户端 请求建立连接，提交数据等行为，就会触发 相应的事件.
+        在Node中，在一个时刻，只能执行一个事件回调函数，但是在执行 一个事件回调函数的中途，
+        可以转而处理其他事件（比如，又有新用户连接了），然后返回继续执行原事件的回调函数，这种处理机制，称为“事件环”机制.
+
+    Node.js底层是C++(V8引擎也是C++写的).底层代码中，近半数都用于事件队列、回调函数队列的构建.
+    用事件驱动 来完成服务器的 任务调度,是Node.js中 真正底层核心逻辑.
+</code></pre><h2 id="三-常用模块"><a href="#三-常用模块" class="headerlink" title="三.常用模块"></a>三.常用模块</h2><pre><code>简单理解:
+    把Node.js当做一台空服务器,模块的作用就是在这台服务器上嵌入增加功能;
+</code></pre><h3 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h3><pre><code>1.引入http模块:
+    var http = require(&apos;http&apos;);
+2.主机名:
+    var hostname = &apos;IP或者域名&apos;;
+3.端口:
+    var port = 1024 ~ 65535; (建议TCP端口范围)
+4.创建服务器:
+    var server = http.createServer(回调函数);
+5.回调函数:
+    function(req,res){}
+6.回调传参:
+    1) 请求对象(request)
+        req        // 有请求时,自动接受该请求的相关参数;
+    2) 响应对象(response)
+        res        // 响应时的数据处理;
+
+        常用:
+            res.writeHead();设置HTTP响应头信息;
+            res.end();        输出响应结果;
+7.运行服务器:
+    server.listen(port,hostname,回调函数);
+
+实例:
+    // 第一部分:模块加载
+    var http = require(&apos;http&apos;);
+    var hostname = &apos;127.0.0.1&apos;;
+    var port = 3000;
+        (代码运行顺序:1)    
+    // 第二部分:服务器构造
+    var server = http.createServer(function (req, res){
+        res.writeHead(200, {&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
+        res.end(&apos;Hi~ o(*￣▽￣*)ブ, 首个Node.js页面. 您好,SVIP: 您的积分是: &apos;+ (50+10) + &apos;分!&apos;);
+        (代码运行顺序:3)
+    });
+
+    // 第三部分:运行服务器
+    server.listen(port, hostname, function (){
+        console.log(`请访问: http://${hostname}:${port}/`);
+    });
+    (代码运行顺序:2)
+
+分析:
+    把Node.js的服务拆分成三个部分,比较容易理解;
+
+    第一部分:
+        模块加载,不管是系统自带的模块,还是自己写的模块.要想在这个系统中去使用,都必须要加载模块;
+
+    第二部分:
+        服务器构造,简单说就是服务器具体功能的实现,也是Node.js无阻塞I/O和事件环的根本所在.所有请求的入口就在这里;
+
+    第三部分:        
+        运行服务器,就相当于服务器的网关.从它的传参可以看出,主要是定义服务器的端口和IP或域名;
+</code></pre><h4 id="事件驱动-事件环"><a href="#事件驱动-事件环" class="headerlink" title="事件驱动-事件环:"></a>事件驱动-事件环:</h4><pre><code>1.从代码运行顺序可以看出,并非是从上到下的顺序.因为默认情况下,它是异步的;
+2.当程序执行时,模块加载完,服务器生成,开启服务器,有请求进来的时候,req接受到请求之后,res才会触发处理数据并返回,这个过程是需要耗时的;
+3.可以通过迭代器等方式将代码执行方式变成同步;
+</code></pre><h4 id="报文对象"><a href="#报文对象" class="headerlink" title="报文对象"></a>报文对象</h4><pre><code>1.请求头信息;
+    req.headers            // 返回一个对象,包含请求的头信息数据;
+2.请求方式;
+    req.method            // 传输方式;
+3.请求头列表;
+    req.rawHeaders        // 返回一个数组,内容与headers一致;
+4.状态码;
+    res.statusCode        // 返回响应状态码
+5.响应信息;
+    res.statusMessage    // 返回状态描述
+6.URL链接;
+    req.url                // 返回url链接 (path ~ hash)
+</code></pre><h3 id="URL模块"><a href="#URL模块" class="headerlink" title="URL模块"></a>URL模块</h3><pre><code>┌─────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                            href                                             │
+├──────────┬──┬─────────────────────┬─────────────────────┬───────────────────────────┬───────┤
+│ protocol │  │        auth         │        host         │           path            │ hash  │
+│          │  │                     ├──────────────┬──────┼──────────┬────────────────┤       │
+│          │  │                     │   hostname   │ port │ pathname │     search     │       │
+│          │  │                     │              │      │          ├─┬──────────────┤       │
+│          │  │                     │              │      │          │ │    query     │       │
+&quot;  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;
+│          │  │          │          │   hostname   │ port │          │                │       │
+│          │  │          │          ├──────────────┴──────┤          │                │       │
+│ protocol │  │ username │ password │        host         │          │                │       │
+├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
+│   origin    │                     │       origin        │ pathname │     search     │ hash  │
+├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
+│                                            href                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────┘
+
+1.引入URL模块:
+    var url = require(&apos;url&apos;);
+2.解析URL:
+    req.url // 请求的路径
+
+    var path = url.parse(req.url).path;
+    var pathname = url.parse(req.url).pathname;
+    var search = url.parse(req.url).search;
+    var query = url.parse(req.url).query;
+    var hash = url.parse(req.url).hash;
+
+
+3.处理get参数:
+    var getParams = url.parse(req.url,true).query;
+
+*注: url.pars() 为解析URL的信息,当第2参为true时,可以将query(get)参数解析成对象返回;
+</code></pre><h3 id="fs模块"><a href="#fs模块" class="headerlink" title="fs模块"></a>fs模块</h3><pre><code>1.引入fs模块:
+    var fs = require(&apos;fs&apos;);
+
+2.创建文件夹
+    fs.mkdir(&apos;目录路径&apos;, function(err){
+
+    });
+
+3.删除文件夹
+    fs.rmdir(&apos;目录路径&apos;, function(err){
+
+    });
+
+4.读取文件或目录信息
+    fs.stat(&apos;文件或目录路径&apos;, function (err, stats){
+
+    });
+
+    1) 回调参数
+        stats 文件或目录的信息
+
+    2) 函数
+        stats.isFile()            // 是否是文件
+        stats.isDirectory()     // 是否是目录
+
+5.读取文件夹内容
+    fs.readdir(&apos;目录路径&apos;, function(err, files){
+
+    });
+
+    1) 回调参数
+        files        // 返回一个数组,包含该目录下所有文件;
+</code></pre><h3 id="四-Node-js路由"><a href="#四-Node-js路由" class="headerlink" title="四. Node.js路由"></a>四. Node.js路由</h3><pre><code>简单理解就是控制URL的访问,是对页面请求的一种控制方式;
+实例:
+    var http = require(&apos;http&apos;);
+    var url = require(&apos;url&apos;);
+    var hostname = &apos;127.0.0.1&apos;;
+    var port = 3000;
+
+    var server = http.createServer(function(req,res){
+        if (req.url == &apos;/favicon.ico&apos;)return;
+        res.writeHead(200,{&quot;Content-type&quot;:&quot;text/html;charset=utf-8&quot;});
+
+        var user = url.parse(req.url).pathname;
+
+            if (user.substr(0,5) == &apos;/stu/&apos;) {
+                var stuid = user.substr(5);
+                if (/^\d{11}$/.test(stuid)) {
+                    res.end(&apos;学员id&apos; + stuid);
+                }else{
+                    res.end(&apos;学员不存在&apos;);
+                }
+            }else if(user.substr(0,5) == &apos;/tch/&apos;){
+                var tchid = user.substr(5);
+                if (/^\d{5}$/.test(tchid)) {
+                    res.end(&apos;员工id&apos; + tchid);
+                }else{
+                    res.end(&apos;员工不存在&apos;);
+                }
+            }else{
+                res.end(&apos;URL有误!&apos;);
+            }
+    });
+
+    // 运行服务器
+    server.listen(port, hostname);    
+
+分析:
+    从if else就可以看出这是对流程控制的一种方式.所有的if条件都是在匹配,请求的参数是否正确;
+</code></pre><h3 id="五-迭代器"><a href="#五-迭代器" class="headerlink" title="五. 迭代器"></a>五. 迭代器</h3><pre><code>在Node.js开发中,由于特性的原因,代码异步执行的情况很多.但基于环境不同,也不可能完全都用异步操作.而迭代器的作用就是强制将异步变为同步;
+
+错误实例:
+    目的:访问imgs这个文件夹,读取文件夹内容,将里面的子aaa bbb ccc 3个文件夹拿出来存入WJJ数组,然后显示出来;
+
+    var server = http.createServer(function (req, res){
+        if (req.url == &apos;/favicon.ico&apos;) return;
+
+        fs.readdir(&apos;./imgs&apos;, function (err, files){
+            // console.log(files);
+            // [ &apos;1.jpg&apos;, ...&apos;9.jpg&apos;, &apos;aaa&apos;, &apos;bbb&apos; ]
+            // 存储所有的文件夹
+            var wjj = [];
+
+            for (var i = 0; i &lt; files.length; i++) {
+                var thisname = files[i]; // 文件或文件夹
+                // 检测 是否是目录
+                fs.stat(&apos;./imgs/&apos;+thisname, function(err, stats){
+                    // 如果是文件夹 则将文件夹名字放入数组
+                    if (stats.isDirectory()) {
+                        wjj.push(thisname);
+                    }
+                    console.log(wjj);
+                });
+            }  //   END - for
+        console.log(wjj, &apos;循环完成&apos;);
+        });
+
+        res.end(&apos;SUCCESSED!&apos;);
+    });
+
+    输出结果:
+        [] &apos;循环完成&apos;
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        [ &apos;ccc&apos; ]
+        [ &apos;ccc&apos;, &apos;ccc&apos; ]
+        [ &apos;ccc&apos;, &apos;ccc&apos;, &apos;ccc&apos; ]
+    分析:
+        1) 在创建服务器的时候,就使用了回调函数,这是第1个异步操作;
+        2) 在读取文件夹的时候,又用了回调函数,这是第2个异步操作;
+        3) 在for循环里,判断每一个文件是否是目录时,又用了回调函数,这是第3个异步操作;
+
+        代码从最外层开始执行,第一个被打印的是for循环外的内容;然后打开文件夹没有问题,但for循环在执行的时候,速度是很快的.回调函数还没有来得及处理,for循环已经结束;
+        所以最终返回的只有ccc,且因为有3个文件夹,所以放入数组3次,最终结果为3个CCC;
+
+迭代器实例:
+    fs.readdir(&apos;./imgs&apos;, function (err, files){
+        var wjj = [];
+
+        (function iterator(i){
+
+            if (i == files.length) {
+                console.log(wjj,&apos;结果&apos;);
+                return;
+            }
+
+            fs.stat(&apos;./imgs/&apos;+ files[i], function (err, stats){
+                if (stats.isDirectory()) {
+                    wjj.push(files[i]);
+                }
+                console.log(wjj);
+                iterator(i+1);
+            });
+        })(0);
+    });
+    输出结果:
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        []
+        [ &apos;aaa&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ]
+        [ &apos;aaa&apos;, &apos;bbb&apos;, &apos;ccc&apos; ] &apos;结果&apos;
+
+    分析:
+        原理用自执行函数+递归,生成一个迭代器;(类似JS中的计数器用法)
+
+        1) 判断部分代码没有变化,只是在最后自增递归,使得这段代码可以重复执行;
+        2) files是一个数组,用数组的长度作为自执行里中断开关;
+
+
+同步函数实例:
+     for (var i = 0; i &lt; files.length; i++) {
+        var thisname = files[i];
+        var thisStat = fs.statSync(&apos;./imgs/&apos;+thisname);
+        if (thisStat.isDirectory()) {
+            wjj.push(thisname);
+        }
+    }
+
+    fs.statSync(文件路径)  // 功能与stat一样,但是是同步执行的;
+</code></pre><h3 id="六-输出变量-函数"><a href="#六-输出变量-函数" class="headerlink" title="六. 输出变量/函数"></a>六. 输出变量/函数</h3><pre><code>Node.js中,JS文件中定义的变量、函数,都只在这个文件内部有效. 
+其他文件中需要引用变量、函数时,必须使用exports对象进行输出(暴露). 
+使用者要用require()命令,引用执行这个JS文件.
+
+实例:
+    (fun1.js)
+        var str = &apos;我是fun1里的str&apos;;
+        var msg = &apos;我是fun1里的msg&apos;;
+
+        function showMsg() {
+            console.log(&apos;函数的结果是: &apos;+ msg);
+        }
+
+        exports.str = str;
+        exports.showMsg = showMsg;
+
+    (module.js)
+        var fun1 = require(&apos;./module/fun1.js&apos;);
+
+        console.log(fun1.str);
+
+        fun1.showMsg();
+</code></pre><h3 id="输出类-构造函数"><a href="#输出类-构造函数" class="headerlink" title="输出类(构造函数)"></a>输出类(构造函数)</h3><pre><code>可以用module.exports = 构造函数名;的方式 向外输出一个类
+
+实例:
+    (user.js)
+
+        function user(name, age) {
+            this.name = name;
+            this.age = age;
+            this.getInfo = function() {
+                console.log(name + &apos;:&apos; + age);
+            }
+        }
+
+        module.exports = user;
+
+    (demo.js)
+        var user = require(&apos;./module/user&apos;);
+
+        var yy = new user(&apos;艳艳&apos;,&apos;18&apos;);
+
+        console.log(yy.name);
+        yy.getInfo();
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Node.js </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Node.js(2)]]></title>
+      <url>/2017/12/08/node.js(2)/</url>
+      <content type="html"><![CDATA[<h3 id="POST数据处理"><a href="#POST数据处理" class="headerlink" title="POST数据处理"></a>POST数据处理</h3><blockquote>
+<p>相比较GET请求，POST请求比较复杂。因为Node.js认为，使用POST请求时，数据量会比较多。为了追求极致的效率，它将数据拆分成为了众多小的数据块(chunk)，然后通过特定的事件，将这些小数据块有序传递给回调函数。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+</code></pre></blockquote>
+<pre><code>var server = http.createServer(function (req, res) {
+    // 这里的req是指访问页面的GET请求;
+    if (req.url == &apos;/form&apos;) {
+        fs.readFile(&apos;./form.html&apos;, function (err, data) {
+            res.writeHead(200, {
+                &quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;
+            });
+            res.end(data);
+
+        });
+    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
+        var postData = &apos;&apos;;
+        // 监听并处理POST请求;这里data是固定参数;
+        req.addListener(&apos;data&apos;, function (chunk) {
+            postData += chunk;
+        });
+        // node为了追求极致效率,将POTS数据分割为小块的形式进行传输
+
+        // 全部传输完成,参1改成end,参2处理回调逻辑;
+        req.addListener(&apos;end&apos;, function () {
+
+            var dataObj = querystring.parse(postData);
+              // querystring.parse将POST参数解析成对象格式;需要引入模块;
+
+            res.end(&apos;POST DATA SUCCESS!&apos;);
+        });
+
+    } else {
+        res.end(&apos;404&apos;);
+    }
+
+});
+
+server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre><h3 id="文件上传处理"><a href="#文件上传处理" class="headerlink" title="文件上传处理"></a>文件上传处理</h3><pre><code>原生写POST处理,比较复杂,要写两个监听.
+文件上传业务比较麻烦.所以,用第三方模块: `formidable`
+先用NPM安装 npm install formidable --save
+</code></pre><h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><pre><code>var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+var querystring = require(&apos;querystring&apos;);
+var formidable = require(&apos;formidable&apos;);
+var datetime = require(&apos;silly-datetime&apos;);
+var path = require(&apos;path&apos;);
+
+
+var server = http.createServer(function (req, res) {
+    if (req.url == &apos;/form&apos;) {
+        fs.readFile(&apos;./form_file.html&apos;, function (err, data) {
+            res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
+            res.end(data);
+        });
+    } else if (req.url == &apos;/dopost&apos; &amp;&amp; req.method.toLowerCase() == &apos;post&apos;) {
+        // 进行POST 文件数据处理
+        var form = new formidable.IncomingForm();
+        form.uploadDir = &quot;./uploads&quot;;
+
+        // 该模块已经将 POST数据和文件数据 分离好了;fields是表单对象,files是文件对象;
+        // 当执行到parse的回调时,表示表单的各种数据已经接收到了; 
+        form.parse(req, function (err, fields, files) {
+
+            res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
+
+            // 文件改名
+            // 生成新名字: 时间 + 随机数 + 源文件后缀: 2017012311223301236.jpg
+            var t = datetime.format(new Date(), &apos;YYYYMMDDHHmmss&apos;);
+            var ran = parseInt(Math.random() * 10000);
+            var extname = path.extname(files.myfile.name);
+
+            // 旧文件名
+            var oldpath = &apos;./&apos; + files.myfile.path;
+            // 新文件名
+            // var newpath = &apos;./uploads/&apos; + t + ran + extname;
+            var newpath = &apos;./uploads/111&apos; + extname;
+
+            // 执行改名
+            fs.rename(oldpath, newpath, function (err) {
+                 if(err) console.log(&apos;改名失败&apos;);
+                res.writeHead(200, {&quot;Content-Type&quot;: &quot;text/html;charset=UTF-8&quot;});
+                res.end(&apos;表单信息 处理完成111&apos;);
+            });
+
+        });
+
+    } else {
+        res.end(&apos;404&apos;);
+    }
+});
+
+
+server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre><h3 id="EJS模板使用"><a href="#EJS模板使用" class="headerlink" title="EJS模板使用"></a>EJS模板使用</h3><pre><code>http://www.embeddedjs.com/        #官网
+https://www.npmjs.com/package/ejs #npm上的ejs包
+ejs是Embedded JavaScript templates的简称,意思是嵌入式JavaScript模板.node中的后台模版.
+1.安装ejs模块
+     npm install ejs --save
+2.引入ejs模块
+    var ejs = require(&apos;ejs&apos;);
+3.创建模版(必须是字串形式)
+    var str = &apos;扎心了,老铁. 双击 &lt;%= num %&gt;&apos;;
+4.准备数据(数组形式)
+    var data = {
+        num: 6666666
+    }
+5.数据绑定
+    var html = ejs.render(str, data);
+
+6.输出
+    console.log(html);
+</code></pre><h4 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h4><pre><code>1.创建(EJS模板)
+    先用HTML文档编辑好之后,把文件后缀改成ejs即可,变量设置方式参照上文;
+2.模块部分
+    var http = require(&apos;http&apos;);
+    var fs = require(&apos;fs&apos;);
+    var ejs = require(&apos;ejs&apos;);
+
+    var server = http.createServer(function (req, res) {
+        if (req.url == &apos;/&apos;) {
+            fs.readFile(&apos;./views/index.ejs&apos;,function (err, data) {
+                // 数据处理
+                var template = data.toString();
+
+                var dict = {
+                    title  : &quot;EJS模版引擎的实用&quot;,
+                    content : &quot;我就是个段落内容&quot;,
+                    pic : &apos;./imgs/01.jpg&apos;,
+                    songci : {
+                        title : &apos;水调歌头&apos;,
+                        list : [
+                            &quot;明月几时有&quot;,
+                            &quot;把酒问青天&quot;,
+                            &quot;不知天上宫阙&quot;,
+                            &quot;今夕是何年&quot;
+                        ]
+                    }
+                }
+                // 绑定数据
+                var html = ejs.render(template, dict);
+
+                // 输出
+                res.writeHead(200, {&apos;content-type&apos;: &apos;text/html&apos;});
+                res.end(html);
+            });
+        } else if (req.url == &apos;/imgs/01.jpg&apos;) {
+            fs.readFile(&apos;./imgs/01.jpg&apos;,function (err, data) {
+                // 输出
+                res.writeHead(200, {&apos;content-type&apos;: &apos;image/jpeg&apos;});
+                res.end(data);
+            });
+        } else {
+            res.writeHead(404, {&apos;content-type&apos;: &apos;text/html&apos;});
+            res.end(&apos;404&apos;);
+        }
+    });
+
+    server.listen(3000, &apos;127.0.0.1&apos;);
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Node.js </tag>
             
         </tags>
         
